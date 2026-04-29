@@ -125,7 +125,7 @@ textarea{resize:vertical;min-height:75px;line-height:1.5}
 .dcx{font-size:13px;color:var(--text2);line-height:1.5}
 .dcs{font-size:12px;color:var(--ember);margin-bottom:.22rem}
 .dca{margin-top:.45rem;display:flex;gap:5px;flex-wrap:wrap}
-.dcbtn{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1.5px solid var(--border2);background:none;color:var(--text2);cursor:pointer;transition:all .12s}
+.dcbtn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:20px;border:1.5px solid var(--border2);background:none;color:var(--text2);cursor:pointer;transition:all .12s}
 .dcbtn:hover{border-color:var(--gold);color:var(--gold);background:#c8a96e14}
 .dcbtn.ina{border-color:var(--gold);color:var(--gold2);background:#c8a96e28;font-weight:500}
 .dcbtn.inv{border-color:var(--teal);color:var(--teal2);background:#4a9e8a28;font-weight:500}
@@ -144,10 +144,10 @@ textarea{resize:vertical;min-height:75px;line-height:1.5}
 .d-midnight .dch{border-color:#6080c822}.d-sage .dch{border-color:#60a86022}.d-splendor .dch{border-color:#d0a03022}
 .d-valor .dch{border-color:#c8704022}.d-blood .dch{border-color:#c0304022}
 .t-spell{border-color:#a870d855;color:#c898f0}.t-ability{border-color:#d85a3055;color:#f09070}.t-grimoire{border-color:#5090d855;color:#80b0f0}
-.lcm{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:.55rem .75rem;margin-bottom:6px;border-left:3px solid var(--gold3)}
-.lcmn{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.04em;color:var(--gold2);margin-bottom:3px;font-weight:500}
-.lcmm{font-size:13px;color:var(--text2);line-height:1.4}
-.lcmt{font-size:12px;color:var(--text3);margin-top:3px;font-style:italic;line-height:1.5}
+.lcm{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:.3rem .45rem;margin-bottom:3px;border-left:2px solid var(--gold3)}
+.lcmn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;color:var(--gold2);margin-bottom:1px;font-weight:500;text-transform:uppercase}
+.lcmm{font-size:10px;color:var(--text2);line-height:1.3}
+.lcmt{font-size:10px;color:var(--text3);margin-top:1px;font-style:italic;line-height:1.4}
 .toast{position:fixed;bottom:1.4rem;right:1.4rem;background:var(--bg4);border:1px solid var(--gold3);border-radius:var(--r2);padding:.6rem .95rem;font-size:14px;color:var(--gold2);z-index:1000;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 .es{text-align:center;padding:3rem 2rem;color:var(--text3)}
@@ -382,10 +382,11 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 #saveIndicator.show{opacity:1}
 .tp.active{animation:tabFadeIn .1s ease-out}@keyframes tabFadeIn{from{opacity:0}to{opacity:1}}
 .cond-row{display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap}
-.cond-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .9rem;border-radius:20px;border:1.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;transition:all .15s}
+.cond-btn{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:.4rem 1rem;border-radius:20px;border:1.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;transition:all .15s}
 .cond-btn:hover{border-color:var(--text3);color:var(--text2)}
 .cond-btn.cond-active.cond-btn:first-child,.cond-btn.cond-active:nth-child(1){border-color:var(--teal);color:var(--teal2);background:#4a9e8a18}
-.cond-active{border-color:var(--ember)!important;color:var(--ember)!important;background:#d4603a18!important}
+.cond-btn:hover{border-color:var(--text3);color:var(--text2);background:var(--bg3)}
+.cond-active{border-color:var(--ember)!important;color:var(--bg)!important;background:var(--ember)!important;font-weight:600!important;box-shadow:0 0 8px #d4603a55!important}
 .vault-swap-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.4rem .5rem;border-bottom:1px solid var(--border);}
 .vault-swap-row:last-child{border-bottom:none}
 .vault-swap-info{flex:1;min-width:0}
@@ -505,13 +506,65 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 .lu-adv-pip{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);background:var(--bg3);transition:all .15s}
 .lu-adv-pip.filled{background:var(--gold3);border-color:var(--gold)}
 .lu-slots-row.cant-afford{opacity:.55}
+.bld-dc-vault{border-color:var(--teal)!important;background:#4a9e8a0e!important}
+.bld-dc-btn-vault{border-color:var(--teal)!important;color:var(--teal2)!important}
+.cls-sub-block{padding:.45rem .6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);margin-bottom:.4rem}
+.cls-sub-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold3);margin-bottom:.3rem}
+.cls-sub-feat{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:.25rem}
+.cls-sub-feats{display:flex;flex-direction:column;gap:.2rem}
+
+/* Domain left-border accents on loadout chips */
+.d-arcana .lcm{border-left-color:#a870d8}.d-blade .lcm{border-left-color:#d85a30}
+.d-blood .lcm{border-left-color:#c03040}.d-bone .lcm{border-left-color:#b8a070}
+.d-codex .lcm{border-left-color:#5090d8}.d-dread .lcm{border-left-color:#8060c0}
+.d-grace .lcm{border-left-color:#d88060}.d-midnight .lcm{border-left-color:#6080c8}
+.d-sage .lcm{border-left-color:#60a860}.d-splendor .lcm{border-left-color:#d0a030}
+.d-valor .lcm{border-left-color:#c87040}
+/* Domain left-border accents on builder domain cards */
+.d-arcana.bld-domain-card{border-left:3px solid #a870d8}.d-blade.bld-domain-card{border-left:3px solid #d85a30}
+.d-blood.bld-domain-card{border-left:3px solid #c03040}.d-bone.bld-domain-card{border-left:3px solid #b8a070}
+.d-codex.bld-domain-card{border-left:3px solid #5090d8}.d-dread.bld-domain-card{border-left:3px solid #8060c0}
+.d-grace.bld-domain-card{border-left:3px solid #d88060}.d-midnight.bld-domain-card{border-left:3px solid #6080c8}
+.d-sage.bld-domain-card{border-left:3px solid #60a860}.d-splendor.bld-domain-card{border-left:3px solid #d0a030}
+.d-valor.bld-domain-card{border-left:3px solid #c87040}
+/* Domain accents on level-up card rows */
+.d-arcana.lu-dc-row{border-left:3px solid #a870d8}.d-blade.lu-dc-row{border-left:3px solid #d85a30}
+.d-blood.lu-dc-row{border-left:3px solid #c03040}.d-bone.lu-dc-row{border-left:3px solid #b8a070}
+.d-codex.lu-dc-row{border-left:3px solid #5090d8}.d-dread.lu-dc-row{border-left:3px solid #8060c0}
+.d-grace.lu-dc-row{border-left:3px solid #d88060}.d-midnight.lu-dc-row{border-left:3px solid #6080c8}
+.d-sage.lu-dc-row{border-left:3px solid #60a860}.d-splendor.lu-dc-row{border-left:3px solid #d0a030}
+.d-valor.lu-dc-row{border-left:3px solid #c87040}
+
+/* ── Mobile hamburger menu ─────────────────────────────────── */
+@media(max-width:600px){
+  #hamburger{display:flex!important}
+  #headerActions{
+    display:none!important;
+    position:fixed;top:54px;right:0;left:0;
+    background:var(--bg2);border-bottom:1px solid var(--border);
+    padding:.6rem .75rem;flex-direction:column;gap:.4rem;z-index:99;
+    box-shadow:0 8px 24px #0008;
+  }
+  #headerActions.mob-open{display:flex!important}
+  #headerActions .btn{width:100%;justify-content:center;text-align:center}
+  #headerActions select{width:100%}
+  .logo span{display:none}
+}
+/* Domain left-border accents on Domain Cards tab */
+.d-arcana.dcc{border-left:3px solid #a870d8}.d-blade.dcc{border-left:3px solid #d85a30}
+.d-blood.dcc{border-left:3px solid #c03040}.d-bone.dcc{border-left:3px solid #b8a070}
+.d-codex.dcc{border-left:3px solid #5090d8}.d-dread.dcc{border-left:3px solid #8060c0}
+.d-grace.dcc{border-left:3px solid #d88060}.d-midnight.dcc{border-left:3px solid #6080c8}
+.d-sage.dcc{border-left:3px solid #60a860}.d-splendor.dcc{border-left:3px solid #d0a030}
+.d-valor.dcc{border-left:3px solid #c87040}
 </style>
 </head>
 <body>
-<header class="hdr">
+<header class="hdr" id="mainHdr">
   <div class="logo">DGHRT</div>
   <div id="saveIndicator" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--teal2);opacity:0;transition:opacity .3s;margin-left:.5rem">Saved ✓</div>
-  <div class="ha" style="display:flex;align-items:center;gap:6px">
+  <button id="hamburger" class="btn bgh" onclick="toggleMobMenu()" style="display:none" title="Menu">☰</button>
+  <div class="ha" id="headerActions" style="display:flex;align-items:center;gap:6px">
     <select id="fontSizeSlider" title="Text size" onchange="applyFontSize(parseInt(this.value))"
       style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);padding:3px 6px;cursor:pointer;align-self:center;min-width:90px;max-width:120px">
       <option value="0">A — Small</option>
@@ -543,6 +596,16 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
   </aside>
   <main class="main">
     <div class="es" id="emptyState">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:.5rem;opacity:.7">
+        <!-- d12 dodecahedron simplified top-down -->
+        <polygon points="40,4 72,20 72,60 40,76 8,60 8,20" stroke="var(--gold3)" stroke-width="1.5" fill="none"/>
+        <polygon points="40,4 72,20 56,40 24,40 8,20" stroke="var(--gold3)" stroke-width="1" fill="none" opacity=".5"/>
+        <polygon points="24,40 56,40 72,60 40,76 8,60" stroke="var(--gold3)" stroke-width="1" fill="none" opacity=".5"/>
+        <line x1="40" y1="4" x2="40" y2="76" stroke="var(--gold3)" stroke-width=".75" opacity=".3"/>
+        <line x1="8" y1="20" x2="72" y2="60" stroke="var(--gold3)" stroke-width=".75" opacity=".3"/>
+        <line x1="72" y1="20" x2="8" y2="60" stroke="var(--gold3)" stroke-width=".75" opacity=".3"/>
+        <circle cx="40" cy="40" r="3" fill="var(--gold3)" opacity=".6"/>
+      </svg>
       <h2>No Character Selected</h2>
       <p>Create a new character or import one from a saved JSON file.</p>
       <div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap">
@@ -855,7 +918,7 @@ const CLASS_FEATURES = {
   Ranger: {
     hope:{name:'Hold Them Off',text:'Spend 3 Hope when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.'},
     features:[
-      {name:"Ranger's Focus",text:'Spend a Hope and make an attack against a target. On a success, deal your attack\'s normal damage and temporarily make the attack\'s target your Focus. Until this feature ends or you make a different creature your Focus, you gain the following benefits against your Focus: you know precisely what direction they are in; when you deal damage to them, they must mark a Stress; when you fail an attack against them, you can end your Ranger\'s Focus to reroll your Duality Dice.'},
+      {name:"Ranger's Focus",text:'Spend a Hope and make an attack against a target. On a success, deal your attack\'s normal damage and temporarily make the attack\'s target your Focus. Until this feature ends or you make a different creature your Focus, you gain the following benefits against your Focus: you know precisely what direction they are in; when you deal damage to them, they must mark a Stress; when you fail an attack against them, you can end your Ranger\'s Focus to reroll your Duality Dice. Ranger\'s Focus also ends when the scene ends or you take a rest.'},
     ]
   },
   Rogue: {
@@ -900,6 +963,34 @@ const CLASS_FEATURES = {
       {name:'Strange Patterns',text:'Choose a number between 1 and 12. When you roll that number on a Duality Die, gain a Hope or clear a Stress. You can change this number when you take a long rest.'},
     ]
   },
+  Assassin: {
+    hope:{name:'Grim Resolve',text:'Spend 3 Hope to clear 2 Stress.'},
+    features:[
+      {name:'Marked for Death',text:'On a successful weapon attack, you can mark a Stress to make the target Marked for Death. Attacks you make against a target that is Marked for Death gain a bonus to damage equal to +1d4 per tier. You can only have one adversary Marked for Death at a time, and cannot transfer or remove the condition except by defeating the target. The GM can spend a number of Fear equal to your Proficiency to remove the Marked for Death condition. Otherwise, it ends automatically when you take a rest.'},
+      {name:'Get In & Get Out',text:'Spend a Hope to ask the GM for either a quick or inconspicuous way into or out of a building or structure you can see. The next roll you make that capitalizes on this information has advantage.'},
+    ]
+  },
+  Brawler: {
+    hope:{name:'Staggering Strike',text:'Spend 3 Hope when you succeed on an attack to temporarily Stagger your target and force them to mark a Stress. While Staggered, they have disadvantage on attack rolls. Stagger is a temporary condition — the target can clear it by making a successful action roll.'},
+    features:[
+      {name:'I Am the Weapon',text:'While you don\'t have any equipped weapons: you gain a +1 bonus to Evasion; your unarmed strikes are considered a Melee weapon, use the trait of your choice, and deal d8+d6 phy damage using your Proficiency.'},
+      {name:'Combo Strikes',text:'After making a damage roll with a Melee weapon but before dealing that damage to the target, mark a Stress to start a combo strike. Roll your Combo Die and note its value, then roll it again. If the second roll equals or exceeds the first, keep rolling until a roll is less than the one before it. Total all rolled values and add that amount to your weapon\'s damage. These values cannot be adjusted by features that affect damage dice. Your Combo Die starts as a d4 and can be increased once per tier as an advancement option.'},
+    ]
+  },
+  Warlock: {
+    hope:{name:"Patron's Boon",text:'Spend 3 Hope to call out to your patron for help, gaining 1d4 Favor.'},
+    features:[
+      {name:'Warlock Patron',text:'You have committed yourself to a patron (god, demon, fae, or other supernatural entity) in exchange for power. Choose their spheres of influence at GM discretion (e.g. Nature & Mischief, Love & War, Knowledge & Shadow) and set their values to +2. Anytime you increase your tier, these spheres gain a permanent +1 bonus. Before making an action roll related to a sphere of influence, you can spend a Favor to call on your patron and add its value to the roll.'},
+      {name:'Favor',text:'Start with 3 Favor. Your maximum Favor is 6 — you can\'t exceed this. During a rest, spend one of your downtime moves to tithe to your patron — gain Favor equal to your Presence. If you forgo this offering, the GM gains a Fear instead.'},
+    ]
+  },
+  Witch: {
+    hope:{name:"Witch's Charm",text:'When you or an ally within Far range rolls a failure on an action roll, you can spend 3 Hope to change it into a success with Fear instead (the GM gains a Fear).'},
+    features:[
+      {name:'Hex',text:'When a creature causes you or an ally within Close range to mark any number of Hit Points, you can mark a Stress to Hex them. Action and damage rolls against a Hexed creature gain a bonus equal to your tier. This condition lasts until the GM spends a number of Fear equal to your Spellcast trait to remove it, or you Hex another creature. Otherwise, remove it when the scene ends.'},
+      {name:'Commune',text:'Once per long rest, during a moment of calm, you can commune with an ancestor, deity, nature spirit, or otherworldly being. Ask them a question, then roll a number of d6s equal to your Spellcast trait. Choose one value from the results: 1–3 you sense something relevant to the answer; 4–5 you hear or see something relevant; 6 you psychically experience a scene relevant to the answer as if you were there.'},
+    ]
+  },
 };
 
 const TRAITS_LIST = ['Agility','Strength','Finesse','Instinct','Presence','Knowledge'];
@@ -930,17 +1021,17 @@ const CLASS_DESC = {
 
 // ── Domain descriptions (paraphrased) ────────────────────────────────────────
 const DOMAIN_DESC = {
-  Arcana:    "Spells of flight, force, and arcane manipulation — conjuring energy, bending physics, and mastering raw magical power.",
-  Blade:     "Combat techniques that enhance weapon attacks, exploit openings, and turn each strike into something more lethal than the last.",
-  Blood:     "Forbidden magic tied to life force — manipulating vitality, draining enemies, and pushing your body beyond its natural limits.",
-  Bone:      "Abilities rooted in death, endurance, and the persistence of the body — outlasting punishment and striking with the weight of mortality.",
-  Codex:     "A domain of knowledge and structured spells recorded in grimoires — versatile and bookish magic with great breadth.",
-  Dread:     "Magic born of fear, shadow, and psychological pressure — terrifying opponents and manipulating the battlefield through dread.",
-  Grace:     "Charms, illusions, and social magic — bending perception, smoothing social situations, and making the impossible seem effortless.",
-  Midnight:  "Stealth, deception, and shadow — moving unseen, striking without warning, and vanishing before anyone can react.",
-  Sage:      "Nature magic and healing — mending wounds, manipulating plants and beasts, and drawing on the restorative power of the natural world.",
-  Splendor:  "Radiant and inspiring magic — bolstering allies, channeling divine light, and lifting spirits on and off the battlefield.",
-  Valor:     "Martial support and protective magic — shielding allies, bolstering defenses, and turning the tide of battle through courage."
+  Arcana:   "The domain of innate and instinctual magic. Those who walk this path tap into raw, enigmatic forces to manipulate energy and elements. Volatile but incredibly potent when channeled correctly. Accessed by the Druid and Sorcerer.",
+  Blade:    "The domain of weapon mastery. Those who follow this path dedicate themselves to achieving inexorable power over death — whether by steel, bow, or other arms. Accessed by the Guardian and Warrior.",
+  Blood:    "Forbidden magic tied to life force — manipulating vitality, draining enemies, and pushing your body beyond its natural limits.",
+  Bone:     "The domain of tactics and the body. Practitioners gain uncanny control over their own physical abilities and a keen eye for predicting others\' movements in combat. Accessed by the Ranger and Warrior.",
+  Codex:    "The domain of intensive magical study. Knowledge recorded in books, scrolls, walls, or skin — offering a commanding and versatile understanding of magic to those who pursue wisdom beyond common limits. Accessed by the Bard and Wizard.",
+  Dread:    "Magic born of fear, shadow, and psychological pressure — terrifying opponents and manipulating the battlefield through dread.",
+  Grace:    "The domain of charisma. Through storytelling, charming spells, or a shroud of lies, practitioners bend perception to their will and master language and magnetism. Accessed by the Bard and Rogue.",
+  Midnight: "The domain of shadows and secrecy. Whether by clever tricks, deft magic, or the cloak of night, practitioners master the art of obscurity and can uncover hidden treasures. Accessed by the Rogue and Sorcerer.",
+  Sage:     "The domain of the natural world. Those who walk this path tap into the power of the earth and its creatures — granting the vitality of a blooming flower and the ferocity of a ravenous predator. Accessed by the Druid and Ranger.",
+  Splendor: "The domain of life. Followers gain the ability to heal and, to an extent, control death — offering the magnificent ability to both give and end life. Accessed by the Seraph and Wizard.",
+  Valor:    "The domain of protection. Whether through attack or defense, practitioners channel formidable strength to protect allies in battle — great power for those who raise their shields for others. Accessed by the Guardian and Seraph."
 };
 
 // ── Trait descriptions and examples (paraphrased from SRD p.5) ──────────────
@@ -1770,7 +1861,7 @@ const ANCESTRY_DB = {
   'Gnome':         {desc:"Gnomes are small humanoids most easily recognized by their dense musculature, long arms, and large facial features.",feat:"Nimble Fingers: When you make a Finesse Roll, you can spend 2 Hope to reroll your Hope Die. | True Sight: You have advantage on rolls to see through illusions."},
   'Skykin':        {desc:"Skykin are descended from air elementals. They are humanoids whose bodies are a combination of flesh and air.",feat:"Gale Force: Mark a Stress to conjure a gust of wind that carries you or an ally up to Very Far range. Additionally, you can always control the speed at which you fall. | Eye of the Storm: Spend 2 Hope to grant a +1 bonus to either your or an ally\'s Evasion until you next take Severe damage or you use Eye of the Storm again."},
   'Tidekin':       {desc:"Tidekin are descended from water elementals. They are humanoids whose bodies are a combination of flesh and water.",feat:"Amphibious: You can breathe and move naturally underwater. | Lifespring: Once per rest, when you have access to a small amount of water, you can mark 2 Stress to heal a Hit Point on yourself or an ally."},
-  'Mixed Ancestry':{desc:"Your character draws from two or more ancestries, blending their physical traits and cultural heritage in unique ways. Work with your GM to define your appearance and background.",feat:"Versatile Heritage: Choose one ancestry feature from each of your two ancestries. You gain both features, though each can be used once per rest maximum."},
+  'Mixed Ancestry (Void)':{desc:"Your character draws from two or more ancestries, blending their physical traits and cultural heritage in unique ways. Work with your GM to define your appearance and background.",feat:"Versatile Heritage: Choose one ancestry feature from each of your two ancestries. You gain both features, though each can be used once per rest maximum."},
 };
 
 const COMMUNITY_DB = {
@@ -1843,7 +1934,7 @@ function rSb(){const l=document.getElementById('charList');l.innerHTML='';chars.
   l.querySelectorAll('[data-del]').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();const id=btn.dataset.del;if(!confirm('Delete this character?'))return;chars=chars.filter(c=>c.id!==id);saveAll(chars);if(activeId===id)sA(chars.length?chars[chars.length-1].id:null);rSb();if(!activeId)cE();else{oE();pF(gA());}}));}
 function oE(){document.getElementById('emptyState').style.display='none';document.getElementById('editorArea').style.display='block';document.getElementById('saveBtn').style.display='inline-flex';document.getElementById('exportBtn').style.display='inline-flex';}
 function cE(){document.getElementById('emptyState').style.display='block';document.getElementById('editorArea').style.display='none';document.getElementById('saveBtn').style.display='none';document.getElementById('exportBtn').style.display='none';}
-function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelector(`[onclick="showTab('${t}')"]`).classList.add('active');document.getElementById('tab-'+t).classList.add('active');if(t==='sheet')rSheet();if(t==='domains')rDom();if(t==='levelup')rLvlUp();if(t==='notes')rNotes();if(t==='reference')rRef();if(t==='builder')requestAnimationFrame(bCG);}
+function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelector(`[onclick="showTab('${t}')"]`).classList.add('active');document.getElementById('tab-'+t).classList.add('active');if(t==='sheet')rSheet();if(t==='domains')rDom();if(t==='levelup')rLvlUp();if(t==='notes')rNotes();if(t==='reference'){rRef();setTimeout(()=>{const s=document.getElementById('refSearch');if(s&&refQuery){s.focus();s.setSelectionRange(s.value.length,s.value.length);}},50);}if(t==='builder')requestAnimationFrame(bCG);}
 
 // ════════════════════════════════════════════════════════
 // FORM
@@ -2050,18 +2141,19 @@ function bldRenderDomainCards(){
     :filtered.map(card=>{
       const inLoadout=c.loadout.includes(card.name);
       const inVault=c.vault.includes(card.name);
+      const inCollection=inLoadout||inVault;
       const dc='d-'+card.domain.toLowerCase().replace(/\s+/g,'-');
       const disabled=!inLoadout&&loadoutFull;
-      return `<div class="bld-domain-card ${dc}${inLoadout?' bld-dc-active':''}">
+      return `<div class="bld-domain-card ${dc}${inLoadout?' bld-dc-active':inVault?' bld-dc-vault':''}">
         <div class="bld-dc-header">
           <div>
             <div class="bld-dc-name">${card.name}</div>
             <div class="bld-dc-meta">${card.domain} · Lv${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}</div>
           </div>
-          <button class="bld-dc-btn${inLoadout?' bld-dc-btn-rm':disabled?' bld-dc-btn-dis':''}"
+          <button class="bld-dc-btn${inLoadout?' bld-dc-btn-rm':inVault?' bld-dc-btn-vault':disabled?' bld-dc-btn-dis':''}"
             onclick="bldToggleDomainCard('${card.name.replace(/'/g,"\'")}')"
-            ${disabled&&!inLoadout?'disabled':''}>
-            ${inLoadout?'− Remove':'+ Loadout'}
+            ${disabled&&!inCollection?'disabled':''}>
+            ${inLoadout?'✓ In Loadout':inVault?'✓ In Vault':'+ Loadout'}
           </button>
         </div>
         <div class="bld-dc-text">${card.text.replace(/<[^>]+>/g,'').slice(0,180)}${card.text.length>180?'…':''}</div>
@@ -2124,10 +2216,38 @@ function clsPreview(cls){
   }).join('');
   const modal=document.getElementById('clsModal');
   document.getElementById('clsModalTitle').textContent=cls;
+  // Build subclass previews
+  const subRows=d.sub.map(sc=>{
+    const sd=SUBCLASS_DATA[sc];
+    const fdnCards=sd?(sd.foundation||[]):[];
+    const fdnList=fdnCards.map(f=>'<div class="cls-sub-feat"><strong>'+f.name+'</strong>: '+f.text+'</div>').join('');
+    return '<div class="cls-sub-block">'
+      +'<div class="cls-sub-name">'+sc+'</div>'
+      +(fdnList?'<div class="cls-sub-feats">'+fdnList+'</div>':'')
+      +'</div>';
+  }).join('');
+  // Build class features
+  const cf=CLASS_FEATURES[cls]||{};
+  let featuresHtml='';
+  if(cf.hope){
+    featuresHtml+='<div class="cls-sub-block" style="border-left:2px solid var(--teal)">'
+      +'<div class="cls-sub-name" style="color:var(--teal2)">Hope Feature — '+cf.hope.name+'</div>'
+      +'<div class="cls-sub-feat">'+cf.hope.text+'</div>'
+      +'</div>';
+  }
+  if(cf.features&&cf.features.length){
+    featuresHtml+=(cf.features.map(f=>'<div class="cls-sub-block">'
+      +'<div class="cls-sub-name">'+f.name+'</div>'
+      +'<div class="cls-sub-feat">'+f.text+'</div>'
+      +'</div>').join(''));
+  }
+  document.getElementById('clsModalTitle').textContent=cls;
   document.getElementById('clsModalBody').innerHTML=
-    `<div class="cls-info-desc">${desc}</div>`+
-    `<div class="cls-modal-stats">HP ${d.hp} &nbsp;·&nbsp; Evasion ${d.ev} &nbsp;·&nbsp; Subclasses: ${d.sub.join(', ')}</div>`+
-    `<div class="cls-info-domains"><div class="cls-domains-label">Domains</div>${domainRows}</div>`;
+    '<div class="cls-info-desc">'+desc+'</div>'+
+    '<div class="cls-modal-stats">HP '+d.hp+' &nbsp;·&nbsp; Evasion '+d.ev+'</div>'+
+    (featuresHtml?'<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Class Features</div>'+featuresHtml+'</div>':'')+
+    '<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Domains</div>'+domainRows+'</div>'+
+    '<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Subclasses</div>'+subRows+'</div>';
   document.getElementById('clsModalConfirm').onclick=()=>{selCls(cls);clsModalClose();};
   modal.classList.add('active');
 }
@@ -2148,12 +2268,12 @@ function rSF(c){
   const data=SUBCLASS_DATA[c.selectedSubclass];if(!data){cont.innerHTML='<div style="font-size:13px;color:var(--text3);margin-top:.6rem;font-style:italic">Details coming soon.</div>';return;}
   const lv=parseInt(c.level)||1;
   function rt(label,features,unlocked){
-    let h=`<div class="ft${!unlocked?' lkd':''}"><div class="tl">${label}${!unlocked?' (unlocks Lv '+(label==='Specialization'?3:7)+')':''}</div><div class="fc">`;
+    let h=`<div class="ft${!unlocked?' lkd':''}"><div class="tl">${label}${!unlocked?' (unlocks Lv '+(label==='Specialization'?5:8)+')':''}</div><div class="fc">`;
     if(data.spellcast&&label==='Foundation')h+=`<div class="sct">Spellcast: ${data.spellcast}</div>`;
     features.forEach((f,i)=>{if(i>0)h+='<hr style="border:none;border-top:1px solid var(--border);margin:.35rem 0">';h+=`<span class="fn">${f.name}:</span> <span style="color:var(--text2)">${f.text}</span>`;if(f.list){h+='<ul class="fli">';f.list.forEach(it=>{h+=`<li>${it.label}</li>`;});h+='</ul>';}});
     return h+'</div></div>';
   }
-  cont.innerHTML=rt('Foundation',data.foundation,true)+rt('Specialization',data.spec,lv>=3)+rt('Mastery',data.mastery,lv>=7);
+  cont.innerHTML=rt('Foundation',data.foundation,true)+rt('Specialization',data.spec,lv>=5)+rt('Mastery',data.mastery,lv>=8);
 }
 
 // ════════════════════════════════════════════════════════
@@ -2597,15 +2717,15 @@ function rSheet(){
     const wPayload=hcp({name:w.name||'Weapon',tier:w.burden||'',text:`${w.trait} · ${w.range} · ${scaledDmg} (base: ${w.dmg}, ×Prof ${prof})`,list:w.feat?[{label:w.feat}]:[]});
     return `<tr style="background:${isEq?'#c8a96e0a':''}">
       <td style="padding:5px 4px;font-size:14px;color:${isEq?'var(--gold2)':'var(--text)'}">
-        <span class="sc-feat-badge" data-feature="${wPayload}" style="cursor:default;text-decoration:none">${w.name||'—'}</span>${isEqP?' <span style="font-size:11px;color:var(--gold3);font-family:Cinzel,serif">PRIMARY</span>':''}${isEqS?' <span style="font-size:11px;color:var(--teal);font-family:Cinzel,serif">SECONDARY</span>':''}
+        <span class="sc-feat-badge" data-feature="${wPayload}" style="cursor:default;text-decoration:none">${w.name||'—'}</span>
       </td>
       <td style="padding:5px 4px"><div style="font-size:13px;color:var(--text3)">${w.trait}</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:1px">2d12 ${tm(w.trait).startsWith('-')?'':'+'} ${w.trait.slice(0,3)}</div></td>
       <td style="padding:5px 4px;font-size:14px;color:var(--gold2)">${scaledDmg}</td>
       <td style="padding:5px 4px;font-size:13px;color:var(--text3)">${w.range}</td>
       <td style="padding:5px 4px">
         <div style="display:flex;gap:3px;flex-wrap:wrap">
-          <button data-equip-p="${i}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.06em;padding:2px 6px;border-radius:20px;border:1px solid ${isEqP?'var(--gold)':'var(--border2)'};background:${isEqP?'#c8a96e22':'none'};color:${isEqP?'var(--gold2)':'var(--text3)'};cursor:pointer">${isEqP?'★ Primary':'Primary'}</button>
-          <button data-equip-s="${i}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.06em;padding:2px 6px;border-radius:20px;border:1px solid ${isEqS?'var(--teal)':'var(--border2)'};background:${isEqS?'#4a9e8a22':'none'};color:${isEqS?'var(--teal2)':'var(--text3)'};cursor:pointer">${isEqS?'★ Secondary':'Secondary'}</button>
+          ${!w.slot||w.slot==='primary'?`<button data-equip-p="${i}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.06em;padding:2px 6px;border-radius:20px;border:1px solid ${isEqP?'var(--gold)':'var(--border2)'};background:${isEqP?'#c8a96e22':'none'};color:${isEqP?'var(--gold2)':'var(--text3)'};cursor:pointer">${isEqP?'★ Primary':'Primary'}</button>`:'<span style="font-size:10px;color:var(--border2);padding:2px 6px">Primary N/A</span>'}
+          ${!w.slot||w.slot==='secondary'?`<button data-equip-s="${i}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.06em;padding:2px 6px;border-radius:20px;border:1px solid ${isEqS?'var(--teal)':'var(--border2)'};background:${isEqS?'#4a9e8a22':'none'};color:${isEqS?'var(--teal2)':'var(--text3)'};cursor:pointer">${isEqS?'★ Secondary':'Secondary'}</button>`:'<span style="font-size:10px;color:var(--border2);padding:2px 6px">Secondary N/A</span>'}
           <button data-rm-weap="${i}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.06em;padding:2px 6px;border-radius:20px;border:1px solid var(--red);background:none;color:var(--red);cursor:pointer" title="Remove weapon">✕ Remove</button>
         </div>
       </td>
@@ -2639,11 +2759,11 @@ function rSheet(){
       return `<span class="bdg bg2" style="cursor:pointer;border-color:${col};margin-right:4px" onclick="toggleHeritageFeat('${safeId}')">${f.name}${tierLabel}</span><div id="hf_${safeId}" style="display:none;margin:4px 0 6px 0;padding:.5rem .65rem;background:var(--bg3);border-left:2px solid ${col};border-radius:0 var(--r) var(--r) 0;font-size:13px;color:var(--text2);line-height:1.6">${f.text}</div>`;
     }
     scB='<div style="margin-top:.35rem">'+d.foundation.map(f=>makeBadge(f,'Foundation')).join('');
-    if(lv2>=3)scB+=d.spec.map(f=>makeBadge(f,'Specialization')).join('');
-    if(lv2>=7)scB+=d.mastery.map(f=>makeBadge(f,'Mastery')).join('');
+    if(lv2>=5)scB+=d.spec.map(f=>makeBadge(f,'Specialization')).join('');
+    if(lv2>=8)scB+=d.mastery.map(f=>makeBadge(f,'Mastery')).join('');
     scB+='</div>';
   }
-  const lH=c.loadout.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">No cards in loadout. Add them in the Domain Cards tab.</div>':c.loadout.map(name=>{const card=gcbn(name);if(!card)return'';const dc='d-'+card.domain.toLowerCase();const lPayload=hcp({name:card.name,tier:`${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}`,text:card.text,list:[]});const preview=card.text.replace(/<[^>]+>/g,'').slice(0,140).trim();const ellipsis=card.text.length>140?'…':'';return`<div class="lcm ${dc} sc-feat-badge" data-feature="${lPayload}"><div class="lcmn">${card.name}</div><div class="lcmm">${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}</div><div class="lcmt">${preview}${ellipsis}</div></div>`;}).join('');
+  const lH=c.loadout.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">No cards in loadout. Add them in the Domain Cards tab.</div>':c.loadout.map(name=>{const card=gcbn(name);if(!card)return'';const dc='d-'+card.domain.toLowerCase();const lPayload=hcp({name:card.name,tier:`${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}`,text:card.text,list:[]});return`<div class="lcm ${dc}"><div class="lcmn">${card.name}</div><div class="lcmm">${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}</div><div class="lcmt">${card.text.replace(/\|/g,'<br>')}</div></div>`;}).join('');
   const vH=c.vault.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">Vault is empty.</div>':c.vault.map(name=>{const card=gcbn(name);if(!card)return'';const inL=c.loadout.includes(name);const loadoutFull=c.loadout.length>=5&&!inL;const recallCost=card.stress||0;const sn=name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");return`<div class="vault-swap-row"><div class="vault-swap-info"><div class="vault-swap-name">${card.name}</div><div class="vault-swap-meta">${card.domain} · Lv${card.level} · ${card.type}</div></div><div class="vault-swap-right">${recallCost>0?`<span class="vault-recall-cost" title="Recall Cost: mark ${recallCost} Stress to swap during play">${recallCost} ⚡</span>`:''}<button class="vault-swap-btn${loadoutFull?' vault-swap-disabled':''}" onclick="vaultSwap('${sn}')" ${loadoutFull?'disabled title="Loadout full (5/5)"':''}>${inL?'In Loadout':'+ Loadout'}</button></div></div>`;}).join('');
 
   document.getElementById('sheetContent').innerHTML=`
@@ -2807,16 +2927,18 @@ function rSheet(){
         if(c.selectedClass&&CLASS_FEATURES[c.selectedClass]){
           const cf=CLASS_FEATURES[c.selectedClass];
           out+=`<div class="st">Class Features — ${c.selectedClass}</div><div style="margin-bottom:.5rem">`;
-          // Hope feature (gold)
+          // Hope feature (teal) with label
           if(cf.hope){
             const safeId=('cf_'+c.selectedClass+'_hope').replace(/[^a-zA-Z0-9_]/g,'_');
-            out+=`<span class="bdg bg2" style="cursor:pointer;border-color:var(--gold3);margin-right:4px" onclick="toggleHeritageFeat('${safeId}')">${cf.hope.name}</span><div id="hf_${safeId}" style="display:none;margin:4px 0 6px 0;padding:.5rem .65rem;background:var(--bg3);border-left:2px solid var(--gold3);border-radius:0 var(--r) var(--r) 0;font-size:13px;color:var(--text2);line-height:1.6">${cf.hope.text}</div>`;
+            out+=`<div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal2);margin-bottom:3px">Hope Feature</div>`;
+            out+=`<span class="bdg bg2" style="cursor:pointer;border-color:var(--teal);margin-right:4px;margin-bottom:6px" onclick="toggleHeritageFeat('${safeId}')">${cf.hope.name}</span><div id="hf_${safeId}" style="display:none;margin:4px 0 6px 0;padding:.5rem .65rem;background:var(--bg3);border-left:2px solid var(--teal);border-radius:0 var(--r) var(--r) 0;font-size:13px;color:var(--text2);line-height:1.6">${cf.hope.text}</div>`;
+            out+=`<div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);margin:6px 0 3px">Class Features</div>`;
           }
-          // Class features (teal)
+          // Class features (gold)
           if(cf.features){
             cf.features.forEach((f,i)=>{
               const safeId=('cf_'+c.selectedClass+'_'+i).replace(/[^a-zA-Z0-9_]/g,'_');
-              out+=`<span class="bdg bg2" style="cursor:pointer;border-color:var(--teal);margin-right:4px" onclick="toggleHeritageFeat('${safeId}')">${f.name}</span><div id="hf_${safeId}" style="display:none;margin:4px 0 6px 0;padding:.5rem .65rem;background:var(--bg3);border-left:2px solid var(--teal);border-radius:0 var(--r) var(--r) 0;font-size:13px;color:var(--text2);line-height:1.6">${f.text}</div>`;
+              out+=`<span class="bdg bg2" style="cursor:pointer;border-color:var(--gold3);margin-right:4px" onclick="toggleHeritageFeat('${safeId}')">${f.name}</span><div id="hf_${safeId}" style="display:none;margin:4px 0 6px 0;padding:.5rem .65rem;background:var(--bg3);border-left:2px solid var(--gold3);border-radius:0 var(--r) var(--r) 0;font-size:13px;color:var(--text2);line-height:1.6">${f.text}</div>`;
             });
           }
           out+='</div>';
@@ -2994,6 +3116,21 @@ function rSheet(){
   </div><!-- /sheet-wrap -->
 `;
 
+  // Wire equip slot P/S buttons on sheet weapons table
+  document.querySelectorAll('[data-equip-slot]').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const c=gA();if(!c)return;
+      const idx=parseInt(btn.dataset.equipIdx);
+      const slot=btn.dataset.equipSlot;
+      if(!c.weapons[idx])return;
+      // Clear other weapons from this slot
+      c.weapons.forEach((w,i)=>{if(w.slot===slot&&i!==idx)delete w.slot;});
+      if(c.weapons[idx].slot===slot){delete c.weapons[idx].slot;}
+      else{c.weapons[idx].slot=slot;}
+      saveAll(chars);rSheet();
+    });
+  });
   // Wire equip buttons via event delegation
   const tbody = document.getElementById('weapTableBody');
   if(tbody){
@@ -3001,11 +3138,12 @@ function rSheet(){
       btn.addEventListener('click',()=>{
         const c=gA();if(!c)return;
         const i=parseInt(btn.dataset.equipP);
+        const w=c.weapons[i];
+        // Slot restriction: weapon slot must be 'primary' or undefined (custom weapons)
+        if(w&&w.slot&&w.slot!=='primary'){showToast(w.name+' can only be equipped in the Secondary slot.');return;}
         if(c.equippedPrimary===i){
-          // Unequip -> inventory
           unequipWeaponToInv(c,'primary');
         } else {
-          // If something else is primary, unequip it first
           if(c.equippedPrimary!==null&&c.equippedPrimary!==undefined)unequipWeaponToInv(c,'primary');
           c.equippedPrimary=i;
         }
@@ -3016,6 +3154,9 @@ function rSheet(){
       btn.addEventListener('click',()=>{
         const c=gA();if(!c)return;
         const i=parseInt(btn.dataset.equipS);
+        const w=c.weapons[i];
+        // Slot restriction: weapon slot must be 'secondary' or undefined (custom weapons)
+        if(w&&w.slot&&w.slot!=='secondary'){showToast(w.name+' can only be equipped in the Primary slot.');return;}
         if(c.equippedSecondary===i){
           unequipWeaponToInv(c,'secondary');
         } else {
@@ -4462,7 +4603,7 @@ const REF_INDEX = (function(){
     {
       name:'Leveling Up',
       meta:'Core Mechanics · Advancement',
-      body:`The party levels up when the GM decides a narrative milestone has been reached (roughly every 3 sessions). All party members level up simultaneously. Levels range from 1–10 across four tiers:<br><br><strong>Tier 1:</strong> Level 1 &nbsp;·&nbsp; <strong>Tier 2:</strong> Levels 2–4 &nbsp;·&nbsp; <strong>Tier 3:</strong> Levels 5–7 &nbsp;·&nbsp; <strong>Tier 4:</strong> Levels 8–10<br><br><strong>Step 1 — Tier Achievements:</strong><br>• Level 2: Gain a new Experience at +2 and permanently increase Proficiency by 1.<br>• Level 5: Gain a new Experience at +2, increase Proficiency by 1, and clear any marked character traits.<br>• Level 8: Gain a new Experience at +2, increase Proficiency by 1, and clear any marked character traits.<br><br><strong>Step 2 — Choose Two Advancements</strong> from your tier or below (options with two slots cost both slots):<br>• +1 to two unmarked character traits (marks them until next tier achievement clears them)<br>• +1 permanent HP slot<br>• +1 permanent Stress slot<br>• +1 to two Experiences<br>• Take an additional domain card at or below your level (free; also gained in Step 4)<br>• +1 permanent Evasion<br>• Take the next subclass card (Specialization or Mastery) — crosses out the multiclass option for this tier<br>• +1 Proficiency (costs 2 slots)<br>• Multiclass (costs 2 slots; available from level 5)<br><br><strong>Step 3 — Damage Thresholds:</strong> Increase all damage thresholds by 1.<br><br><strong>Step 4 — Domain Card:</strong> Acquire one new domain card at your level or lower from one of your class's domains. You may also exchange one previously acquired card for a different one of the same level or lower.`,
+      body:`The party levels up when the GM decides a narrative milestone has been reached (roughly every 3 sessions). All party members level up simultaneously. Levels range from 1–10 across four tiers:<br><br><strong>Tier 1:</strong> Level 1 &nbsp;·&nbsp; <strong>Tier 2:</strong> Levels 2–4 &nbsp;·&nbsp; <strong>Tier 3:</strong> Levels 5–7 &nbsp;·&nbsp; <strong>Tier 4:</strong> Levels 8–10<br><br><strong>Step 1 — Tier Achievements:</strong><br>• Level 2: Gain a new Experience at +2 and permanently increase Proficiency by 1.<br>• Level 5: Gain a new Experience at +2, increase Proficiency by 1, and clear any marked character traits.<br>• Level 8: Gain a new Experience at +2, increase Proficiency by 1, and clear any marked character traits.<br><br><strong>Step 2 — Choose Two Advancements</strong> from your tier or below (options with two slots cost both slots):<br>• +1 to two unmarked character traits (marks them until next tier achievement clears them)<br>• +1 permanent HP slot<br>• +1 permanent Stress slot<br>• +1 to two Experiences<br>• Take an additional domain card at or below your level (free; also gained in Step 4)<br>• +1 permanent Evasion<br>• Take the next subclass card (Specialization or Mastery) — crosses out the multiclass option for this tier<br>• Multiclass (costs 2 slots; available from level 5)<br><br><strong>Step 3 — Damage Thresholds:</strong> Increase all damage thresholds by 1.<br><br><strong>Step 4 — Domain Card:</strong> Acquire one new domain card at your level or lower from one of your class's domains. You may also exchange one previously acquired card for a different one of the same level or lower.`,
       tags:['level up','advancement','tier','proficiency','xp','progression','subclass','domain card','experience','trait']
     },
     {
@@ -4855,6 +4996,11 @@ function showStandaloneRef(){
   rRef('standaloneRefContent');
 }
 
+function toggleMobMenu(){
+  const ha=document.getElementById('headerActions');
+  const open=ha.classList.toggle('mob-open');
+  document.getElementById('hamburger').textContent=open?'✕':'☰';
+}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
 rSb();
 if(activeId&&chars.find(c=>c.id===activeId)){oE();pF(gA());}else cE();
