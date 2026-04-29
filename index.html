@@ -25,7 +25,7 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--te
 .hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;gap:.5rem}
 .logo{font-family:'Cinzel',serif;font-size:15px;letter-spacing:.12em;color:var(--gold);font-weight:500}
 .logo span{color:var(--text3);font-size:13px;margin-left:8px;font-family:'Crimson Pro',serif;letter-spacing:.04em;font-weight:300}
-.ha{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;flex-shrink:1;min-width:0}.ha::-webkit-scrollbar{display:none}
+.ha{display:flex;gap:6px;align-items:center;overflow:visible;flex-shrink:1;min-width:0;flex-wrap:nowrap}.ha::-webkit-scrollbar{display:none}
 .lay{display:grid;grid-template-columns:195px 1fr;min-height:calc(100vh - 54px)}
 .sb{background:var(--bg2);border-right:1px solid var(--border);padding:1.25rem 0;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto}
 .sb-sec{padding:0 .7rem;margin-bottom:1.25rem}
@@ -61,7 +61,7 @@ textarea{resize:vertical;min-height:75px;line-height:1.5}
 .bgh{background:none;color:var(--muted);border-color:var(--border);font-size:11px;padding:.32rem .8rem}.bgh:hover{color:var(--text2);border-color:var(--border2);background:var(--bg3)}
 .card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:.8rem .95rem}
 .csm{padding:.6rem .8rem}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:6px}
+.cg{display:flex;flex-wrap:wrap;gap:6px}.cg .cc{flex:1 1 115px;max-width:160px}
 .cc{padding:.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;transition:all .15s}
 .cc:hover{border-color:var(--gold3);background:var(--bg4)}.cc.sel{border-color:var(--gold);background:var(--bg4);box-shadow:0 0 0 1px var(--gold3)}
 .ccn{font-family:'Cinzel',serif;font-size:13px;color:var(--gold2);margin-bottom:2px}
@@ -379,11 +379,138 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 @media(max-width:780px){.dual-tabs-row{grid-template-columns:1fr}.bottom-row{grid-template-columns:1fr}}
 .content-wrap{max-width:1100px;margin:0 auto}
 .bottom-notes{padding:.8rem .9rem}
+#saveIndicator.show{opacity:1}
+.tp.active{animation:tabFadeIn .1s ease-out}@keyframes tabFadeIn{from{opacity:0}to{opacity:1}}
+.cond-row{display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap}
+.cond-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .9rem;border-radius:20px;border:1.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;transition:all .15s}
+.cond-btn:hover{border-color:var(--text3);color:var(--text2)}
+.cond-btn.cond-active.cond-btn:first-child,.cond-btn.cond-active:nth-child(1){border-color:var(--teal);color:var(--teal2);background:#4a9e8a18}
+.cond-active{border-color:var(--ember)!important;color:var(--ember)!important;background:#d4603a18!important}
+.vault-swap-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.4rem .5rem;border-bottom:1px solid var(--border);}
+.vault-swap-row:last-child{border-bottom:none}
+.vault-swap-info{flex:1;min-width:0}
+.vault-swap-name{font-size:13px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vault-swap-meta{font-size:11px;color:var(--text3)}
+.vault-swap-right{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+.vault-recall-cost{font-family:'Cinzel',serif;font-size:10px;color:var(--ember);border:1px solid var(--ember);border-radius:20px;padding:1px 6px;white-space:nowrap}
+.vault-swap-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:20px;border:1px solid var(--gold3);background:none;color:var(--gold2);cursor:pointer;transition:all .15s}
+.vault-swap-btn:hover:not(:disabled){background:#c8a96e22}
+.vault-swap-disabled{border-color:var(--border2)!important;color:var(--text3)!important;cursor:not-allowed!important}
+
+/* ═══════════════════════════════════════════════════════════
+   BUILDER — STEP-BY-STEP LAYOUT
+   ═══════════════════════════════════════════════════════════ */
+.bld-identity{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.25rem}
+.bld-note{font-size:13px;color:var(--text3);font-style:italic;margin:.2rem 0 .75rem;line-height:1.5}
+.bld-step{border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.1rem;margin-bottom:1.1rem;background:var(--bg2)}
+.bld-step-hdr{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.5rem}
+.bld-step-num{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);background:var(--bg3);border:1px solid var(--gold3);border-radius:20px;padding:2px 9px;flex-shrink:0}
+.bld-step-title{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.06em;color:var(--gold2)}
+.bld-step-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+
+/* Spread chips */
+.bld-spread-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.5rem}
+.bld-spread-label{font-size:13px;color:var(--text3)}
+.bld-spread-chips{display:flex;gap:.35rem;flex-wrap:wrap}
+.bld-chip{font-family:'Cinzel',serif;font-size:12px;padding:.3rem .7rem;border-radius:20px;border:1.5px solid var(--border2);background:var(--bg3);color:var(--text2);cursor:pointer;transition:all .15s;user-select:none}
+.bld-chip:hover{border-color:var(--gold3);color:var(--gold2)}
+.bld-chip-sel{border-color:var(--gold)!important;background:#c8a96e28!important;color:var(--gold2)!important;box-shadow:0 0 0 2px #c8a96e44}
+.bld-chip-used{opacity:.35;cursor:default;text-decoration:line-through}
+.bld-chip-ex{font-family:'Crimson Pro',serif;font-size:13px;padding:.2rem .6rem;border-radius:20px;border:1px solid var(--border);background:var(--bg3);color:var(--text3);cursor:pointer;white-space:nowrap;transition:all .15s}
+.bld-chip-ex:hover{border-color:var(--gold3);color:var(--gold2)}
+.bld-spread-hint{margin-bottom:.5rem!important}
+
+/* Trait cards */
+.bld-trait-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.bld-trait-card{background:var(--bg3);border:2px solid var(--border);border-radius:var(--r);padding:.65rem .75rem;cursor:pointer;transition:all .15s;position:relative}
+.bld-trait-card:hover{border-color:var(--gold3);background:var(--bg4)}
+.bld-trait-assigned{border-color:var(--gold)!important;background:#c8a96e0e!important}
+.bld-trait-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
+.bld-trait-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.bld-trait-val{font-size:22px;font-weight:300;color:var(--gold2);line-height:1;min-width:32px;text-align:right}
+.bld-trait-clear{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:0 2px;line-height:1;margin-left:4px}
+.bld-trait-clear:hover{color:var(--red)}
+.bld-trait-desc{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:.3rem}
+.bld-trait-ex{font-size:12px;color:var(--text3);line-height:1.4}
+
+/* Heritage preview */
+.bld-heritage-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:.65rem .75rem;margin-top:.5rem}
+.bld-heritage-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);margin-bottom:.3rem;padding-left:.4rem;border-left:2px solid var(--gold3)}
+.bld-heritage-desc{font-size:13px;color:var(--text3);font-style:italic;margin-bottom:.4rem}
+.bld-heritage-feat{font-size:13px;color:var(--text2);margin-bottom:.3rem;line-height:1.5}
+
+/* Starting items checklist */
+.bld-checklist{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.5rem}
+.bld-check-item{display:flex;align-items:flex-start;gap:.5rem;font-size:14px;color:var(--text2);cursor:pointer;line-height:1.4}
+.bld-check-item input{margin-top:2px;flex-shrink:0;accent-color:var(--gold3)}
+
+/* Experience examples */
+.bld-exp-examples{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.5rem;overflow:hidden}
+.bld-exp-col{display:flex;flex-wrap:wrap;align-content:flex-start;gap:.3rem;overflow:hidden;min-width:0}
+
+/* Domain cards in builder */
+.bld-domain-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:.55rem .7rem;flex:0 0 calc(50% - .25rem);min-width:0;transition:border-color .15s}
+.bld-domain-card.bld-dc-active{border-color:var(--gold);background:#c8a96e0e}
+.bld-dc-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.3rem}
+.bld-dc-name{font-size:14px;color:var(--text);font-weight:500}
+.bld-dc-meta{font-size:11px;color:var(--text3);margin-top:1px}
+.bld-dc-text{font-size:12px;color:var(--text3);line-height:1.5}
+.bld-dc-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;padding:3px 9px;border-radius:20px;border:1px solid var(--gold3);background:none;color:var(--gold2);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.bld-dc-btn:hover{background:#c8a96e22}
+.bld-dc-btn-rm{border-color:var(--red);color:var(--red)}
+.bld-dc-btn-rm:hover{background:#c0505022}
+.bld-dc-btn-dis{border-color:var(--border2);color:var(--text3);cursor:not-allowed}
+.bld-loadout-count{font-size:12px;color:var(--text3);align-self:center;margin-left:auto}
+
+/* Mobile */
+@media(max-width:780px){
+  .bld-identity{grid-template-columns:1fr}
+  .bld-trait-grid{grid-template-columns:repeat(2,1fr)}
+  .bld-exp-examples{grid-template-columns:1fr}
+  .bld-domain-card{flex:0 0 100%}
+}
+.cls-info-panel{flex:0 0 100%;width:100%;background:var(--bg4);border:1px solid var(--gold3);border-top:none;border-radius:0 var(--r) var(--r) var(--r);padding:.75rem .9rem;margin:0 0 .4rem;animation:tabFadeIn .15s ease-out}
+.cls-info-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.65rem}
+.cls-info-domains{display:flex;flex-direction:column;gap:.35rem}
+.cls-domains-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold3);margin-bottom:.15rem}
+.cls-domain-row{display:flex;gap:.6rem;align-items:baseline}
+.cls-domain-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal2);flex-shrink:0;min-width:70px}
+.cls-domain-desc{font-size:13px;color:var(--text3);line-height:1.45}
+
+/* ── Class Preview Modal ─────────────────────────────────── */
+.cls-modal-overlay{display:none;position:fixed;inset:0;background:#0008;z-index:800;align-items:center;justify-content:center;padding:1rem}
+.cls-modal-overlay.active{display:flex}
+.cls-modal{background:var(--bg2);border:1px solid var(--gold3);border-radius:var(--r2);width:100%;max-width:480px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 16px 48px #0009;animation:hc-in .15s ease-out}
+.cls-modal-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+.cls-modal-title{font-family:'Cinzel',serif;font-size:16px;letter-spacing:.1em;color:var(--gold2)}
+.cls-modal-close{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
+.cls-modal-close:hover{color:var(--text)}
+.cls-modal-body{padding:1rem;overflow-y:auto;flex:1}
+.cls-modal-stats{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;color:var(--text3);margin:.5rem 0 .85rem;padding:.4rem .6rem;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border)}
+.cls-modal-footer{padding:.75rem 1rem;border-top:1px solid var(--border);display:flex;gap:.5rem;flex-shrink:0}
+.bld-step.bld-locked{display:none}
+.bld-step.bld-complete .bld-step-num{background:var(--teal);border-color:var(--teal2);color:var(--bg)}
+.bld-step.bld-complete .bld-step-title{color:var(--text3)}
+.bld-step-complete-badge{font-size:11px;color:var(--teal2);margin-left:auto;font-style:italic}
+.lu-dc-row{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.45rem .65rem;border-radius:var(--r);border:1px solid var(--border);background:var(--bg3);cursor:pointer;transition:border-color .15s}
+.lu-dc-row:hover:not(.lu-dc-owned){border-color:var(--gold3)}
+.lu-dc-owned{opacity:.55;cursor:default}
+.lu-dc-row-left{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.lu-dc-row-name{font-size:14px;color:var(--text);font-weight:500}
+.lu-dc-row-meta{font-size:11px;color:var(--text3)}
+.lu-dc-row-text{font-size:12px;color:var(--text3);line-height:1.4}
+.lu-dc-row-right{flex-shrink:0}
+.lu-dc-add-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;padding:3px 9px;border-radius:20px;border:1px solid var(--gold3);color:var(--gold2)}
+.lu-adv-track{display:flex;gap:4px;align-items:center}
+.lu-adv-pip{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);background:var(--bg3);transition:all .15s}
+.lu-adv-pip.filled{background:var(--gold3);border-color:var(--gold)}
+.lu-slots-row.cant-afford{opacity:.55}
 </style>
 </head>
 <body>
 <header class="hdr">
   <div class="logo">DGHRT</div>
+  <div id="saveIndicator" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--teal2);opacity:0;transition:opacity .3s;margin-left:.5rem">Saved ✓</div>
   <div class="ha" style="display:flex;align-items:center;gap:6px">
     <select id="fontSizeSlider" title="Text size" onchange="applyFontSize(parseInt(this.value))"
       style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);padding:3px 6px;cursor:pointer;align-self:center;min-width:90px;max-width:120px">
@@ -422,6 +549,7 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
         <button class="btn bg" onclick="newChar()">+ New Character</button>
         <button class="btn bo" onclick="triggerImport()">⬆ Import</button>
         <button class="btn bo" onclick="showStandaloneRef()">📖 Browse Reference</button>
+        <button class="btn bo" onclick="exportAll()">⬇ Export All</button>
       </div>
       <div style="text-align:center;padding:.6rem 1rem;font-size:13px;color:var(--text3);border-top:1px solid var(--border);margin-top:1.5rem;font-family:'Crimson Pro',serif;line-height:1.6">All information contained is based on the official <a href="https://www.daggerheart.com/srd/" target="_blank" style="color:var(--gold3);text-decoration:none">SRD document</a>. For the official Daggerheart site, visit <a href="http://daggerheart.com" target="_blank" style="color:var(--gold3);text-decoration:none">daggerheart.com</a>.</div>
     </div>
@@ -444,94 +572,198 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
       </div>
       <!-- BUILDER TAB -->
       <div class="tp active" id="tab-builder"><div class="content-wrap">
-        <div class="st">Identity</div>
-        <div class="g2">
+
+        <!-- Identity (name/pronouns — can be filled in at any point) -->
+        <div class="bld-identity">
           <div class="fld"><label class="fl">Character Name</label><input type="text" id="charName" placeholder="Your hero's name" oninput="fu('name',this.value)"></div>
           <div class="fld"><label class="fl">Pronouns</label><input type="text" id="charPronouns" placeholder="e.g. she/her" oninput="fu('pronouns',this.value)"></div>
-          <div class="fld"><label class="fl">Level</label>
-            <select id="charLevel" onchange="onLvl(this.value)">
-              <option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option><option value="4">Level 4</option><option value="5">Level 5</option><option value="6">Level 6</option><option value="7">Level 7</option><option value="8">Level 8</option><option value="9">Level 9</option><option value="10">Level 10</option>
-            </select>
-          </div>
-          <div class="fld"><label class="fl">Proficiency</label><input type="number" id="charProf" value="1" min="1" max="6" oninput="fu('proficiency',parseInt(this.value)||1)"></div>
         </div>
-        <div class="st">Class</div>
-        <div class="cg" id="classGrid"></div>
-        <div id="subArea" style="display:none;margin-top:.8rem">
-          <div class="fl" style="margin-bottom:5px">Subclass</div>
-          <div class="cg" id="subGrid"></div>
-          <div id="subFeat" class="sf"></div>
-        </div>
-        <div class="st">Heritage</div>
-        <div class="g2">
-          <div class="fld"><label class="fl">Ancestry</label>
-            <select id="charAnc" onchange="fu('ancestry',this.value)">
-              <option value="">— Select ancestry —</option>
-              <optgroup label="Core SRD">
-                <option>Clank</option><option>Drakona</option><option>Dwarf</option><option>Elf</option><option>Faerie</option><option>Faun</option><option>Firbolg</option><option>Fungril</option><option>Galapa</option><option>Giant</option><option>Goblin</option><option>Halfling</option><option>Human</option><option>Infernis</option><option>Katari</option><option>Orc</option><option>Ribbet</option><option>Simiah</option><option>Mixed Ancestry</option>
-              </optgroup>
-              <optgroup label="The Void v1.5">
-                <option>Aetheris</option><option>Earthkin</option><option>Emberkin</option><option>Gnome</option><option>Skykin</option><option>Tidekin</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="fld"><label class="fl">Community</label>
-            <select id="charCom" onchange="fu('community',this.value)">
-              <option value="">— Select community —</option>
-              <optgroup label="Core SRD">
-                <option>Highborne</option><option>Loreborne</option><option>Orderborne</option><option>Ridgeborne</option><option>Seaborne</option><option>Slyborne</option><option>Underborne</option><option>Wanderborne</option><option>Wildborne</option>
-              </optgroup>
-              <optgroup label="The Void v1.5">
-                <option>Duneborne</option><option>Freeborne</option><option>Frostborne</option><option>Hearthborne</option><option>Reborne</option><option>Warborne</option>
-              </optgroup>
-            </select>
+        <p class="bld-note">You can fill in your character's name and pronouns at any point during character creation.</p>
+
+        <!-- ── STEP 1: Class & Subclass ───────────────────────────── -->
+        <div class="bld-step" id="bld-step-1">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 1</span><span class="bld-step-title">Choose a Class &amp; Subclass</span></div>
+          <p class="bld-step-desc">Classes are role-based archetypes that determine which class features and domain cards your character gains access to throughout the campaign. Choose a class, then select one of its two subclasses. Your subclass grants you a Foundation card.</p>
+          <div class="cg" id="classGrid"></div>
+          <div id="subArea" style="display:none;margin-top:.8rem">
+            <div class="fl" style="margin-bottom:5px">Choose a Subclass</div>
+            <div class="cg" id="subGrid"></div>
+            <div id="subFeat" class="sf"></div>
           </div>
         </div>
-        <div class="st">Traits</div>
-        <div class="spi">Assign the spread: <strong style="color:var(--gold2)">+2, +1, +1, 0, 0, −1</strong>
-          <div class="spp" id="spreadPips"></div>
+
+        <!-- ── STEP 2: Heritage ──────────────────────────────────────── -->
+        <div class="bld-step" id="bld-step-2">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 2</span><span class="bld-step-title">Choose Your Heritage</span></div>
+          <p class="bld-step-desc">Your heritage combines two elements: <strong>ancestry</strong> and <strong>community</strong>. Your ancestry reflects your lineage and grants two ancestry features. Your community represents your culture or environment of origin and grants a community feature.</p>
+          <div class="g2">
+            <div class="fld">
+              <label class="fl">Ancestry</label>
+              <select id="charAnc" onchange="fu('ancestry',this.value);bldShowHeritage()">
+                <option value="">— Select ancestry —</option>
+                <optgroup label="Core SRD">
+                  <option>Clank</option><option>Drakona</option><option>Dwarf</option><option>Elf</option><option>Faerie</option><option>Faun</option><option>Firbolg</option><option>Fungril</option><option>Galapa</option><option>Giant</option><option>Goblin</option><option>Halfling</option><option>Human</option><option>Infernis</option><option>Katari</option><option>Orc</option><option>Ribbet</option><option>Simiah</option><option>Mixed Ancestry</option>
+                </optgroup>
+                <optgroup label="The Void v1.5">
+                  <option>Aetheris</option><option>Earthkin</option><option>Emberkin</option><option>Gnome</option><option>Skykin</option><option>Tidekin</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="fl">Community</label>
+              <select id="charCom" onchange="fu('community',this.value);bldShowHeritage()">
+                <option value="">— Select community —</option>
+                <optgroup label="Core SRD">
+                  <option>Highborne</option><option>Loreborne</option><option>Orderborne</option><option>Ridgeborne</option><option>Seaborne</option><option>Slyborne</option><option>Underborne</option><option>Wanderborne</option><option>Wildborne</option>
+                </optgroup>
+                <optgroup label="The Void v1.5">
+                  <option>Duneborne</option><option>Freeborne</option><option>Frostborne</option><option>Hearthborne</option><option>Reborne</option><option>Warborne</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+          <div id="heritagePreview"></div>
         </div>
-        <div class="g3" id="traitGrid"></div>
-        <div class="st">Derived Stats</div>
-        <div class="g3">
-          <div class="card csm"><div class="fl" style="margin-bottom:5px">Evasion Base</div><input type="number" id="evBase" value="10" min="1" oninput="fu('evasionBase',parseInt(this.value)||10)" style="width:70px"><div style="font-size:21px;font-family:'Cinzel',serif;color:var(--gold);margin-top:5px" id="evDisp">10</div></div>
-          <div class="card csm"><div class="fl" style="margin-bottom:5px">Hit Point Slots</div><input type="number" id="hpSlots" value="6" min="1" max="20" oninput="fu('hpSlots',parseInt(this.value)||6)" style="width:70px"></div>
-          <div class="card csm"><div class="fl" style="margin-bottom:5px">Stress Slots</div><input type="number" id="stSlots" value="6" min="1" max="12" oninput="fu('stressSlots',parseInt(this.value)||6)" style="width:70px"></div>
+
+        <!-- ── STEP 3: Traits ────────────────────────────────────────── -->
+        <div class="bld-step" id="bld-step-3">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 3</span><span class="bld-step-title">Assign Character Traits</span></div>
+          <p class="bld-step-desc">Your character has six traits representing their physical, mental, and social aptitude. Assign the spread below to your traits in any order you wish. When you roll with a trait, that trait's modifier is added to the roll's total.</p>
+          <div class="bld-spread-row">
+            <span class="bld-spread-label">Assign the spread:</span>
+            <div class="bld-spread-chips" id="spreadChips"></div>
+            <button class="btn bgh" style="font-size:11px;padding:.25rem .6rem" onclick="bldClearTraits()">Clear All</button>
+          </div>
+          <p id="bldSpreadHint" class="bld-note bld-spread-hint" style="color:var(--ember);display:none">Click a value above, then click a trait card to assign it.</p>
+          <div class="bld-trait-grid" id="traitGrid"></div>
         </div>
-        <div class="st">Experiences</div>
-        <div id="expList"></div>
-        <button class="btn bgh" onclick="addExp()" style="margin-top:3px">+ Add Experience</button>
-        <div class="st">Weapons</div>
-        <div style="margin-bottom:.6rem">
-          <div class="fl" style="margin-bottom:4px">Add from catalog</div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+
+        <!-- ── STEP 4: Record Stats ──────────────────────────────────── -->
+        <div class="bld-step" id="bld-step-4">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 4</span><span class="bld-step-title">Record Additional Character Information</span></div>
+          <p class="bld-step-desc">These values are set by your class selection. Your level starts at 1 for a new campaign. Hope always starts at 2 — mark these in the Hope field of your character sheet.</p>
+          <div class="g3">
+            <div class="card csm">
+              <div class="fl" style="margin-bottom:5px">Level</div>
+              <select id="charLevel" onchange="onLvl(this.value)" style="width:100%">
+                <option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option><option value="4">Level 4</option><option value="5">Level 5</option><option value="6">Level 6</option><option value="7">Level 7</option><option value="8">Level 8</option><option value="9">Level 9</option><option value="10">Level 10</option>
+              </select>
+            </div>
+            <div class="card csm">
+              <div class="fl" style="margin-bottom:5px">Proficiency</div>
+              <input type="number" id="charProf" value="1" min="1" max="6" oninput="fu('proficiency',parseInt(this.value)||1)" style="width:70px">
+              <div style="font-size:11px;color:var(--text3);margin-top:3px">Starts at 1</div>
+            </div>
+            <div class="card csm">
+              <div class="fl" style="margin-bottom:5px">Evasion</div>
+              <input type="number" id="evBase" value="10" min="1" oninput="fu('evasionBase',parseInt(this.value)||10)" style="width:70px">
+              <div style="font-size:11px;color:var(--text3);margin-top:3px" id="evDisp">From class</div>
+            </div>
+            <div class="card csm">
+              <div class="fl" style="margin-bottom:5px">Hit Point Slots</div>
+              <input type="number" id="hpSlots" value="6" min="1" max="20" oninput="fu('hpSlots',parseInt(this.value)||6)" style="width:70px">
+              <div style="font-size:11px;color:var(--text3);margin-top:3px">From class</div>
+            </div>
+            <div class="card csm">
+              <div class="fl" style="margin-bottom:5px">Stress Slots</div>
+              <input type="number" id="stSlots" value="6" min="1" max="12" oninput="fu('stressSlots',parseInt(this.value)||6)" style="width:70px">
+              <div style="font-size:11px;color:var(--text3);margin-top:3px">All classes start with 6</div>
+            </div>
+            <div class="card csm" style="border-color:var(--teal)">
+              <div class="fl" style="margin-bottom:5px">Starting Hope</div>
+              <div style="font-size:26px;font-family:'Cinzel',serif;color:var(--teal2)">2</div>
+              <div style="font-size:11px;color:var(--text3);margin-top:3px">Mark on your sheet</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── STEP 5: Starting Equipment ────────────────────────────── -->
+        <div class="bld-step" id="bld-step-5">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 5</span><span class="bld-step-title">Choose Your Starting Equipment</span></div>
+          <p class="bld-step-desc">Choose Tier 1 weapons and armor for a new Level 1 character. Your Proficiency at Level 1 is 1, so your damage roll is 1× your weapon's damage dice. Add your level to your armor's base thresholds. Equipment tier matches character tier: Tier 1 (Level 1), Tier 2 (Levels 2–4), Tier 3 (Levels 5–7), Tier 4 (Levels 8–10).</p>
+
+          <div class="fl" style="margin-bottom:4px">Weapon (Tier 1 only)</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:.5rem">
             <select id="weapCatalogSlot" style="width:110px"><option value="primary">Primary</option><option value="secondary">Secondary</option></select>
-            <select id="weapCatalogTier" style="width:80px" onchange="buildWeapCatalog()"><option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option><option value="4">Tier 4</option></select>
+            <select id="weapCatalogTier" style="width:80px;display:none"><option value="1">Tier 1</option></select>
             <select id="weapCatalogPick" style="flex:1;min-width:160px"></select>
             <button class="btn bgh" onclick="addWeapFromCatalog()">+ Add</button>
           </div>
-        </div>
-        <div id="weapList"></div>
-        <button class="btn bgh" onclick="addWeap()" style="margin-top:3px">+ Custom Weapon</button>
-        <div class="st">Armor</div>
-        <div style="margin-bottom:.6rem">
-          <div class="fl" style="margin-bottom:4px">Select from catalog</div>
+          <div id="weapList"></div>
+          <button class="btn bgh" onclick="addWeap()" style="margin-top:3px;margin-bottom:1rem">+ Custom Weapon</button>
+
+          <div class="fl" style="margin-bottom:4px">Armor (Tier 1 only)</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-            <select id="armorCatalogTier" style="width:80px" onchange="buildArmorCatalog()"><option value="0">All</option><option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option><option value="4">Tier 4</option></select>
+            <select id="armorCatalogTier" style="width:80px;display:none"><option value="1">Tier 1</option></select>
             <select id="armorCatalogPick" style="flex:1;min-width:160px"></select>
             <button class="btn bgh" onclick="equipArmorFromCatalog()">Equip</button>
           </div>
-          <div id="armorPreview" style="font-size:13px;color:var(--text3);margin-top:.35rem"></div>
+          <div id="armorPreview" style="font-size:13px;color:var(--text3);margin-top:.35rem;margin-bottom:.5rem"></div>
+          <div class="g2" style="margin-bottom:1rem">
+            <div class="fld"><label class="fl">Armor Name (custom / override)</label><input type="text" id="armName" placeholder="Leave blank to use catalog" oninput="fu('armorName',this.value)"></div>
+            <div class="fld"><label class="fl">Armor Slots (custom)</label><input type="number" id="armScore" value="3" min="0" max="10" oninput="fu('armorScore',parseInt(this.value)||0)"></div>
+          </div>
+
+          <div class="fl" style="margin-bottom:.5rem">Starting Items Checklist</div>
+          <p class="bld-note">All new characters begin with the following items. Check each one to add it to your inventory.</p>
+          <div class="bld-checklist" id="startingItemChecklist">
+            <label class="bld-check-item"><input type="checkbox" data-item="torch"> A torch</label>
+            <label class="bld-check-item"><input type="checkbox" data-item="rope"> 50 feet of rope</label>
+            <label class="bld-check-item"><input type="checkbox" data-item="supplies"> Basic supplies</label>
+            <label class="bld-check-item"><input type="checkbox" data-item="gold"> A handful of gold</label>
+          </div>
+          <div class="fl" style="margin:.6rem 0 .3rem">Choose one potion:</div>
+          <div class="bld-checklist">
+            <label class="bld-check-item"><input type="radio" name="startPotion" value="health" onchange="bldPotionChange(this)"> Minor Health Potion — clear 1d4 Hit Points</label>
+            <label class="bld-check-item"><input type="radio" name="startPotion" value="stamina" onchange="bldPotionChange(this)"> Minor Stamina Potion — clear 1d4 Stress</label>
+          </div>
+          <div id="classStartingItem" style="margin-top:.6rem"></div>
+          <button class="btn bgh" onclick="bldAddStartingItems()" style="margin-top:.75rem">+ Add Checked Items to Inventory</button>
         </div>
-        <div class="g2">
-          <div class="fld"><label class="fl">Armor Name (custom / override)</label><input type="text" id="armName" placeholder="Leave blank to use catalog" oninput="fu('armorName',this.value)"></div>
-          <div class="fld"><label class="fl">Armor Slots (custom)</label><input type="number" id="armScore" value="3" min="0" max="10" oninput="fu('armorScore',parseInt(this.value)||0)"></div>
+
+        <!-- ── STEP 6: Background ────────────────────────────────────── -->
+        <div class="bld-step" id="bld-step-6">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 6</span><span class="bld-step-title">Create Your Background</span></div>
+          <p class="bld-step-desc">Develop your character's backstory. Your background has no explicit mechanical effect, but it greatly shapes the character you'll play and the prep your GM will do. You can also leave this more ambiguous and discover your character's past through play.</p>
+          <div class="fld"><label class="fl">Background</label><textarea id="charBg" placeholder="Your character's backstory, history, and what drove them to adventure…" rows="5" oninput="fu('background',this.value)"></textarea></div>
         </div>
-        <div class="st">Background &amp; Notes</div>
-        <div class="g2">
-          <div class="fld"><label class="fl">Background</label><textarea id="charBg" placeholder="Your character's backstory…" oninput="fu('background',this.value)"></textarea></div>
-          <div class="fld"><label class="fl">Notes / Class Features</label><textarea id="charNotes" placeholder="Class features, notes…" oninput="fu('notes',this.value)"></textarea></div>
+
+        <!-- ── STEP 7: Experiences ───────────────────────────────────── -->
+        <div class="bld-step" id="bld-step-7">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 7</span><span class="bld-step-title">Create Your Experiences</span></div>
+          <p class="bld-step-desc">An Experience is a word or phrase that encapsulates a specific set of skills, traits, or aptitudes your character has acquired over their life. When your character makes a move, they can <strong>spend a Hope</strong> to add a relevant Experience's modifier to an action or reaction roll.</p>
+          <p class="bld-note">New characters get two Experiences, each with a <strong>+2 modifier</strong>. An Experience can't be too broadly applicable and can't grant specific mechanical benefits like spells or special abilities. <em>Example: "Lucky" or "Highly Skilled" are too broad. "Supersonic Flight" implies a game-breaking ability.</em></p>
+          <div class="bld-exp-examples">
+            <div>
+              <div class="fl" style="margin-bottom:.35rem">Background Examples</div>
+              <div id="expBgChips" class="bld-exp-col"></div>
+            </div>
+            <div>
+              <div class="fl" style="margin-bottom:.35rem">Characteristic Examples</div>
+              <div id="expCharChips" class="bld-exp-col"></div>
+            </div>
+          </div>
+          <div id="expList" style="margin-top:.75rem"></div>
+          <button class="btn bgh" onclick="addExp()" style="margin-top:3px">+ Add Experience</button>
         </div>
+
+        <!-- ── STEP 8: Domain Cards ──────────────────────────────────── -->
+        <div class="bld-step" id="bld-step-8">
+          <div class="bld-step-hdr"><span class="bld-step-num">Step 8</span><span class="bld-step-title">Choose Your Domain Cards</span></div>
+          <p class="bld-step-desc">Domain cards are features, spells, and abilities your character can use during play. Choose cards from your class's domains. The number of cards you can place in your loadout depends on your level — this limit is enforced below.</p>
+          <p class="bld-note" id="bldDomainNote">Select a class in Step 1 to see available domain cards.</p>
+          <div id="bldDomainGrid" style="display:none">
+            <div id="bldDomainFilters" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem"></div>
+            <div id="bldDomainCards" style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
+          </div>
+        </div>
+
+        <!-- ── Notes & Save ──────────────────────────────────────────── -->
+        <div class="bld-step">
+          <div class="fl" style="margin-bottom:.35rem">Notes / Class Features</div>
+          <textarea id="charNotes" placeholder="Class features, notes, reminders…" rows="4" oninput="fu('notes',this.value)"></textarea>
+        </div>
+
         <div style="margin-top:1.1rem;display:flex;gap:7px;flex-wrap:wrap">
           <button class="btn bg" onclick="saveChar();showTab('sheet')">Save &amp; View Sheet →</button>
           <button class="btn bo" onclick="saveChar()">Save</button>
@@ -557,6 +789,21 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
   </main>
 </div>
 <div class="toast" id="toast"></div>
+<!-- Class Preview Modal -->
+<div id="clsModal" class="cls-modal-overlay" onclick="if(event.target===this)clsModalClose()">
+  <div class="cls-modal">
+    <div class="cls-modal-header">
+      <span id="clsModalTitle" class="cls-modal-title"></span>
+      <button class="cls-modal-close" onclick="clsModalClose()">✕</button>
+    </div>
+    <div id="clsModalBody" class="cls-modal-body"></div>
+    <div class="cls-modal-footer">
+      <button id="clsModalConfirm" class="btn bg">Choose this Class →</button>
+      <button class="btn bo" onclick="clsModalClose()">Back</button>
+    </div>
+  </div>
+</div>
+
 <div id="hovercard" style="display:none;position:fixed;z-index:500;pointer-events:none;max-width:400px;min-width:220px">
   <div style="background:var(--bg4);border:1px solid var(--gold3);border-radius:var(--r2);padding:.75rem 1rem;box-shadow:0 8px 32px #000a">
     <div id="hovercard-title" style="font-family:'Cinzel',serif;font-size:14px;color:var(--gold2);margin-bottom:.35rem;font-style:italic"></div>
@@ -658,6 +905,101 @@ const CLASS_FEATURES = {
 const TRAITS_LIST = ['Agility','Strength','Finesse','Instinct','Presence','Knowledge'];
 const SPREAD = [2,1,1,0,0,-1];
 const DOMAINS_ALL = ['Arcana','Blade','Blood','Bone','Codex','Dread','Grace','Midnight','Sage','Splendor','Valor'];
+// Domain cards allowed in loadout at character creation by level (SRD leveling table)
+const DOMAIN_CARD_ALLOWANCE = {1:2, 2:3, 3:3, 4:4, 5:5, 6:5, 7:5, 8:5, 9:5, 10:5};
+// Tier definitions
+const TIER_FOR_LEVEL = {1:1, 2:2, 3:2, 4:2, 5:3, 6:3, 7:3, 8:4, 9:4, 10:4};
+
+// ── Class descriptions (paraphrased) ────────────────────────────────────────
+const CLASS_DESC = {
+  Bard:       "A performer and social force who inspires allies and manipulates foes through the power of art, music, and words. Bards excel at rallying their party and creating openings in tense situations.",
+  Druid:      "A nature-connected shapeshifter who draws on primal forces to transform into beasts and bend the natural world to their will. Druids balance raw power with deep connection to the living world.",
+  Guardian:   "A stalwart defender who absorbs punishment and protects allies. Guardians thrive in the thick of combat, turning their resilience into a weapon and their presence into a shield.",
+  Ranger:     "A skilled hunter and tracker who excels at reading the environment and striking with precision. Rangers form powerful bonds with animal companions and dominate at range and in the wilds.",
+  Rogue:      "A cunning operator who outmaneuvers opponents through guile, speed, and positioning. Rogues reward preparation and patience, finding advantage where others see only danger.",
+  Seraph:     "A divine champion empowered by a higher calling, capable of both healing allies and smiting foes with radiant force. Seraphs inspire faith on the battlefield.",
+  Sorcerer:   "A wielder of raw, instinctive magic drawn from an inner elemental or primal source. Sorcerers channel tremendous arcane energy and reshape the battlefield with elemental force.",
+  Warrior:    "A versatile and ferocious combatant who masters the art of war. Warriors adapt to any situation, pushing through adversity to inspire those around them with sheer tenacity.",
+  Wizard:     "A scholarly wielder of arcane knowledge who has spent years studying the mechanisms of magic. Wizards command an array of spells and possess deep reserves of magical lore.",
+  Assassin:   "A patient and lethal operative who specializes in eliminating targets before they can react. Assassins strike from the shadows and disappear before the consequences catch up.",
+  Bloodhunter:"A monster-hunting warrior who uses forbidden blood magic to augment their combat abilities. Bloodhunters walk a dangerous line between power and self-destruction.",
+  Brawler:    "A relentless close-quarters fighter who uses their body as a weapon. Brawlers overpower opponents through raw physicality, grapples, and relentless pressure.",
+  Warlock:    "A spellcaster who has made a pact with a powerful patron, drawing on eldritch power in exchange for service or sacrifice. Warlocks blend magic and cunning to devastating effect.",
+  Witch:      "A practitioner of occult and natural magic who curses enemies, brews potent concoctions, and communes with forces beyond mortal understanding."
+};
+
+// ── Domain descriptions (paraphrased) ────────────────────────────────────────
+const DOMAIN_DESC = {
+  Arcana:    "Spells of flight, force, and arcane manipulation — conjuring energy, bending physics, and mastering raw magical power.",
+  Blade:     "Combat techniques that enhance weapon attacks, exploit openings, and turn each strike into something more lethal than the last.",
+  Blood:     "Forbidden magic tied to life force — manipulating vitality, draining enemies, and pushing your body beyond its natural limits.",
+  Bone:      "Abilities rooted in death, endurance, and the persistence of the body — outlasting punishment and striking with the weight of mortality.",
+  Codex:     "A domain of knowledge and structured spells recorded in grimoires — versatile and bookish magic with great breadth.",
+  Dread:     "Magic born of fear, shadow, and psychological pressure — terrifying opponents and manipulating the battlefield through dread.",
+  Grace:     "Charms, illusions, and social magic — bending perception, smoothing social situations, and making the impossible seem effortless.",
+  Midnight:  "Stealth, deception, and shadow — moving unseen, striking without warning, and vanishing before anyone can react.",
+  Sage:      "Nature magic and healing — mending wounds, manipulating plants and beasts, and drawing on the restorative power of the natural world.",
+  Splendor:  "Radiant and inspiring magic — bolstering allies, channeling divine light, and lifting spirits on and off the battlefield.",
+  Valor:     "Martial support and protective magic — shielding allies, bolstering defenses, and turning the tide of battle through courage."
+};
+
+// ── Trait descriptions and examples (paraphrased from SRD p.5) ──────────────
+const TRAIT_INFO = {
+  Agility:{
+    desc:'Represents your speed, nimbleness, and reflexes. A high Agility means you move quickly and react to danger with ease.',
+    examples:'Sprint to cover, leap across a gap, maneuver through a crowd, scurry up a rope, bound from rooftop to rooftop.'
+  },
+  Strength:{
+    desc:'Represents your raw physical power and stamina. A high Strength means you excel at feats of force and endurance.',
+    examples:'Break through a door, lift heavy objects, hold your ground against a charging foe, grapple an opponent, smash through a barrier.'
+  },
+  Finesse:{
+    desc:'Represents your precision, dexterity, and subtlety. A high Finesse means you are skilled at tasks requiring accuracy, stealth, or delicate control.',
+    examples:'Use fine tools, escape notice, strike with precision, pick a lock, move without making a sound.'
+  },
+  Instinct:{
+    desc:'Represents your awareness, intuition, and gut feelings. A high Instinct means you have a keen sense of your surroundings and a natural read on situations.',
+    examples:'Sense danger, notice hidden details, track an elusive foe, navigate difficult terrain, perceive a lie.'
+  },
+  Presence:{
+    desc:'Represents your force of personality and social aptitude. A high Presence means you command attention and are comfortable in social situations.',
+    examples:'Plead your case, intimidate a foe, capture a crowd\'s attention, deceive with confidence, charm your way past a guard.'
+  },
+  Knowledge:{
+    desc:'Represents your education, memory, and analytical mind. A high Knowledge means you know things others don\'t and can apply logic to complex problems.',
+    examples:'Recall important information, interpret ancient texts, analyze a pattern or clue, comprehend magical phenomena, identify a creature\'s weakness.'
+  }
+};
+
+// ── Class-specific starting items (from character guides) ────────────────────
+const CLASS_STARTING_ITEMS = {
+  Bard:       [{name:'Musical Instrument',summary:'Your instrument of choice — lute, fiddle, horn, or similar.',kind:'item'}],
+  Druid:      [{name:'Druidic Focus',summary:'A nature-attuned focus such as a carved staff, bundle of herbs, or sacred totem.',kind:'item'}],
+  Guardian:   [{name:'Shield',summary:'A sturdy shield bearing your personal or organizational crest.',kind:'item'}],
+  Ranger:     [{name:"Ranger's Kit",summary:"Contains a hunting trap, a skinning knife, and a week's worth of trail rations.",kind:'item'}],
+  Rogue:      [{name:"Thieves' Tools",summary:'A compact set of lockpicks, a small pry bar, and a glass cutter.',kind:'item'}],
+  Seraph:     [{name:'Holy Symbol',summary:'A symbol of your divine patron, worn or carried at all times.',kind:'item'}],
+  Sorcerer:   [{name:'Arcane Focus',summary:'A wand, orb, or gemstone attuned to your innate magic.',kind:'item'}],
+  Warrior:    [{name:"Warrior's Kit",summary:"A whetstone, a repair kit for your armor, and a personal trophy from a past battle.",kind:'item'}],
+  Wizard:     [{name:'Spellbook',summary:'A leather-bound tome filled with your personally transcribed spells and magical notes.',kind:'item'}],
+  // Void classes
+  Assassin:   [{name:"Assassin's Kit",summary:"A vial of untraceable poison, a set of lockpicks, and a forged travel document.",kind:'item'}],
+  Bloodhunter:[{name:"Hunter's Kit",summary:"A blood vial, a silver dagger, and an order-issued field manual on monster anatomy.",kind:'item'}],
+  Brawler:    [{name:"Brawler's Wraps",summary:"Heavy cloth wraps to protect your hands and forearms in a fight.",kind:'item'}],
+  Warlock:    [{name:"Patron's Token",summary:"A small object gifted by your patron — its nature depends on their domain.",kind:'item'}],
+  Witch:      [{name:"Witch's Satchel",summary:"Contains a mortar and pestle, dried herbs, a black candle, and a charm component.",kind:'item'}]
+};
+
+// ── Example experiences (SRD p.6) ────────────────────────────────────────────
+const EXPERIENCE_EXAMPLES = {
+  backgrounds:['Assassin','Blacksmith','Bodyguard','Bounty Hunter','Chef to the Royal Family',
+    'Circus Performer','Con Artist','Fallen Monarch','Field Medic','High Priestess',
+    'Merchant','Noble','Pirate','Politician','Runaway','Scholar','Sellsword',
+    'Soldier','Storyteller','Thief','World Traveler'],
+  characteristics:['Affable','Battle-Hardened','Bookworm','Charming','Cowardly',
+    'Friend to All','Helpful','Intimidating','Lone Wolf','Lucky Survivor',
+    'Natural Leader','Overconfident','Perceptive','Quick Thinker','Relentless']
+};
 
 const SUBCLASS_DATA = {
   'Troubadour':{spellcast:'Presence',
@@ -1199,7 +1541,7 @@ function getArmorStats(c) {
     // Check static catalog first, then homebrew armors stored on the character
     const a = ARMOR_DB.find(x=>x.n===c.equippedArmor)
            || (c.homebrewArmors||[]).find(x=>x.n===c.equippedArmor);
-    if (a) return { minor: baseMinor + a.minor + ovMinor, severe: baseSevere + a.severe + ovSevere, score: a.score, feat: a.feat||'', evMod: a.evMod||0, name: a.n };
+    if (a) return { minor: lv2 + a.minor + ovMinor, severe: lv2 + a.severe + ovSevere, score: a.score, feat: a.feat||'', evMod: a.evMod||0, name: a.n };
   }
   return { minor: baseMinor + ovMinor, severe: baseSevere + ovSevere, score: c.armorScore||3, feat: '', evMod: 0, name: null };
 }
@@ -1455,7 +1797,11 @@ const COMMUNITY_DB = {
 // ════════════════════════════════════════════════════════
 const SK='dh_chars_v3', AK='dh_active_v3';
 function loadAll(){try{return JSON.parse(localStorage.getItem(SK))||[];}catch{return[];}}
-function saveAll(c){localStorage.setItem(SK,JSON.stringify(c));}
+function saveAll(c){
+  localStorage.setItem(SK,JSON.stringify(c));
+  const ind=document.getElementById('saveIndicator');
+  if(ind){ind.classList.add('show');clearTimeout(ind._t);ind._t=setTimeout(()=>ind.classList.remove('show'),1800);}
+}
 function blank(){return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:'',pronouns:'',level:1,proficiency:1,selectedClass:'',selectedSubclass:'',ancestry:'',community:'',traits:{Agility:0,Strength:0,Finesse:0,Instinct:0,Presence:0,Knowledge:0},evasionBase:10,hpSlots:6,stressSlots:6,hpFilled:0,stressFilled:0,hopeFilled:0,armorFilled:0,experiences:[{name:'',mod:'+2'},{name:'',mod:'+2'}],weapons:[{name:'',trait:'Agility',dmg:'1d8+3',range:'Melee'}],armorName:'',armorScore:3,background:'',notes:'',loadout:[],vault:[],equippedArmor:null,equippedPrimary:null,equippedSecondary:null,inventory:[],threshOverride:{minor:0,severe:0},
 notePages:[{id:1,title:'Session Notes',body:''}],activeNotePage:1,
 // Advancement tracking per tier (t2=levels2-4, t3=5-7, t4=8-10)
@@ -1470,7 +1816,7 @@ adv:{
 pendingDomainPicks:[],
 // Subclass tier tracking
 subclassCards:{foundation:false, specialization:false, mastery:false},
-homebrewCards:[], homebrewArmors:[]
+homebrewCards:[], homebrewArmors:[], conditions:{hidden:false,restrained:false,vulnerable:false},_levelConfirmed:false
 };}
 let chars=loadAll(), activeId=localStorage.getItem(AK)||null;
 function gA(){return chars.find(c=>c.id===activeId)||null;}
@@ -1482,13 +1828,22 @@ function sA(id){activeId=id;localStorage.setItem(AK,id||'');}
 function newChar(){const c=blank();chars.push(c);saveAll(chars);sA(c.id);rSb();oE();pF(c);}
 function delChar(id,e){e.stopPropagation();if(!confirm('Delete this character?'))return;chars=chars.filter(c=>c.id!==id);saveAll(chars);if(activeId===id)sA(chars.length?chars[chars.length-1].id:null);rSb();if(!activeId)cE();else{oE();pF(gA());}}
 function selChar(id){sA(id);rSb();oE();pF(gA());}
-function rSb(){const l=document.getElementById('charList');l.innerHTML='';chars.forEach(c=>{const li=document.createElement('li');li.className='ci'+(c.id===activeId?' active':'');li.innerHTML=`<div class="ci-info" data-sel="${c.id}"><div class="ci-name">${c.name||'Unnamed'}</div><div class="ci-meta">${c.selectedClass||'No class'} · Lv${c.level}</div></div><button class="ci-del" data-del="${c.id}" title="Delete">×</button>`;l.appendChild(li);});
+function rSb(){const l=document.getElementById('charList');l.innerHTML='';chars.forEach(c=>{const li=document.createElement('li');li.className='ci'+(c.id===activeId?' active':'');li.innerHTML=`<div class="ci-info" data-sel="${c.id}"><div class="ci-name">${c.name||'Unnamed'}</div><div class="ci-meta">${c.selectedClass||'No class'} · Lv${c.level}</div></div><div style="display:flex;gap:3px" onclick="event.stopPropagation()"><button class="ci-dup" data-dup="${c.id}" title="Duplicate character" style="font-size:10px;padding:1px 5px;border-radius:3px;border:1px solid var(--border2);background:none;color:var(--text3);cursor:pointer">⎘</button><button class="ci-del" data-del="${c.id}" title="Delete">×</button></div>`;l.appendChild(li);});
   // Wire via event delegation to avoid inline onclick issues
   l.querySelectorAll('[data-sel]').forEach(el=>el.addEventListener('click',()=>selChar(el.dataset.sel)));
+  l.querySelectorAll('[data-dup]').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const src=chars.find(c=>c.id===btn.dataset.dup);
+    if(!src)return;
+    const copy=JSON.parse(JSON.stringify(src));
+    copy.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    copy.name=(src.name||'Unnamed')+' (Copy)';
+    chars.push(copy);saveAll(chars);rSb();showToast('Character duplicated!');
+  }));
   l.querySelectorAll('[data-del]').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();const id=btn.dataset.del;if(!confirm('Delete this character?'))return;chars=chars.filter(c=>c.id!==id);saveAll(chars);if(activeId===id)sA(chars.length?chars[chars.length-1].id:null);rSb();if(!activeId)cE();else{oE();pF(gA());}}));}
 function oE(){document.getElementById('emptyState').style.display='none';document.getElementById('editorArea').style.display='block';document.getElementById('saveBtn').style.display='inline-flex';document.getElementById('exportBtn').style.display='inline-flex';}
 function cE(){document.getElementById('emptyState').style.display='block';document.getElementById('editorArea').style.display='none';document.getElementById('saveBtn').style.display='none';document.getElementById('exportBtn').style.display='none';}
-function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelector(`[onclick="showTab('${t}')"]`).classList.add('active');document.getElementById('tab-'+t).classList.add('active');if(t==='sheet')rSheet();if(t==='domains')rDom();if(t==='levelup')rLvlUp();if(t==='notes')rNotes();if(t==='reference')rRef();}
+function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelector(`[onclick="showTab('${t}')"]`).classList.add('active');document.getElementById('tab-'+t).classList.add('active');if(t==='sheet')rSheet();if(t==='domains')rDom();if(t==='levelup')rLvlUp();if(t==='notes')rNotes();if(t==='reference')rRef();if(t==='builder')requestAnimationFrame(bCG);}
 
 // ════════════════════════════════════════════════════════
 // FORM
@@ -1496,6 +1851,7 @@ function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remo
 function pF(c){
   if(!c.homebrewCards)c.homebrewCards=[];
   if(!c.homebrewArmors)c.homebrewArmors=[];
+  if(!c.conditions)c.conditions={hidden:false,restrained:false,vulnerable:false};
   if(!c)return;
   // Migrate older characters that lack new fields
   if(!c.adv)c.adv={t2:{done:false,slots:[],traitMarks:[]},t3:{done:false,slots:[],traitMarks:[]},t4:{done:false,slots:[],traitMarks:[]}};
@@ -1526,8 +1882,8 @@ function pF(c){
   if(!c.inventory)c.inventory=[];
   if(!c.notePages){c.notePages=[{id:1,title:'Session Notes',body:c.notes||''}];c.activeNotePage=1;}
   if(c.activeNotePage===undefined)c.activeNotePage=c.notePages[0]?.id||1;
-  bCG();bTG();bEL();bWL();showTab('builder');
-  setTimeout(()=>{buildWeapCatalog();buildArmorCatalog();},0);
+  bCG();bTG();bEL();bWL();bldShowHeritage();bldShowClassStartingItem();bldRenderDomainCards();showTab('builder');
+  setTimeout(()=>{buildWeapCatalog('1');buildArmorCatalog('1');bldCheckProgress();},0);
 }
 function switchHomebrewTab(type){
   document.querySelectorAll('.hb-form').forEach(f=>f.style.display='none');
@@ -1644,23 +2000,147 @@ function createHomebrew(type){
 
 function fu(k,v){const c=gA();if(!c)return;c[k]=v;if(k==='evasionBase')document.getElementById('evDisp').textContent=v;dSave();}
 let sT=null;
-function dSave(){clearTimeout(sT);sT=setTimeout(()=>{const i=chars.findIndex(c=>c.id===activeId);if(i<0)return;rSb();saveAll(chars);},800);}
+function dSave(){clearTimeout(sT);sT=setTimeout(()=>{const i=chars.findIndex(c=>c.id===activeId);if(i<0)return;rSb();saveAll(chars);bldCheckProgress();},800);}
 function saveChar(){const i=chars.findIndex(c=>c.id===activeId);if(i>=0){rSb();saveAll(chars);}showToast('Character saved');}
 
 // ════════════════════════════════════════════════════════
 // CLASS GRID
 // ════════════════════════════════════════════════════════
+function bldRenderDomainCards(){
+  const c=gA();if(!c)return;
+  const note=document.getElementById('bldDomainNote');
+  const grid=document.getElementById('bldDomainGrid');
+  const filtersEl=document.getElementById('bldDomainFilters');
+  const cardsEl=document.getElementById('bldDomainCards');
+  if(!note||!grid||!filtersEl||!cardsEl)return;
+
+  if(!c.selectedClass||!CLASSES[c.selectedClass]){
+    note.style.display='block';
+    grid.style.display='none';
+    return;
+  }
+  note.style.display='none';
+  grid.style.display='block';
+
+  const classDomains=CLASSES[c.selectedClass].domains;
+  const lv=parseInt(c.level)||1;
+  if(!c.loadout)c.loadout=[];if(!c.vault)c.vault=[];
+
+  // Filter buttons
+  const activeDomainFilter=window._bldDomainFilter||'all';
+  filtersEl.innerHTML=`<span style="font-size:13px;color:var(--text3);align-self:center">Show:</span>`+
+    ['all',...classDomains].map(d=>{
+      const active=activeDomainFilter===d;
+      return `<button class="bld-chip${active?' bld-chip-sel':''}" onclick="window._bldDomainFilter='${d}';bldRenderDomainCards()">${d==='all'?'All Domains':d}</button>`;
+    }).join('');
+
+  // Filter cards
+  const allCards=allDomainCards(c);
+  const filtered=allCards.filter(card=>{
+    const inDomain=classDomains.includes(card.domain);
+    const withinLevel=card.level<=lv;
+    const domainMatch=activeDomainFilter==='all'||card.domain===activeDomainFilter;
+    return inDomain&&withinLevel&&domainMatch;
+  }).sort((a,b)=>a.level-b.level||a.name.localeCompare(b.name));
+
+  const maxCards=DOMAIN_CARD_ALLOWANCE[parseInt(c.level)||1]||5;
+  const loadoutFull=c.loadout.length>=maxCards;
+  cardsEl.innerHTML=filtered.length===0
+    ?'<div style="color:var(--text3);font-size:13px;font-style:italic">No cards available for your class at this level.</div>'
+    :filtered.map(card=>{
+      const inLoadout=c.loadout.includes(card.name);
+      const inVault=c.vault.includes(card.name);
+      const dc='d-'+card.domain.toLowerCase().replace(/\s+/g,'-');
+      const disabled=!inLoadout&&loadoutFull;
+      return `<div class="bld-domain-card ${dc}${inLoadout?' bld-dc-active':''}">
+        <div class="bld-dc-header">
+          <div>
+            <div class="bld-dc-name">${card.name}</div>
+            <div class="bld-dc-meta">${card.domain} · Lv${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}</div>
+          </div>
+          <button class="bld-dc-btn${inLoadout?' bld-dc-btn-rm':disabled?' bld-dc-btn-dis':''}"
+            onclick="bldToggleDomainCard('${card.name.replace(/'/g,"\'")}')"
+            ${disabled&&!inLoadout?'disabled':''}>
+            ${inLoadout?'− Remove':'+ Loadout'}
+          </button>
+        </div>
+        <div class="bld-dc-text">${card.text.replace(/<[^>]+>/g,'').slice(0,180)}${card.text.length>180?'…':''}</div>
+      </div>`;
+    }).join('');
+
+  // Loadout count
+  const loadoutCount=c.loadout.filter(name=>{const cd=gcbn(name);return cd&&classDomains.includes(cd.domain);}).length;
+  if(!filtersEl.querySelector('.bld-loadout-count')){
+    const countEl=document.createElement('span');
+    countEl.className='bld-loadout-count';
+    countEl.style.cssText='font-size:12px;color:var(--text3);align-self:center;margin-left:auto';
+    filtersEl.appendChild(countEl);
+  }
+  const countEl=filtersEl.querySelector('.bld-loadout-count');
+  if(countEl)countEl.textContent=`Loadout: ${c.loadout.length}/${maxCards} (Level ${lv} allowance)`;
+}
+
+function bldToggleDomainCard(name){
+  const c=gA();if(!c)return;
+  if(!c.loadout)c.loadout=[];if(!c.vault)c.vault=[];
+  if(c.loadout.includes(name)){
+    c.loadout=c.loadout.filter(n=>n!==name);
+    if(!c.vault.includes(name))c.vault.push(name);
+  } else {
+    const lv2=parseInt(c.level)||1;
+    const maxC=DOMAIN_CARD_ALLOWANCE[lv2]||5;
+    if(c.loadout.length>=maxC){showToast('Loadout full — Level '+lv2+' characters can carry '+maxC+' domain cards.');return;}
+    c.loadout.push(name);
+    c.vault=c.vault.filter(n=>n!==name);
+  }
+  saveAll(chars);bldRenderDomainCards();
+}
+
 function bCG(){
   const c=gA();if(!c)return;
-  const g=document.getElementById('classGrid');g.innerHTML='';
-  Object.keys(CLASSES).forEach(cls=>{const d=CLASSES[cls];const el=document.createElement('div');el.className='cc'+(c.selectedClass===cls?' sel':'');const vt=d.void?'<span class="vb">Void</span>':'';el.innerHTML=`<div class="ccn">${cls}${vt}</div><div class="ccs">HP ${d.hp} · Ev ${d.ev}</div><div class="ccs" style="font-size:11px;margin-top:1px">${d.domains.join(', ')}</div>`;el.onclick=()=>selCls(cls);g.appendChild(el);});
+  const g=document.getElementById('classGrid');
+  g.innerHTML='';
+  Object.keys(CLASSES).forEach(cls=>{
+    const d=CLASSES[cls];
+    const el=document.createElement('div');
+    const highlighted=(window._clsPreviewCls||c.selectedClass)===cls;
+    el.className='cc'+(highlighted?' sel':'');
+    const vt=d.void?'<span class="vb">Void</span>':'';
+    el.innerHTML=`<div class="ccn">${cls}${vt}</div><div class="ccs">HP ${d.hp} · Ev ${d.ev}</div><div class="ccs" style="font-size:11px;margin-top:1px">${d.domains.join(', ')}</div>`;
+    el.onclick=()=>clsPreview(cls);
+    g.appendChild(el);
+  });
   bSG();
 }
-function selCls(cls){const c=gA();if(!c)return;c.selectedClass=cls;c.selectedSubclass='';const d=CLASSES[cls];c.evasionBase=d.ev;c.hpSlots=d.hp;document.getElementById('evBase').value=d.ev;document.getElementById('evDisp').textContent=d.ev;document.getElementById('hpSlots').value=d.hp;bCG();dSave();}
+
+function clsPreview(cls){
+  window._clsPreviewCls=cls;
+  bCG(); // re-render grid so only previewed class is highlighted
+  const d=CLASSES[cls];
+  const desc=CLASS_DESC[cls]||'';
+  const domainRows=d.domains.map(dom=>{
+    const dd=DOMAIN_DESC[dom]||'';
+    return `<div class="cls-domain-row"><span class="cls-domain-name">${dom}</span><span class="cls-domain-desc">${dd}</span></div>`;
+  }).join('');
+  const modal=document.getElementById('clsModal');
+  document.getElementById('clsModalTitle').textContent=cls;
+  document.getElementById('clsModalBody').innerHTML=
+    `<div class="cls-info-desc">${desc}</div>`+
+    `<div class="cls-modal-stats">HP ${d.hp} &nbsp;·&nbsp; Evasion ${d.ev} &nbsp;·&nbsp; Subclasses: ${d.sub.join(', ')}</div>`+
+    `<div class="cls-info-domains"><div class="cls-domains-label">Domains</div>${domainRows}</div>`;
+  document.getElementById('clsModalConfirm').onclick=()=>{selCls(cls);clsModalClose();};
+  modal.classList.add('active');
+}
+
+function clsModalClose(){
+  // Keep _clsPreviewCls so the last clicked class stays highlighted
+  document.getElementById('clsModal').classList.remove('active');
+}
+function selCls(cls){window._clsPreviewCls=null;const c=gA();if(!c)return;c.selectedClass=cls;c.selectedSubclass='';const d=CLASSES[cls];c.evasionBase=d.ev;c.hpSlots=d.hp;document.getElementById('evBase').value=d.ev;document.getElementById('evDisp').textContent=d.ev;document.getElementById('hpSlots').value=d.hp;bCG();bldShowClassStartingItem();bldRenderDomainCards();bldCheckProgress();dSave();}
 function bSG(){
   const c=gA();if(!c)return;const a=document.getElementById('subArea');const g=document.getElementById('subGrid');
   if(!c.selectedClass){a.style.display='none';return;}a.style.display='block';g.innerHTML='';
-  CLASSES[c.selectedClass].sub.forEach(sc=>{const el=document.createElement('div');el.className='cc'+(c.selectedSubclass===sc?' sel':'');el.innerHTML=`<div class="ccn">${sc}</div>`;el.onclick=()=>{c.selectedSubclass=sc;bSG();dSave();};g.appendChild(el);});
+  CLASSES[c.selectedClass].sub.forEach(sc=>{const el=document.createElement('div');el.className='cc'+(c.selectedSubclass===sc?' sel':'');el.innerHTML=`<div class="ccn">${sc}</div>`;el.onclick=()=>{c.selectedSubclass=sc;bSG();bldCheckProgress();dSave();};g.appendChild(el);});
   rSF(c);
 }
 function rSF(c){
@@ -1679,18 +2159,286 @@ function rSF(c){
 // ════════════════════════════════════════════════════════
 // TRAITS
 // ════════════════════════════════════════════════════════
-function bTG(){const c=gA();if(!c)return;const g=document.getElementById('traitGrid');g.innerHTML='';TRAITS_LIST.forEach(t=>{const v=c.traits[t];const m=v>=0?'+'+v:String(v);const el=document.createElement('div');el.className='tc';el.innerHTML=`<div class="tn">${t}</div><div class="tv">${v}</div><div class="tm">${m}</div><div class="tbs"><button class="tbtn" onclick="chT('${t}',-1)">−</button><button class="tbtn" onclick="chT('${t}',1)">+</button></div>`;g.appendChild(el);});uSP();}
+// ─── STEP 3: Trait chip-assign UI ───────────────────────────────────────────
+let _selectedSpreadVal = null; // currently selected spread value chip
+
+function bTG(){
+  const c=gA();if(!c)return;
+  renderSpreadChips();
+  const g=document.getElementById('traitGrid');
+  if(!g)return;
+  g.innerHTML='';
+  TRAITS_LIST.forEach(t=>{
+    const v=c.traits[t];
+    const assigned = SPREAD.includes(v) && v !== null;
+    const info = TRAIT_INFO[t]||{desc:'',examples:''};
+    const mod = v===null?'—':(v>=0?'+'+v:String(v));
+    const el=document.createElement('div');
+    el.className='bld-trait-card'+(v!==null?' bld-trait-assigned':'');
+    el.setAttribute('data-trait',t);
+    el.innerHTML=
+      '<div class="bld-trait-top">'+
+        '<div class="bld-trait-name">'+t+'</div>'+
+        '<div class="bld-trait-val">'+(v!==null?mod:'—')+'</div>'+
+        (v!==null?`<button class="bld-trait-clear" onclick="bldUnassignTrait('${t}',event)" title="Unassign">×</button>`:'')+
+      '</div>'+
+      '<div class="bld-trait-desc">'+info.desc+'</div>'+
+      '<div class="bld-trait-ex"><em>e.g. '+info.examples+'</em></div>';
+    el.addEventListener('click', ()=>bldAssignTrait(t));
+    g.appendChild(el);
+  });
+}
+
+function renderSpreadChips(){
+  const c=gA();if(!c)return;
+  const el=document.getElementById('spreadChips');if(!el)return;
+  // Count assigned values
+  const assigned=Object.values(c.traits).filter(v=>v!==null);
+  // Remaining = SPREAD minus assigned (remove one instance per value)
+  const remaining=[...SPREAD];
+  assigned.forEach(v=>{const i=remaining.indexOf(v);if(i>=0)remaining.splice(i,1);});
+  el.innerHTML='';
+  // Show remaining chips
+  remaining.forEach(v=>{
+    const lbl=v>=0?'+'+v:String(v);
+    const chip=document.createElement('span');
+    chip.className='bld-chip'+(v===_selectedSpreadVal?' bld-chip-sel':'');
+    chip.textContent=lbl;
+    chip.addEventListener('click',()=>{
+      _selectedSpreadVal=(_selectedSpreadVal===v)?null:v;
+      renderSpreadChips();
+      const hint=document.getElementById('bldSpreadHint');
+      if(hint)hint.style.display=_selectedSpreadVal!==null?'block':'none';
+    });
+    el.appendChild(chip);
+  });
+  // Show assigned chips (greyed) so player can see what's been used
+  if(remaining.length<SPREAD.length){
+    const used=[...SPREAD];remaining.forEach(v=>{const i=used.indexOf(v);if(i>=0)used.splice(i,1);});
+    used.forEach(v=>{
+      const lbl=v>=0?'+'+v:String(v);
+      const chip=document.createElement('span');
+      chip.className='bld-chip bld-chip-used';
+      chip.textContent=lbl;
+      el.appendChild(chip);
+    });
+  }
+}
+
+function bldAssignTrait(t){
+  if(_selectedSpreadVal===null)return;
+  const c=gA();if(!c)return;
+  c.traits[t]=_selectedSpreadVal;
+  _selectedSpreadVal=null;
+  bTG();
+  const hint=document.getElementById('bldSpreadHint');
+  if(hint)hint.style.display='none';
+  bldCheckProgress();
+  dSave();
+}
+
+function bldUnassignTrait(t,e){
+  e.stopPropagation();
+  const c=gA();if(!c)return;
+  c.traits[t]=0;
+  bTG();dSave();
+}
+
+function bldClearTraits(){
+  const c=gA();if(!c)return;
+  TRAITS_LIST.forEach(t=>c.traits[t]=0);
+  _selectedSpreadVal=null;
+  bTG();bldCheckProgress();dSave();
+}
+
+// Legacy — keep for sheet +/- buttons
 function chT(t,d){const c=gA();if(!c)return;const nv=c.traits[t]+d;if(nv<-3||nv>5)return;c.traits[t]=nv;bTG();dSave();}
-function uSP(){const c=gA();if(!c)return;const used=Object.values(c.traits).slice();const p=document.getElementById('spreadPips');p.innerHTML='';SPREAD.forEach(v=>{const lbl=v>=0?'+'+v:String(v);const idx=used.indexOf(v);const isU=idx!==-1;if(isU)used.splice(idx,1);const pip=document.createElement('span');pip.className='sp'+(isU?' used':'');pip.textContent=lbl;p.appendChild(pip);});}
-function onLvl(val){const c=gA();if(!c)return;c.level=parseInt(val);c.proficiency=Math.ceil(c.level/2);document.getElementById('charProf').value=c.proficiency;rSF(c);dSave();}
+function uSP(){} // no-op, replaced by renderSpreadChips
+function bldCheckProgress(){
+  const c=gA();if(!c)return;
+
+  // Step 1 complete: class AND subclass selected
+  const s1=!!(c.selectedClass&&c.selectedSubclass);
+  // Step 2 complete: ancestry AND community selected
+  const s2=!!(c.ancestry&&c.community);
+  // Step 3 complete: all 6 traits assigned (spread fully used)
+  const assignedVals=Object.values(c.traits);
+  const spreadCopy=[...SPREAD];
+  let allAssigned=true;
+  assignedVals.forEach(v=>{const i=spreadCopy.indexOf(v);if(i>=0)spreadCopy.splice(i,1);else allAssigned=false;});
+  const s3=allAssigned&&spreadCopy.length===0;
+  // Step 4 complete: traits done AND level confirmed by player
+  const s4=s3&&!!(c._levelConfirmed||parseInt(c.level)>1);
+  // Step 5 complete: at least one weapon with a name
+  const s5=c.weapons&&c.weapons.some(w=>w.name&&w.name.trim());
+  // Step 6 complete: always once step 5 done
+  const s6=s5;
+  // Step 7 complete: at least one experience with a name
+  const s7=c.experiences&&c.experiences.some(e=>e.name&&e.name.trim());
+  // Step 8 always visible once step 7 done
+  const s8=s7;
+
+  // Each step only unlocks when the PREVIOUS step is complete
+  const steps=[
+    {id:'bld-step-1',unlocked:true,          complete:s1},
+    {id:'bld-step-2',unlocked:s1,            complete:s2},
+    {id:'bld-step-3',unlocked:s1&&s2,        complete:s3},
+    {id:'bld-step-4',unlocked:s3,            complete:s4},
+    {id:'bld-step-5',unlocked:s3,            complete:s5},
+    {id:'bld-step-6',unlocked:s4&&s5,        complete:s6},
+    {id:'bld-step-7',unlocked:s4&&s5,        complete:s7},
+    {id:'bld-step-8',unlocked:s4&&s5&&s7,   complete:false},
+  ];
+
+  steps.forEach(({id,unlocked,complete})=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.classList.toggle('bld-locked',!unlocked);
+    el.classList.toggle('bld-complete',complete&&unlocked);
+    // Add/remove completion badge
+    let badge=el.querySelector('.bld-step-complete-badge');
+    if(complete&&unlocked){
+      if(!badge){
+        badge=document.createElement('span');
+        badge.className='bld-step-complete-badge';
+        badge.textContent='✓ Complete';
+        el.querySelector('.bld-step-hdr').appendChild(badge);
+      }
+    } else {
+      if(badge)badge.remove();
+    }
+  });
+
+  // Show/hide the notes+save section (always visible after step 1)
+  const saveSection=document.querySelector('#tab-builder .bld-step:not([id])');
+  if(saveSection)saveSection.classList.toggle('bld-locked',!s1);
+}
+
+function bldShowHeritage(){
+  const c=gA();if(!c)return;
+  bldCheckProgress();
+  const cont=document.getElementById('heritagePreview');if(!cont)return;
+  let html='';
+  if(c.ancestry&&ANCESTRY_DB[c.ancestry]){
+    const a=ANCESTRY_DB[c.ancestry];
+    html+=`<div class="bld-heritage-card">
+      <div class="bld-heritage-name">${c.ancestry} — Ancestry Features</div>
+      <div class="bld-heritage-desc">${a.desc}</div>
+      <div class="bld-heritage-feats">
+        ${a.feat.split(' | ').map((f,i)=>{
+          const parts=f.split(':');
+          const name=parts[0].trim();
+          const text=parts.slice(1).join(':').trim();
+          return '<div class="bld-heritage-feat"><strong>'+name+'</strong>'+(text?': '+text:'')+'</div>';
+        }).join('')}
+      </div>
+    </div>`;
+  }
+  if(c.community&&COMMUNITY_DB[c.community]){
+    const com=COMMUNITY_DB[c.community];
+    html+=`<div class="bld-heritage-card">
+      <div class="bld-heritage-name">${c.community} — Community Feature</div>
+      <div class="bld-heritage-desc">${com.desc}</div>
+      <div class="bld-heritage-feats">
+        ${com.feat.split(' | ').map((f,i)=>{
+          const parts=f.split(':');
+          const name=parts[0].trim();
+          const text=parts.slice(1).join(':').trim();
+          return '<div class="bld-heritage-feat"><strong>'+name+'</strong>'+(text?': '+text:'')+'</div>';
+        }).join('')}
+      </div>
+    </div>`;
+  }
+  cont.innerHTML=html;
+}
+
+function onLvl(val){
+  const c=gA();if(!c)return;
+  c.level=parseInt(val);
+  c._levelConfirmed=true;
+  // Proficiency matches tier: T1(L1)=1, T2(L2-4)=2, T3(L5-7)=3, T4(L8-10)=4
+  const lv=c.level;
+  c.proficiency=lv>=8?4:lv>=5?3:lv>=2?2:1;
+  document.getElementById('charProf').value=c.proficiency;
+  rSF(c);bldRenderDomainCards();bldCheckProgress();dSave();
+}
 
 // ════════════════════════════════════════════════════════
 // EXP & WEAPONS
 // ════════════════════════════════════════════════════════
-function bEL(){const c=gA();if(!c)return;const cont=document.getElementById('expList');cont.innerHTML='';c.experiences.forEach((e,i)=>{const r=document.createElement('div');r.className='er';r.innerHTML=`<input type="text" placeholder="Experience (e.g. Streetwise thief)" value="${e.name||''}" oninput="c_en(${i},this.value)"><select onchange="c_em(${i},this.value)"><option ${e.mod==='+2'?'selected':''}>+2</option><option ${e.mod==='+3'?'selected':''}>+3</option><option ${e.mod==='+4'?'selected':''}>+4</option></select><button class="ib" onclick="rmExp(${i})">×</button>`;cont.appendChild(r);});}
+function bEL(){
+  const c=gA();if(!c)return;
+  // Render example chips
+  ['expBgChips','expCharChips'].forEach((id,i)=>{
+    const el=document.getElementById(id);if(!el)return;
+    const list=i===0?EXPERIENCE_EXAMPLES.backgrounds:EXPERIENCE_EXAMPLES.characteristics;
+    el.innerHTML=list.map(ex=>`<span class="bld-chip-ex" onclick="bldAddExpFromExample('${ex.replace(/'/,"\'")}')">${ex}</span>`).join('');
+  });
+  // Render experience rows
+  const cont=document.getElementById('expList');if(!cont)return;
+  cont.innerHTML='';
+  c.experiences.forEach((e,i)=>{
+    const r=document.createElement('div');r.className='er';
+    r.innerHTML=`<input type="text" placeholder="Experience (e.g. Streetwise thief)" value="${e.name||''}" oninput="c_en(${i},this.value)"><select onchange="c_em(${i},this.value)"><option ${e.mod==='+2'?'selected':''}>+2</option><option ${e.mod==='+3'?'selected':''}>+3</option><option ${e.mod==='+4'?'selected':''}>+4</option></select><button class="ib" onclick="rmExp(${i})">×</button>`;
+    cont.appendChild(r);
+  });
+}
+function bldAddExpFromExample(name){
+  const c=gA();if(!c)return;
+  // Fill the first empty experience slot, or add new
+  const empty=c.experiences.findIndex(e=>!e.name);
+  if(empty>=0){c.experiences[empty].name=name;}
+  else{c.experiences.push({name,mod:'+2'});}
+  bEL();dSave();
+}
 function c_en(i,v){const c=gA();if(!c)return;c.experiences[i].name=v;dSave();}
 function c_em(i,v){const c=gA();if(!c)return;c.experiences[i].mod=v;dSave();}
 function addExp(){const c=gA();if(!c)return;c.experiences.push({name:'',mod:'+2'});bEL();dSave();}
+
+function bldPotionChange(radio){
+  // Just tracks the radio state — actually added when checklist button clicked
+}
+
+function bldShowClassStartingItem(){
+  const c=gA();if(!c)return;
+  const cont=document.getElementById('classStartingItem');if(!cont)return;
+  const items=CLASS_STARTING_ITEMS[c.selectedClass];
+  if(!items||!items.length){cont.innerHTML='';return;}
+  cont.innerHTML='<div class="fl" style="margin:.5rem 0 .3rem">Class-specific starting item:</div>'+
+    items.map(item=>`<label class="bld-check-item"><input type="checkbox" data-class-item="${item.name}" data-class-summary="${item.summary}"> <strong>${item.name}</strong> — ${item.summary}</label>`).join('');
+}
+
+function bldAddStartingItems(){
+  const c=gA();if(!c)return;
+  if(!c.inventory)c.inventory=[];
+  const checks=document.querySelectorAll('#startingItemChecklist input[type="checkbox"]:checked');
+  const itemMap={
+    torch:{name:'Torch',summary:'A basic torch providing light for up to 1 hour.',kind:'item'},
+    rope:{name:'50 Feet of Rope',summary:'A sturdy length of rope.',kind:'item'},
+    supplies:{name:'Basic Supplies',summary:'Rations, a bedroll, and other basic adventuring necessities.',kind:'item'},
+    gold:{name:'Handful of Gold',summary:'Starting currency. Mark one Gold box on your character sheet.',kind:'item'},
+  };
+  checks.forEach(cb=>{
+    const key=cb.dataset.item;
+    const entry=itemMap[key];
+    if(entry&&!c.inventory.find(i=>i.name===entry.name)){
+      c.inventory.push({...entry,qty:1});
+    }
+  });
+  // Potion
+  const potion=document.querySelector('input[name="startPotion"]:checked');
+  if(potion){
+    const isH=potion.value==='health';
+    const pEntry={name:isH?'Minor Health Potion':'Minor Stamina Potion',summary:isH?'Clear 1d4 Hit Points.':'Clear 1d4 Stress.',kind:'consumable',qty:1};
+    if(!c.inventory.find(i=>i.name===pEntry.name))c.inventory.push(pEntry);
+  }
+  // Class item
+  document.querySelectorAll('[data-class-item]:checked').forEach(cb=>{
+    const entry={name:cb.dataset.classItem,summary:cb.dataset.classSummary,kind:'item',qty:1};
+    if(!c.inventory.find(i=>i.name===entry.name))c.inventory.push(entry);
+  });
+  saveAll(chars);
+  showToast('Starting items added to inventory!');
+}
 function rmExp(i){const c=gA();if(!c)return;c.experiences.splice(i,1);bEL();dSave();}
 function bWL(){const c=gA();if(!c)return;const cont=document.getElementById('weapList');cont.innerHTML='';c.weapons.forEach((w,i)=>{const to=TRAITS_LIST.map(t=>`<option ${w.trait===t?'selected':''}>${t}</option>`).join('');const r=document.createElement('div');r.className='wr';r.innerHTML=`<div class="fld"><div class="fl">Name</div><input type="text" placeholder="Weapon" value="${w.name||''}" oninput="c_wn(${i},this.value)"></div><div class="fld"><div class="fl">Trait</div><select onchange="c_wt(${i},this.value)">${to}</select></div><div class="fld"><div class="fl">Damage</div><input type="text" placeholder="1d8+3" value="${w.dmg||''}" oninput="c_wd(${i},this.value)"></div><div class="fld"><div class="fl">Range</div><input type="text" placeholder="Melee" value="${w.range||''}" oninput="c_wr(${i},this.value)"></div><div style="display:flex;align-items:flex-end;padding-bottom:1px"><button class="ib" onclick="rmWeap(${i})">×</button></div>`;cont.appendChild(r);});}
 function c_wn(i,v){const c=gA();if(!c)return;c.weapons[i].name=v;dSave();}
@@ -1699,8 +2447,11 @@ function c_wd(i,v){const c=gA();if(!c)return;c.weapons[i].dmg=v;dSave();}
 function c_wr(i,v){const c=gA();if(!c)return;c.weapons[i].range=v;dSave();}
 function addWeap(){const c=gA();if(!c)return;c.weapons.push({name:'',trait:'Agility',dmg:'1d8+3',range:'Melee'});bWL();dSave();}
 
-function buildWeapCatalog(){
-  const tier=parseInt(document.getElementById('weapCatalogTier')?.value||1);
+function buildWeapCatalog(forceTier){
+  const c2=gA();
+  const charLv=c2?parseInt(c2.level)||1:1;
+  const charTier=charLv>=8?4:charLv>=5?3:charLv>=2?2:1;
+  const tier=parseInt(forceTier||charTier);
   const sel=document.getElementById('weapCatalogPick');if(!sel)return;
   const weapons=WEAPON_DB.filter(w=>w.t===tier);
   sel.innerHTML=weapons.map(w=>`<option value="${w.n}">${w.n} (${w.range}, ${w.dmg})</option>`).join('');
@@ -1715,8 +2466,11 @@ function addWeapFromCatalog(){
   dSave();bWL();showToast(w.n+' added!');
 }
 
-function buildArmorCatalog(){
-  const tier=parseInt(document.getElementById('armorCatalogTier')?.value||0);
+function buildArmorCatalog(forceTier){
+  const c3=gA();
+  const aLv=c3?parseInt(c3.level)||1:1;
+  const aTier=aLv>=8?4:aLv>=5?3:aLv>=2?2:1;
+  const tier=parseInt(forceTier||aTier);
   const sel=document.getElementById('armorCatalogPick');if(!sel)return;
   const armors=tier===0?ARMOR_DB:ARMOR_DB.filter(a=>a.t===tier);
   sel.innerHTML=armors.map(a=>`<option value="${a.n}">${a.n} (${a.minor}/${a.severe}, Score ${a.score})</option>`).join('');
@@ -1748,6 +2502,31 @@ function rmWeap(i){const c=gA();if(!c)return;c.weapons.splice(i,1);bWL();dSave()
 // ════════════════════════════════════════════════════════
 // LOADOUT
 // ════════════════════════════════════════════════════════
+function vaultSwap(name){
+  const c=gA();if(!c)return;
+  if(!c.loadout)c.loadout=[];if(!c.vault)c.vault=[];
+  if(c.loadout.includes(name)){
+    // Remove from loadout (free at any time)
+    c.loadout=c.loadout.filter(n=>n!==name);
+    saveAll(chars);rSheet();
+    showToast(name+' moved to vault.');
+  } else {
+    if(c.loadout.length>=5){showToast('Loadout full — remove a card first.');return;}
+    const card=gcbn(name);
+    const cost=card?card.stress||0:0;
+    if(cost>0){
+      // Mark Stress equal to Recall Cost
+      const available=c.stressSlots-(c.stressFilled||0);
+      if(available<cost){showToast('Not enough Stress slots — need '+cost+' to recall this card.');return;}
+      c.stressFilled=(c.stressFilled||0)+cost;
+      showToast(name+' recalled! Marked '+cost+' Stress.');
+    } else {
+      showToast(name+' added to loadout.');
+    }
+    c.loadout.push(name);
+    saveAll(chars);rSheet();
+  }
+}
 function toggleLoadout(name){
   const c=gA();if(!c)return;
   if(!c.loadout)c.loadout=[];if(!c.vault)c.vault=[];
@@ -1864,8 +2643,8 @@ function rSheet(){
     if(lv2>=7)scB+=d.mastery.map(f=>makeBadge(f,'Mastery')).join('');
     scB+='</div>';
   }
-  const lH=c.loadout.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">No cards in loadout. Add them in the Domain Cards tab.</div>':c.loadout.map(name=>{const card=gcbn(name);if(!card)return'';const dc='d-'+card.domain.toLowerCase();const lPayload=hcp({name:card.name,tier:`${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Stress cost: '+card.stress:''}`,text:card.text,list:[]});const preview=card.text.replace(/<[^>]+>/g,'').slice(0,140).trim();const ellipsis=card.text.length>140?'…':'';return`<div class="lcm ${dc} sc-feat-badge" data-feature="${lPayload}"><div class="lcmn">${card.name}</div><div class="lcmm">${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · '+card.stress+' Stress':''}</div><div class="lcmt">${preview}${ellipsis}</div></div>`;}).join('');
-  const vH=c.vault.length===0?'':c.vault.map(name=>{const card=gcbn(name);if(!card)return'';return`<div style="font-size:13px;color:var(--text3);padding:2px 0">${card.name} (${card.domain} Lv${card.level})</div>`;}).join('');
+  const lH=c.loadout.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">No cards in loadout. Add them in the Domain Cards tab.</div>':c.loadout.map(name=>{const card=gcbn(name);if(!card)return'';const dc='d-'+card.domain.toLowerCase();const lPayload=hcp({name:card.name,tier:`${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}`,text:card.text,list:[]});const preview=card.text.replace(/<[^>]+>/g,'').slice(0,140).trim();const ellipsis=card.text.length>140?'…':'';return`<div class="lcm ${dc} sc-feat-badge" data-feature="${lPayload}"><div class="lcmn">${card.name}</div><div class="lcmm">${card.domain} · Level ${card.level} · ${card.type}${card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':''}</div><div class="lcmt">${preview}${ellipsis}</div></div>`;}).join('');
+  const vH=c.vault.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">Vault is empty.</div>':c.vault.map(name=>{const card=gcbn(name);if(!card)return'';const inL=c.loadout.includes(name);const loadoutFull=c.loadout.length>=5&&!inL;const recallCost=card.stress||0;const sn=name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");return`<div class="vault-swap-row"><div class="vault-swap-info"><div class="vault-swap-name">${card.name}</div><div class="vault-swap-meta">${card.domain} · Lv${card.level} · ${card.type}</div></div><div class="vault-swap-right">${recallCost>0?`<span class="vault-recall-cost" title="Recall Cost: mark ${recallCost} Stress to swap during play">${recallCost} ⚡</span>`:''}<button class="vault-swap-btn${loadoutFull?' vault-swap-disabled':''}" onclick="vaultSwap('${sn}')" ${loadoutFull?'disabled title="Loadout full (5/5)"':''}>${inL?'In Loadout':'+ Loadout'}</button></div></div>`;}).join('');
 
   document.getElementById('sheetContent').innerHTML=`
   <div class="sheet-wrap">
@@ -1967,6 +2746,15 @@ function rSheet(){
       </div>
     </div>
   </div><!-- /top-strip -->
+
+  <!-- CONDITION TRACKER -->
+  <div class="cond-row">
+    ${['Hidden','Restrained','Vulnerable'].map(cd=>{
+      const key=cd.toLowerCase();
+      const active=(c.conditions||{})[key];
+      return `<button class="cond-btn${active?' cond-active':''}" onclick="toggleCond('${key}')">${cd}</button>`;
+    }).join('')}
+  </div>
 
   <!-- TWO TAB GROUPS SIDE BY SIDE -->
   <div class="dual-tabs-row">
@@ -2074,7 +2862,7 @@ function rSheet(){
         if(!c.homebrewCards||c.homebrewCards.length===0)return '';
         const hbHtml=c.homebrewCards.map(card=>{
           const dc='d-'+(card.domain||'').toLowerCase();
-          const stress=card.stress>0?` · Stress ${card.stress}`:'';
+          const stress=card.stress>0?` · Recall Cost: Mark ${card.stress} Stress`:'';
           const hbTag=`<span style="font-size:10px;padding:1px 4px;border-radius:3px;background:#c8a96e22;color:#c8a96e;border:1px solid #c8a96e44;font-family:'Cinzel',serif;letter-spacing:.05em;margin-left:3px">HOMEBREW</span>`;
           const safeId=('hb_'+card.name).replace(/[^a-zA-Z0-9_]/g,'_');
           const inL=(c.loadout||[]).includes(card.name);
@@ -2182,7 +2970,7 @@ function rSheet(){
         <div class="fld"><label class="fl">Domain</label><select id="hb-dom-domain">${DOMAINS_ALL.map(d=>'<option>'+d+'</option>').join('')}</select></div>
         <div class="fld"><label class="fl">Level</label><input type="number" id="hb-dom-level" value="1" min="1" max="10"></div>
         <div class="fld"><label class="fl">Type</label><select id="hb-dom-type"><option>Spell</option><option>Ability</option><option>Grimoire</option></select></div>
-        <div class="fld"><label class="fl">Stress Cost</label><input type="number" id="hb-dom-stress" value="0" min="0"></div>
+        <div class="fld"><label class="fl">Recall Cost (Stress)</label><input type="number" id="hb-dom-stress" value="0" min="0"></div>
         <div class="fld" style="grid-column:1/-1"><label class="fl">Effect Text</label><textarea id="hb-dom-text" placeholder="e.g. Make a Spellcast Roll (12). On success, deal 2d6+3 magic damage." style="min-height:70px"></textarea></div>
       </div>
       <div style="font-size:12px;color:var(--text3);margin:.4rem 0 .6rem">Card is added directly to your vault and appears in the Domain Cards tab.</div>
@@ -2474,6 +3262,12 @@ function restoreActivePanes(){
   });
 }
 
+function toggleCond(key){
+  const c=gA();if(!c)return;
+  if(!c.conditions)c.conditions={hidden:false,restrained:false,vulnerable:false};
+  c.conditions[key]=!c.conditions[key];
+  saveAll(chars);rSheet();
+}
 function toggleHeritageFeat(id){
   const el=document.getElementById('hf_'+id);
   if(!el)return;
@@ -2599,7 +3393,7 @@ function rDom(){
     const acq=inL||inV;
     const sn=card.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
     const vTag=card.source==='Void'?`<span style="font-size:10px;padding:1px 4px;border-radius:3px;background:#8060c022;color:#a080d8;border:1px solid #8060c044;font-family:'Cinzel',serif;letter-spacing:.05em;margin-left:3px">VOID</span>`:'';
-    const sd=card.stress>0?`<div class="dcs">Stress cost: ${card.stress}</div>`:'';
+    const sd=card.stress>0?`<div class="dcs">Recall Cost: Mark ${card.stress} Stress</div>`:'';
     const lBtn=`<button class="dcbtn${inL?' ina':''}" onclick="event.stopPropagation();toggleLoadout('${sn}')">${inL?'★ In Loadout':'+ Loadout'}</button>`;
     const vBtn=!inL?`<button class="dcbtn${inV?' inv':''}vault-btn" onclick="event.stopPropagation();addVault('${sn}')">${inV?'◆ Vault':'◇ Vault'}</button>`:'';
     const rBtn=acq?`<button class="dcbtn rem" onclick="event.stopPropagation();removeCard('${sn}')">✕ Remove</button>`:'';
@@ -2660,23 +3454,21 @@ const ADVANCEMENTS = [
   {key:'trait2',   label:'Increase Two Traits',       cost:1, maxPerTier:3,
    desc:'Choose two unmarked character traits. Each permanently gains +1. Marked traits cannot be increased again until the next tier clears them.',
    special:'traits'},
-  {key:'hp',       label:'+1 Hit Point Slot',          cost:1, maxPerTier:null,
+  {key:'hp',       label:'+1 Hit Point Slot',          cost:1, maxPerTier:2,
    desc:'Permanently gain one additional Hit Point slot.'},
-  {key:'stress',   label:'+1 Stress Slot',             cost:1, maxPerTier:null,
+  {key:'stress',   label:'+1 Stress Slot',             cost:1, maxPerTier:2,
    desc:'Permanently gain one additional Stress slot.'},
-  {key:'exp',      label:'Increase Two Experiences',   cost:1, maxPerTier:null,
+  {key:'exp',      label:'Increase Two Experiences',   cost:1, maxPerTier:1,
    desc:'Choose two Experiences on your character sheet and gain a permanent +1 bonus to both.'},
-  {key:'domain',   label:'Additional Domain Card',      cost:1, maxPerTier:null,
-   desc:'Choose an additional domain card at or below your current level from one of your class\'s domains.',
+  {key:'domain',   label:'Additional Domain Card',      cost:1, maxPerTier:1,
+   desc:'Choose an additional domain card at or below your current level from one of your class\'s domains. This is separate from the free domain card you receive each level in Step 4.',
    special:'domain'},
-  {key:'evasion',  label:'+1 Evasion',                 cost:1, maxPerTier:null,
+  {key:'evasion',  label:'+1 Evasion',                 cost:1, maxPerTier:1,
    desc:'Gain a permanent +1 bonus to your Evasion.'},
   {key:'subclass', label:'Upgraded Subclass Card',     cost:1, maxPerTier:1,
    desc:'Take the next subclass card for your subclass (Foundation → Specialization → Mastery). Choosing this crosses out the Multiclass option for this tier.',
    special:'subclass'},
-  {key:'prof',     label:'Increase Proficiency',       cost:2, maxPerTier:1,
-   desc:'Fill in one open Proficiency circle and increase your weapon\'s damage dice by one. Costs TWO advancement slots.',
-   special:'double'},
+
   {key:'multiclass',label:'Multiclass',               cost:2, maxPerTier:1,
    desc:'Choose an additional class, gain its class feature, and take the foundation card from one of its subclasses. Crosses out the Upgraded Subclass option for this tier. Costs TWO advancement slots.',
    special:'double'},
@@ -2761,9 +3553,9 @@ function rLvlUp(){
     html+=`<div class="lu-achieve${achieveDone?' done':''}">
       <div class="lu-achieve-label">${achieveDone?'✓ ':''} Tier Achievement (at Level ${achieveLevel})</div>
       <div class="lu-achieve-text">`;
-    if(tierNum===2)html+=`Gain a new Experience at +2. Proficiency permanently increases by 1. <em>(Granted when you leveled to ${achieveLevel}.)</em>`;
-    else if(tierNum===3)html+=`Gain a new Experience at +2. Proficiency permanently increases by 1. Clear all marked character traits — they can now be increased again.`;
-    else html+=`Gain a new Experience at +2. Proficiency permanently increases by 1. Clear all marked character traits — they can now be increased again.`;
+    if(tierNum===2)html+=`Gain a new Experience at +2. Proficiency permanently increases by 1. <em>These are granted automatically when you reach Level ${achieveLevel}.</em>`;
+    else if(tierNum===3)html+=`Gain a new Experience at +2. Proficiency permanently increases by 1. Clear any marked character traits — they can now be increased again. <em>These are granted automatically at Level ${achieveLevel}.</em>`;
+    else html+=`Gain a new Experience at +2. Proficiency permanently increases by 1. Clear any marked character traits — they can now be increased again. <em>These are granted automatically at Level ${achieveLevel}.</em>`;
     html+=`</div></div>`;
 
     // Show taken advancements
@@ -2809,6 +3601,9 @@ function buildAdvChoices(c, tk, tierNum, remaining){
   const lv=parseInt(c.level)||1;
   let html='';
   ADVANCEMENTS.forEach(adv=>{
+    // Hide subclass/multiclass in tiers where they can never be used
+    if(adv.key==='subclass'&&tierNum<3)return; // Spec needs L5+ (Tier 3), Mastery L8+ (Tier 4)
+    if(adv.key==='multiclass'&&tierNum<3)return; // Multiclass needs L5+ (Tier 3+)
     const taken=advTaken(c,tk,adv.key);
     const max=adv.maxPerTier;
     const isMaxed=max!==null&&taken>=max;
@@ -2817,16 +3612,57 @@ function buildAdvChoices(c, tk, tierNum, remaining){
     const conflictsSubclass=adv.key==='multiclass'&&subTaken;
     const conflictsMC=adv.key==='subclass'&&mcTaken;
     const tooLowForMC=adv.key==='multiclass'&&lv<5;
-    const cantAfford=adv.cost>remaining;
-    const disabled=isMaxed||conflictsSubclass||conflictsMC||tooLowForMC||cantAfford;
-    const reason=tooLowForMC?'(requires level 5+)':isMaxed?'(max reached)':conflictsSubclass?'(subclass taken this tier)':conflictsMC?'(multiclass taken this tier)':cantAfford?'(not enough slots)':'';
-    const costPips=Array.from({length:adv.cost},()=>`<div class="lu-pip${adv.cost===2?' double':''} on"></div>`).join('');
-    html+=`<div class="lu-slots-row${disabled?' maxed':''}" onclick="${disabled?'':'pickAdv(\''+tk+'\',\''+adv.key+'\')'}">
-      <div class="lu-slots-left"><strong>${adv.label}</strong> ${reason?`<span style="color:var(--text3)">${reason}</span>`:''}
-        <div class="lu-note">${adv.desc}</div>
-      </div>
-      <div class="lu-slot-pips">${costPips}</div>
-    </div>`;
+    let tooLowForSubclass=false;
+    if(adv.key==='subclass'){
+      const cur=c.subclassCards||{};
+      if(!cur.specialization&&lv<5)tooLowForSubclass=true;
+      if(cur.specialization&&!cur.mastery&&lv<8)tooLowForSubclass=true;
+    }
+    const cantAfford=adv.cost>remaining&&!isMaxed;
+    const disabled=isMaxed||conflictsSubclass||conflictsMC||tooLowForMC||tooLowForSubclass||cantAfford;
+    const reason=tooLowForMC?'(requires level 5+)':tooLowForSubclass?'(Specialization: Level 5+, Mastery: Level 8+)':conflictsSubclass?'(subclass taken this tier)':conflictsMC?'(multiclass taken this tier)':cantAfford?'(not enough slots)':'';
+
+    let advDesc=adv.desc;
+    let advLabel=adv.label;
+    if(adv.key==='subclass'&&!tooLowForSubclass&&!isMaxed){
+      const sub=SUBCLASS_DATA[c.selectedSubclass];
+      if(sub){
+        const cur=c.subclassCards||{};
+        let nextTier='',nextCard=null;
+        if(!cur.specialization){nextTier='Specialization';nextCard=(sub.spec||[])[0];}
+        else if(cur.specialization&&!cur.mastery){nextTier='Mastery';nextCard=(sub.mastery||[])[0];}
+        if(nextCard){
+          advLabel='Upgraded Subclass Card \u2014 '+nextTier;
+          advDesc='<strong style="color:var(--gold2)">'+nextCard.name+'</strong>'
+            +'<div style="font-size:13px;color:var(--text2);margin-top:.3rem;line-height:1.5">'+nextCard.text+'</div>';
+        }
+      }
+    }
+
+    // Per-advancement pip track
+    let trackHtml='';
+    if(max!==null){
+      trackHtml='<div class="lu-adv-track">';
+      for(let i=0;i<max;i++){
+        trackHtml+='<div class="lu-adv-pip'+(i<taken?' filled':'')+'"></div>';
+      }
+      trackHtml+='</div>';
+    } else {
+      for(let i=0;i<adv.cost;i++){
+        trackHtml+='<div class="lu-pip'+(adv.cost===2?' double':'')+' on"></div>';
+      }
+    }
+
+    const rowClass='lu-slots-row'+(isMaxed?' maxed':cantAfford?' cant-afford':'');
+    const rowStyle=isMaxed?'opacity:.45;cursor:default':'';
+    const clickFn=disabled?'':'pickAdv(\''+tk+'\',\''+adv.key+'\')';
+    html+='<div class="'+rowClass+'" onclick="'+clickFn+'" style="'+rowStyle+'">'
+      +'<div class="lu-slots-left">'
+      +'<strong>'+advLabel+'</strong>'+(reason?' <span style="color:var(--text3);font-size:13px">'+reason+'</span>':'')
+      +'<div class="lu-note">'+advDesc+'</div>'
+      +'</div>'
+      +'<div class="lu-slot-pips">'+trackHtml+'</div>'
+      +'</div>';
   });
   return html;
 }
@@ -2836,13 +3672,95 @@ function buildThreshDomainStep(c, tierNum, tk){
   const tierLevels=getTierLevels(tierNum);
   const inTier=tierLevels.includes(lv)||lv>tierLevels[tierLevels.length-1];
   if(!inTier)return'';
+
+  // Build inline domain card picker for Step 4
+  const domains=(c.selectedClass&&CLASSES[c.selectedClass])?CLASSES[c.selectedClass].domains:[];
+  const allCards=allDomainCards(c);
+  const eligible=allCards.filter(card=>domains.includes(card.domain)&&card.level<=lv);
+  const owned=new Set([...(c.loadout||[]),...(c.vault||[])]);
+
+  // Domain filter buttons
+  const filterBtns=['All',...domains].map(d=>
+    `<button class="fc2" onclick="luDomainFilter('${d}','lu-dc-grid-${tierNum}')" style="margin-bottom:4px">${d==='All'?'All':d}</button>`
+  ).join('');
+
+  const stepKey='stepCard_L'+lv;
+  const tierPickedCard=c.adv[tk]?.[stepKey]||null;
+  const tierPickDone=!!tierPickedCard;
+  const cardRows=eligible.map(card=>{
+    const isOwned=owned.has(card.name);
+    const isThisPick=card.name===tierPickedCard;
+    const blocked=tierPickDone&&!isOwned&&!isThisPick;
+    const dc='d-'+card.domain.toLowerCase();
+    const sn=card.name.replace(/'/g,"\'");
+    const clickable=!isOwned&&!blocked;
+    const rightBadge=isThisPick
+      ?'<span style="color:var(--gold2);font-size:12px">✓ This level</span>'
+      :isOwned
+        ?'<span style="color:var(--teal2);font-size:12px">✓ Owned</span>'
+        :blocked?''
+        :'<span class="lu-dc-add-btn">+ Add</span>';
+    return '<div class="lu-dc-row '+dc+(isOwned||blocked?' lu-dc-owned':'')+'" data-domain="'+card.domain+'"'
+      +' style="'+(blocked?'opacity:.35;cursor:default':'')+'"'
+      +' onclick="'+(clickable?'luPickStepCard(\''+sn+'\',\''+tk+'\')':'')+'">'
+      +'<div class="lu-dc-row-left">'
+      +'<span class="lu-dc-row-name">'+card.name+'</span>'
+      +'<span class="lu-dc-row-meta">'+card.domain+' · Lv'+card.level+' · '+card.type+(card.stress>0?' · Recall Cost: Mark '+card.stress+' Stress':'')+'</span>'
+      +'<div class="lu-dc-row-text">'+card.text.replace(/\|/g,'<br>')+'</div>'
+      +'</div>'
+      +'<div class="lu-dc-row-right">'+rightBadge+'</div>'
+      +'</div>';
+  }).join('');
+
   return`<div style="margin-top:.75rem;padding:.6rem .85rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)">
     <div class="lu-achieve-label" style="margin-bottom:.3rem">Steps 3 &amp; 4 — Applied Each Level</div>
-    <div style="font-size:14px;color:var(--text2);line-height:1.7">
-      <strong style="color:var(--gold2)">Step 3:</strong> Damage thresholds are always your current level (Minor) and level ×2 (Severe) — they update automatically when you level up.<br>
-      <strong style="color:var(--gold2)">Step 4:</strong> Acquire one domain card at or below your new level from your class's domains — use the <em>Additional Domain Card</em> advancement above, or visit the <a href="#" onclick="showTab('domains');return false;" style="color:var(--gold3)">Domain Cards tab</a>.
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:.65rem">
+      <strong style="color:var(--gold2)">Step 3:</strong> All damage thresholds increase by 1 automatically.<br>
+      <strong style="color:var(--gold2)">Step 4:</strong> Acquire one new domain card from your class domains at or below your current level. Free every level — does not cost an advancement slot. You may also exchange a card you own for one of the same level or lower.
     </div>
+    ${domains.length===0?'<div style="color:var(--text3);font-size:13px;font-style:italic">No class selected — set your class in the Builder to see cards.</div>':`
+    <div style="margin-bottom:.4rem">${filterBtns}</div>
+    ${tierPickDone?'<div style="font-size:13px;color:var(--gold2);margin-bottom:.4rem">✓ Free card chosen this level: <strong>'+tierPickedCard+'</strong> — <a href="#" onclick="luClearStepCard(\'"+tk+"\');return false;" style="color:var(--text3);font-size:12px">Undo</a></div>':''}
+    <div id="lu-dc-grid-${tierNum}" style="display:flex;flex-direction:column;gap:4px;max-height:320px;overflow-y:auto">
+      ${cardRows||'<div style="color:var(--text3);font-size:13px;font-style:italic">No eligible cards found.</div>'}
+    </div>`}
   </div>`;
+}
+
+function luClearStepCard(tk){
+  const c=gA();if(!c)return;
+  const lv=parseInt(c.level)||1;
+  const stepKey='stepCard_L'+lv;
+  const name=c.adv[tk]?.[stepKey];if(!name)return;
+  c.loadout=(c.loadout||[]).filter(n=>n!==name);
+  c.vault=(c.vault||[]).filter(n=>n!==name);
+  delete c.adv[tk][stepKey];
+  saveAll(chars);rLvlUp();rDom();
+  showToast('Free card pick cleared.');
+}
+function luDomainFilter(domain, gridId){
+  const grid=document.getElementById(gridId);
+  if(!grid)return;
+  grid.querySelectorAll('.lu-dc-row').forEach(row=>{
+    const match=domain==='All'||row.dataset.domain===domain;
+    row.style.display=match?'':'none';
+  });
+}
+
+function luPickStepCard(name, tk){
+  const c=gA();if(!c)return;
+  if(!c.loadout)c.loadout=[];if(!c.vault)c.vault=[];
+  if([...c.loadout,...c.vault].includes(name)){showToast('Already in your collection.');return;}
+  const lv2=parseInt(c.level)||1;
+  const stepKey2='stepCard_L'+lv2;
+  if(c.adv[tk]?.[stepKey2]){showToast('You have already chosen your free card for this level.');return;}
+  if(c.loadout.length<5)c.loadout.push(name);
+  else c.vault.push(name);
+  if(!c.adv[tk])c.adv[tk]={slots:[],traitMarks:[]};
+  c.adv[tk][stepKey2]=name;
+  saveAll(chars);
+  showToast(name+' added to '+(c.loadout.includes(name)?'loadout':'vault')+'!');
+  rLvlUp();rDom();
 }
 
 function pickAdv(tk, key){
@@ -2886,13 +3804,21 @@ function pickAdv(tk, key){
   }
   if(key==='subclass'){
     const cur=c.subclassCards;
+    const lv2=parseInt(c.level)||1;
     let gained='',next='';
-    if(!cur.foundation){cur.foundation=true;gained='Foundation';next='Specialization';}
-    else if(!cur.specialization){cur.specialization=true;gained='Specialization';next='Mastery';}
-    else if(!cur.mastery){cur.mastery=true;gained='Mastery';next='(all tiers complete)';}
-    else{showToast('All subclass cards already obtained.');return;}
+    if(!cur.specialization&&!cur.mastery){
+      // Next up is Specialization — requires L5+
+      if(lv2<5){showToast('Specialization requires Level 5 or higher.');return;}
+      cur.specialization=true;gained='Specialization';
+    } else if(cur.specialization&&!cur.mastery){
+      // Next up is Mastery — requires L8+
+      if(lv2<8){showToast('Mastery requires Level 8 or higher.');return;}
+      cur.mastery=true;gained='Mastery';
+    } else {
+      showToast('All subclass upgrades already obtained.');return;
+    }
     c.adv[tk].slots.push({key,cost:1,detail:`${gained} card`});
-    saveAll(chars);showToast(`Subclass ${gained} card gained!`);rLvlUp();return;
+    saveAll(chars);showToast(`${c.selectedSubclass} ${gained} card gained!`);rLvlUp();return;
   }
   if(key==='multiclass'){
     const mc=prompt('Enter the name of your multiclass:');
@@ -3348,7 +4274,7 @@ const REF_INDEX = (function(){
 
   // Domain Cards
   DOMAIN_CARDS.forEach(card=>{
-    const stress=card.stress>0?` · Stress ${card.stress}`:'';
+    const stress=card.stress>0?` · Recall Cost: Mark ${card.stress} Stress`:'';
     entries.push({
       cat:'Domain Card', name:card.name, void:card.source==='Void',
       meta:`${card.domain} · Level ${card.level} · ${card.type}${stress}`,
@@ -3830,6 +4756,13 @@ function renderRefResults(){
   });
 }
 
+function exportAll(){
+  if(!chars.length){showToast('No characters to export.');return;}
+  const blob=new Blob([JSON.stringify(chars,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='dghrt-all-characters.json';a.click();
+  showToast('All characters exported!');
+}
 function exportChar(){const c=gA();if(!c)return;const b=new Blob([JSON.stringify(c,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(c.name||'character').replace(/[^a-z0-9]/gi,'_').toLowerCase()+'_daggerheart.json';a.click();URL.revokeObjectURL(a.href);showToast('Character exported!');}
 function triggerImport(){document.getElementById('importInput').click();}
 function importChar(event){const file=event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{try{let data=JSON.parse(e.target.result);if(!data.id)data.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);const merged=Object.assign(blank(),data);const existing=chars.findIndex(c=>c.id===merged.id);if(existing>=0){if(confirm(`"${merged.name||'Unnamed'}" already exists. Overwrite?`))chars[existing]=merged;else{merged.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);chars.push(merged);}}else chars.push(merged);saveAll(chars);sA(merged.id);rSb();oE();pF(merged);showToast('Character imported!');}catch(err){alert('Failed to import:\n'+err.message);}event.target.value='';};reader.readAsText(file);}
