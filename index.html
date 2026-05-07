@@ -22,12 +22,12 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:20px;line-height:1.6}
 ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-.hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;gap:.5rem}
-.logo{font-family:'Cinzel',serif;font-size:15px;letter-spacing:.12em;color:var(--gold);font-weight:500}
+.hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:80px;position:sticky;top:0;z-index:100;gap:.5rem}
+.logo{font-family:'Cinzel',serif;font-size:32px;letter-spacing:.2em;color:var(--gold);font-weight:500;text-transform:uppercase}
 .logo span{color:var(--text3);font-size:13px;margin-left:8px;font-family:'Crimson Pro',serif;letter-spacing:.04em;font-weight:300}
 .ha{display:flex;gap:6px;align-items:center;overflow:visible;flex-shrink:1;min-width:0;flex-wrap:nowrap}.ha::-webkit-scrollbar{display:none}
-.lay{display:grid;grid-template-columns:195px 1fr;min-height:calc(100vh - 54px)}
-.sb{background:var(--bg2);border-right:1px solid var(--border);padding:1.25rem 0;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto}
+.lay{display:grid;grid-template-columns:195px 1fr;min-height:calc(100vh - 80px);transition:grid-template-columns .15s ease}
+.sb{background:var(--bg2);border-right:1px solid var(--border);padding:1.25rem 0;position:sticky;top:80px;height:calc(100vh - 80px);overflow-y:auto}
 .sb-sec{padding:0 .7rem;margin-bottom:1.25rem}
 .sb-lbl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.15em;color:var(--text3);text-transform:uppercase;padding:0 .4rem;margin-bottom:.4rem}
 .chars{list-style:none}
@@ -204,7 +204,7 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 .lu-trait-chip.locked{opacity:.4;cursor:default}
 .lu-trait-chip .tcn{font-size:10px;font-family:'Cinzel',serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)}
 .lu-trait-chip .tcv{font-size:16px;color:var(--gold2)}
-@media(max-width:780px){.lay{grid-template-columns:1fr}.sb{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border)}.g2,.s2{grid-template-columns:1fr}.wr{grid-template-columns:1fr 1fr}}
+@media(max-width:780px){.lay{grid-template-columns:1fr}.sb{display:none;position:fixed;top:80px;left:0;right:0;bottom:0;z-index:150;height:calc(100vh - 80px);overflow-y:auto;border-right:none;border-bottom:1px solid var(--border)}.sb.mob-open{display:block}.sb-toggle{display:none!important}.g2,.s2{grid-template-columns:1fr}.wr{grid-template-columns:1fr 1fr}}
 /* Notes tab */
 .hb-form{display:none}.hb-form:first-of-type{display:block}
 .notes-layout{display:grid;grid-template-columns:180px 1fr;gap:1rem;min-height:500px}
@@ -378,7 +378,7 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 .bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:780px){.dual-tabs-row{grid-template-columns:1fr}.bottom-row{grid-template-columns:1fr}}
 .content-wrap{max-width:1100px;margin:0 auto}
-.bottom-notes{padding:.8rem .9rem}
+.bottom-notes{padding:0}
 #saveIndicator.show{opacity:1}
 .tp.active{animation:tabFadeIn .1s ease-out}@keyframes tabFadeIn{from{opacity:0}to{opacity:1}}
 .cond-row{display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap}
@@ -451,7 +451,7 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 
 /* Domain cards in builder */
 .bld-domain-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:.55rem .7rem;flex:0 0 calc(50% - .25rem);min-width:0;transition:border-color .15s}
-.bld-domain-card.bld-dc-active{border-color:var(--gold);background:#c8a96e0e}
+.bld-domain-card.bld-dc-active{border-color:var(--gold);background:#c8a96e0e;box-shadow:0 0 0 1px var(--gold)}
 .bld-dc-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.3rem}
 .bld-dc-name{font-size:14px;color:var(--text);font-weight:500}
 .bld-dc-meta{font-size:11px;color:var(--text3);margin-top:1px}
@@ -537,18 +537,9 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 
 /* ── Mobile hamburger menu ─────────────────────────────────── */
 @media(max-width:600px){
-  #hamburger{display:flex!important}
-  #headerActions{
-    display:none!important;
-    position:fixed;top:54px;right:0;left:0;
-    background:var(--bg2);border-bottom:1px solid var(--border);
-    padding:.6rem .75rem;flex-direction:column;gap:.4rem;z-index:99;
-    box-shadow:0 8px 24px #0008;
-  }
-  #headerActions.mob-open{display:flex!important}
-  #headerActions .btn{width:100%;justify-content:center;text-align:center}
-  #headerActions select{width:100%}
+  .sb-toggle{display:none!important}
   .logo span{display:none}
+  #mobHamburger{display:flex!important}
 }
 /* Domain left-border accents on Domain Cards tab */
 .d-arcana.dcc{border-left:3px solid #a870d8}.d-blade.dcc{border-left:3px solid #d85a30}
@@ -557,55 +548,75 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 .d-grace.dcc{border-left:3px solid #d88060}.d-midnight.dcc{border-left:3px solid #6080c8}
 .d-sage.dcc{border-left:3px solid #60a860}.d-splendor.dcc{border-left:3px solid #d0a030}
 .d-valor.dcc{border-left:3px solid #c87040}
+/* ── Card depth ────────────────────────────────────────────── */
+.card,.sl-tabs-wrap,.bld-step,.bld-heritage-card,.dcc,.lcm,
+.lu-dc-row,.ref-card,.ci,.cls-sub-block{box-shadow:0 2px 6px #00000022}
+.cls-modal-inner{box-shadow:0 8px 32px #00000044}
+/* ── Collapsible sidebar ───────────────────────────────────── */
+.sb{transition:none;overflow:hidden}
+.sb.collapsed{overflow:hidden;border-right:none}
+.lay.sb-collapsed{grid-template-columns:0px 1fr}
+.lay.sb-collapsed+* .sb-toggle,.sb-collapsed-toggle{left:0!important}
+.sb-toggle{position:fixed;top:50%;transform:translateY(-50%);z-index:110;
+  width:18px;height:48px;background:var(--bg2);border:1px solid var(--border);
+  border-left:none;border-radius:0 6px 6px 0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--text3);
+  left:195px;transition:left .15s ease,color .15s;max-width:18px}
+.sb-toggle:hover{color:var(--gold2)}
+.lay.sb-collapsed~* .sb-toggle,.sb-collapsed .sb-toggle{left:0}
+.sb-tools{padding:.75rem .65rem;border-top:1px solid var(--border);margin-top:.5rem;display:flex;flex-direction:column;gap:.4rem}
+.sb-tools select,.sb-tools .btn{width:100%;justify-content:center;text-align:center;box-sizing:border-box}
+.sb-tools .sb-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.2rem}
+.sb-tools .theme-inline{display:flex;flex-direction:column;gap:3px}
+@media(max-width:780px){body,html{overflow-x:hidden}}
 </style>
 </head>
 <body>
 <header class="hdr" id="mainHdr">
   <div class="logo">DGHRT</div>
-  <div id="saveIndicator" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--teal2);opacity:0;transition:opacity .3s;margin-left:.5rem">Saved ✓</div>
-  <button id="hamburger" class="btn bgh" onclick="toggleMobMenu()" style="display:none" title="Menu">☰</button>
-  <div class="ha" id="headerActions" style="display:flex;align-items:center;gap:6px">
-    <select id="fontSizeSlider" title="Text size" onchange="applyFontSize(parseInt(this.value))"
-      style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);padding:3px 6px;cursor:pointer;align-self:center;min-width:90px;max-width:120px">
-      <option value="0">A — Small</option>
-      <option value="1">A — Compact</option>
-      <option value="2" selected>A — Normal</option>
-      <option value="3">A — Large</option>
-      <option value="4">A — Largest</option>
-    </select>
-    <div style="position:relative">
-      <button class="btn bgh" onclick="const p=document.getElementById('themePicker');p.style.display=p.style.display==='block'?'none':'block'" title="Change theme">🎨</button>
-      <div id="themePicker" style="display:none;position:absolute;right:0;top:calc(100% + 4px);background:var(--bg4);border:1px solid var(--border2);border-radius:var(--r2);padding:.5rem;min-width:170px;z-index:200;box-shadow:0 8px 24px #0008">
-        <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem">Theme</div>
-        <div id="themeOptions"></div>
-      </div>
-    </div>
-    <button class="btn bgh" onclick="triggerImport()">⬆ Import</button>
-    <button class="btn bgh" id="exportBtn" onclick="exportChar()" style="display:none">⬇ Export</button>
-    <button class="btn bo" id="saveBtn" onclick="saveChar()" style="display:none">Save</button>
+
+  <div style="display:flex;align-items:center;gap:.5rem;margin-left:auto">
+    <div id="saveIndicator2" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--teal2);opacity:0;transition:opacity .3s">Saved ✓</div>
+    <button id="mobHamburger" onclick="toggleMobSidebar()" style="display:none;font-size:18px;background:none;border:none;cursor:pointer;color:var(--text2);padding:4px 8px" title="Menu">☰</button>
   </div>
 </header>
 <input type="file" id="importInput" accept=".json" style="display:none" onchange="importChar(event)">
 <div class="lay">
-  <aside class="sb">
+  <button class="sb-toggle" id="sbToggle" onclick="toggleSidebar()" title="Toggle sidebar">◀</button>
+  <aside class="sb" id="sidebar">
     <div class="sb-sec">
       <div class="sb-lbl">Characters</div>
       <ul class="chars" id="charList"></ul>
       <button class="sb-new" onclick="newChar()">+ New Character</button>
     </div>
+    <div class="sb-tools">
+      <div class="sb-lbl">Text Size</div>
+      <select id="fontSizeSlider" onchange="applyFontSize(parseInt(this.value))"
+        style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);padding:3px 6px;cursor:pointer">
+        <option value="0">A — Small</option>
+        <option value="1">A — Compact</option>
+        <option value="2" selected>A — Normal</option>
+        <option value="3">A — Large</option>
+        <option value="4">A — Largest</option>
+      </select>
+      <div class="sb-lbl" style="margin-top:.4rem">Theme</div>
+      <select id="themeSelect" onchange="applyTheme(this.value)"
+        style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;background:var(--bg3);
+               border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);
+               padding:3px 6px;cursor:pointer;width:100%">
+      </select>
+      <div id="themeOptions" style="display:none"></div>
+      <div style="display:flex;gap:.3rem;margin-top:.5rem;flex-wrap:wrap">
+        <button class="btn bgh" onclick="triggerImport()" style="flex:1;font-size:11px">⬆ Import</button>
+        <button class="btn bgh" id="exportBtn" onclick="exportChar()" style="flex:1;font-size:11px;display:none">⬇ Export</button>
+      </div>
+      <button class="btn bo" id="saveBtn" onclick="saveChar()" style="display:none;width:100%;margin-top:.3rem">Save</button>
+    </div>
   </aside>
   <main class="main">
     <div class="es" id="emptyState">
-      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:.5rem;opacity:.7">
-        <!-- d12 dodecahedron simplified top-down -->
-        <polygon points="40,4 72,20 72,60 40,76 8,60 8,20" stroke="var(--gold3)" stroke-width="1.5" fill="none"></polygon>
-        <polygon points="40,4 72,20 56,40 24,40 8,20" stroke="var(--gold3)" stroke-width="1" fill="none" opacity=".5"></polygon>
-        <polygon points="24,40 56,40 72,60 40,76 8,60" stroke="var(--gold3)" stroke-width="1" fill="none" opacity=".5"></polygon>
-        <line x1="40" y1="4" x2="40" y2="76" stroke="var(--gold3)" stroke-width=".75" opacity=".3"></line>
-        <line x1="8" y1="20" x2="72" y2="60" stroke="var(--gold3)" stroke-width=".75" opacity=".3"></line>
-        <line x1="72" y1="20" x2="8" y2="60" stroke="var(--gold3)" stroke-width=".75" opacity=".3"></line>
-        <circle cx="40" cy="40" r="3" fill="var(--gold3)" opacity=".6"></circle>
-      </svg>
+<div style="font-family:'Cinzel',serif;font-size:48px;letter-spacing:.25em;color:var(--gold2);font-weight:500;margin-bottom:.25rem">DGHRT</div>
       <h2>No Character Selected</h2>
       <p>Create a new character or import one from a saved JSON file.</p>
       <div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap">
@@ -4992,10 +5003,11 @@ const CAT_COLORS = {
   'Adversary':'#c05050','Glossary':'#5090d8'
 };
 
-let refQuery='', refCat='All', refOpenId=null;
+let refQuery='', refCat='All', refOpenId=null, refContainerId='refContent';
 
 function rRef(containerId){
-  const cont=document.getElementById(containerId||'refContent');
+  if(containerId)refContainerId=containerId;
+  const cont=document.getElementById(refContainerId);
   cont.innerHTML=`
   <div class="ref-search-wrap">
     <span class="ref-search-icon">⌕</span>
@@ -5011,13 +5023,13 @@ function rRef(containerId){
   searchEl.setSelectionRange(refQuery.length,refQuery.length);
   searchEl.addEventListener('input',()=>{refQuery=searchEl.value;renderRefResults();});
   cont.querySelectorAll('[data-ref-cat]').forEach(btn=>{
-    btn.addEventListener('click',()=>{refCat=btn.dataset.refCat;rRef();});
+    btn.addEventListener('click',()=>{refCat=btn.dataset.refCat;rRef(refContainerId);});
   });
   renderRefResults();
 }
 
 function renderRefResults(){
-  const area=document.querySelector('#standaloneRefContent #refResultsArea, #refContent #refResultsArea, #refResultsArea');
+  const area=document.querySelector('#'+refContainerId+' #refResultsArea')||document.getElementById('refResultsArea');
   if(!area)return;
   const q=refQuery.trim().toLowerCase();
 
@@ -5112,37 +5124,39 @@ const THEMES = [
 ];
 
 function applyTheme(id){
-  document.documentElement.removeAttribute('data-theme');
-  if(id && id!=='default')document.documentElement.setAttribute('data-theme',id);
-  localStorage.setItem('dh_theme',id||'default');
+
+  document.documentElement.setAttribute('data-theme',id||'ivory');
+  localStorage.setItem('dh_theme',id||'ivory');
   document.querySelectorAll('.theme-opt').forEach(b=>{
     b.style.outline=b.dataset.tid===id?'2px solid var(--gold)':'none';
   });
-  document.getElementById('themePicker').style.display='none';
+
 }
 
 function initThemePicker(){
-  const stored=localStorage.getItem('dh_theme')||'default';
-  // Apply saved theme immediately (don't close picker since it's not open yet)
+  const stored=localStorage.getItem('dh_theme')||'ivory';
   document.documentElement.removeAttribute('data-theme');
-  if(stored && stored!=='default')document.documentElement.setAttribute('data-theme',stored);
-  const wrap=document.getElementById('themeOptions');
-  if(!wrap)return;
-  let pickerHtml='';
-  let shownHC=false;
-  THEMES.forEach(t=>{
-    if(t.hc&&!shownHC){
-      pickerHtml+=`<div style="font-size:11px;font-family:Cinzel,serif;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin:6px 6px 2px">Accessibility</div>`;
-      shownHC=true;
-    }
-    pickerHtml+=`<button class="theme-opt" data-tid="${t.id}" title="${t.label}"
-      style="display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;color:var(--text2);cursor:pointer;padding:4px 6px;border-radius:4px;font-family:'Crimson Pro',serif;font-size:15px;outline:${stored===t.id?'2px solid var(--gold)':'none'};outline-offset:1px"
-      onclick="applyTheme('${t.id}')">
-      <span style="width:14px;height:14px;border-radius:50%;background:${t.swatch};flex-shrink:0;border:1px solid #0006"></span>
-      ${t.label}
-    </button>`;
-  });
-  wrap.innerHTML=pickerHtml;
+  document.documentElement.setAttribute('data-theme',stored||'ivory');
+  // Populate the theme <select>
+  const sel=document.getElementById('themeSelect');
+  if(sel){
+    sel.innerHTML='';
+    let addedHCLabel=false;
+    THEMES.forEach(t=>{
+      if(t.hc&&!addedHCLabel){
+        const grp=document.createElement('optgroup');
+        grp.label='Accessibility';
+        sel.appendChild(grp);
+        addedHCLabel=true;
+      }
+      const opt=document.createElement('option');
+      opt.value=t.id;
+      opt.textContent=t.label;
+      if(t.id===stored)opt.selected=true;
+      if(addedHCLabel&&t.hc)sel.querySelector('optgroup:last-child').appendChild(opt);
+      else sel.appendChild(opt);
+    });
+  }
 }
 
 const FONT_SIZES=[.85,.92,1,1.1,1.2];
@@ -5180,6 +5194,22 @@ function showStandaloneRef(){
   rRef('standaloneRefContent');
 }
 
+function toggleMobSidebar(){
+  const sb=document.getElementById('sidebar');
+  const btn=document.getElementById('mobHamburger');
+  if(!sb)return;
+  const open=sb.classList.toggle('mob-open');
+  if(btn)btn.textContent=open?'✕':'☰';
+}
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar');
+  const lay=sb.closest('.lay');
+  const toggle=document.getElementById('sbToggle');
+  const collapsed=sb.classList.toggle('collapsed');
+  if(lay)lay.classList.toggle('sb-collapsed',collapsed);
+  toggle.textContent=collapsed?'▶':'◀';
+  toggle.style.left=collapsed?'0':'195px';
+}
 function toggleMobMenu(){
   const ha=document.getElementById('headerActions');
   const open=ha.classList.toggle('mob-open');
@@ -5189,6 +5219,16 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 rSb();
 if(activeId&&chars.find(c=>c.id===activeId)){oE();pF(gA());}else cE();
 initThemePicker();
+// Position sidebar toggle
+(function(){
+  const toggle=document.getElementById('sbToggle');
+  if(!toggle)return;
+  // Sync on resize in case layout changes
+  window.addEventListener('resize',()=>{
+    const collapsed=document.getElementById('sidebar')?.classList.contains('collapsed');
+    toggle.style.left=collapsed?'0':'195px';
+  });
+})();
 </script>
 <footer style="text-align:center;padding:.75rem 1rem;font-size:13px;color:var(--text3);border-top:1px solid var(--border);background:var(--bg2);font-family:'Crimson Pro',serif;line-height:1.6">
   This product includes materials from the Daggerheart System Reference Document 1.0, © Critical Role, LLC. under the terms of the Darrington Press Community Gaming (DPCGL) License. More information can be found at <a href="http://daggerheart.com" target="_blank" style="color:var(--gold3);text-decoration:none">daggerheart.com</a>. There are no previous modifications by others.
