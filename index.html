@@ -233,12 +233,12 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 .ref-results{display:flex;flex-direction:column;gap:6px}
 .ref-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:border-color .15s}
 .ref-card:hover{border-color:var(--border2)}
-.ref-card-hdr{display:flex;align-items:center;gap:10px;padding:.55rem .85rem;cursor:pointer;user-select:none}
-.ref-card-hdr:hover{background:var(--bg4)}
+.ref-card-hdr{display:flex;align-items:center;gap:10px;padding:.55rem .85rem}
+
 .ref-card-name{font-family:'Cinzel',serif;font-size:14px;color:var(--gold2);flex:1}
 .ref-card-cat{font-size:11px;font-family:'Cinzel',serif;letter-spacing:.08em;text-transform:uppercase;padding:1px 7px;border-radius:20px;border:1px solid;white-space:nowrap}
-.ref-card-body{display:none;padding:.6rem .85rem;border-top:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.65}
-.ref-card-body.open{display:block}
+.ref-card-body{padding:.6rem .85rem;border-top:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.65}
+
 .ref-card-body strong{color:var(--gold2)}
 .ref-meta{font-size:12px;color:var(--text3);margin-bottom:.35rem}
 .ref-tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:20px;border:1px solid var(--border2);color:var(--text3);margin:1px}
@@ -570,6 +570,40 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
 .sb-tools .sb-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.2rem}
 .sb-tools .theme-inline{display:flex;flex-direction:column;gap:3px}
 @media(max-width:780px){body,html{overflow-x:hidden}}
+/* Weapon reference trait badges — theme-aware */
+.ref-trait-badge{font-size:11px;padding:1px 7px;border-radius:10px;border:1px solid var(--border2);color:var(--text2);background:var(--bg3)}
+.t-str{border-color:var(--ember);color:var(--ember)}
+.t-agi{border-color:var(--teal);color:var(--teal2)}
+.t-fin{border-color:var(--gold3);color:var(--gold2)}
+.t-ins{border-color:var(--teal2);color:var(--teal2)}
+.t-pre{border-color:var(--gold2);color:var(--gold2)}
+.t-kno{border-color:var(--muted);color:var(--text2)}
+.ref-fp{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;padding:2px 9px;border-radius:20px;border:1px solid var(--border2);background:none;color:var(--text3);cursor:pointer;transition:all .12s}
+.ref-fp:hover{border-color:var(--gold3);color:var(--gold2)}
+.ref-fp-act{border-color:var(--gold);color:var(--gold2);background:var(--bg4)}
+/* ── Reference two-column layout ──────────────────────────── */
+.ref-layout{display:grid;grid-template-columns:160px 1fr;gap:0;width:100%}
+.ref-nav{padding:.75rem 0;position:sticky;top:80px;height:calc(100vh - 80px);overflow-y:auto;border-right:1px solid var(--border)}
+.ref-nav-search{padding:.5rem .65rem;border-bottom:1px solid var(--border);margin-bottom:.4rem}
+.ref-nav-search input{width:100%;font-size:13px;padding:.3rem .5rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);box-sizing:border-box}
+.ref-nav-search input:focus{outline:none;border-color:var(--gold3)}
+.ref-nav-cat{display:flex;align-items:center;justify-content:space-between;padding:.3rem .75rem;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);cursor:pointer;transition:all .12s;border-left:2px solid transparent;user-select:none}
+.ref-nav-cat:hover{color:var(--gold2);background:var(--bg3)}
+.ref-nav-cat.active{color:var(--gold2);border-left-color:var(--gold);background:var(--bg3)}
+.ref-nav-count{font-size:10px;opacity:.6;font-family:'Crimson Pro',serif;letter-spacing:0}
+.ref-main{min-width:0;padding:1rem 1.25rem}
+/* Hide old category pills row — nav handles it now */
+.ref-cats{display:none}
+@media(max-width:780px){
+  .ref-layout{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .ref-nav{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:3px;padding:.4rem;order:1}
+  .ref-main{order:2}
+  .ref-nav-search{display:none}
+  .ref-nav-cat{border-left:none;border-right:none;border-radius:20px;border:1px solid var(--border2);padding:2px 8px;margin:0;font-size:10px;flex-shrink:0;width:auto}
+  .ref-nav-cat.active{border-color:var(--gold)}
+}
+.ref-main{min-width:0;padding:1rem 1.25rem;display:flex;flex-direction:column;height:calc(100vh - 80px - 44px);overflow-x:hidden;overflow-y:hidden}
+#refResultsArea,#standaloneRefContent #refResultsArea{overflow-y:auto;overflow-x:auto;padding-right:.25rem}
 </style>
 </head>
 <body>
@@ -621,8 +655,8 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
       <p>Create a new character or import one from a saved JSON file.</p>
       <div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap">
         <button class="btn bg" onclick="newChar()">+ New Character</button>
-        <button class="btn bo" onclick="triggerImport()">⬆ Import</button>
         <button class="btn bo" onclick="showStandaloneRef()">📖 Browse Reference</button>
+        <button class="btn bo" onclick="triggerImport()">⬆ Import</button>
         <button class="btn bo" onclick="exportAll()">⬇ Export All</button>
       </div>
       <div style="text-align:center;padding:.6rem 1rem;font-size:13px;color:var(--text3);border-top:1px solid var(--border);margin-top:1.5rem;font-family:'Crimson Pro',serif;line-height:1.6">All information contained is based on the official <a href="https://www.daggerheart.com/srd/" target="_blank" style="color:var(--gold3);text-decoration:none">SRD document</a>. For the official Daggerheart site, visit <a href="http://daggerheart.com" target="_blank" style="color:var(--gold3);text-decoration:none">daggerheart.com</a>.</div>
@@ -632,7 +666,14 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
         <div style="font-family:'Cinzel',serif;font-size:16px;color:var(--gold2)">SRD Reference</div>
         <button class="btn bgh" onclick="document.getElementById('standaloneRef').style.display='none';document.getElementById('emptyState').style.display='block'">← Back</button>
       </div>
-      <div id="standaloneRefContent"></div>
+      <div class="content-wrap" style="padding:0">
+        <div class="ref-layout">
+          <nav class="ref-nav" id="standaloneRefNav"></nav>
+          <div class="ref-main">
+            <div id="standaloneRefContent"></div>
+          </div>
+        </div>
+      </div>
       <div style="text-align:center;padding:.6rem 1rem;font-size:13px;color:var(--text3);border-top:1px solid var(--border);margin-top:1.5rem;font-family:'Crimson Pro',serif;line-height:1.6">All information contained is based on the official <a href="https://www.daggerheart.com/srd/" target="_blank" style="color:var(--gold3);text-decoration:none">SRD document</a>. For the official Daggerheart site, visit <a href="http://daggerheart.com" target="_blank" style="color:var(--gold3);text-decoration:none">daggerheart.com</a>.</div>
     </div>
     <div id="editorArea" style="display:none">
@@ -858,7 +899,16 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:1.1rem 0}
       <!-- NOTES TAB -->
       <div class="tp" id="tab-notes"><div class="content-wrap"><div id="notesContent"></div></div></div>
       <!-- REFERENCE TAB -->
-      <div class="tp" id="tab-reference"><div class="content-wrap"><div id="refContent"></div></div></div>
+      <div class="tp" id="tab-reference">
+        <div class="content-wrap" style="padding:0">
+          <div class="ref-layout">
+            <nav class="ref-nav" id="refNav"></nav>
+            <div class="ref-main">
+              <div id="refContent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 </div>
@@ -1943,9 +1993,9 @@ function rSb(){const l=document.getElementById('charList');l.innerHTML='';chars.
     chars.push(copy);saveAll(chars);rSb();showToast('Character duplicated!');
   }));
   l.querySelectorAll('[data-del]').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();const id=btn.dataset.del;if(!confirm('Delete this character?'))return;chars=chars.filter(c=>c.id!==id);saveAll(chars);if(activeId===id)sA(chars.length?chars[chars.length-1].id:null);rSb();if(!activeId)cE();else{oE();pF(gA());}}));}
-function oE(){document.getElementById('emptyState').style.display='none';document.getElementById('editorArea').style.display='block';document.getElementById('saveBtn').style.display='inline-flex';document.getElementById('exportBtn').style.display='inline-flex';}
-function cE(){document.getElementById('emptyState').style.display='block';document.getElementById('editorArea').style.display='none';document.getElementById('saveBtn').style.display='none';document.getElementById('exportBtn').style.display='none';}
-function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelector(`[onclick="showTab('${t}')"]`).classList.add('active');document.getElementById('tab-'+t).classList.add('active');if(t==='sheet')rSheet();if(t==='domains')rDom();if(t==='levelup')rLvlUp();if(t==='notes')rNotes();if(t==='reference'){rRef();setTimeout(()=>{const s=document.getElementById('refSearch');if(s&&refQuery){s.focus();s.setSelectionRange(s.value.length,s.value.length);}},50);}if(t==='builder')requestAnimationFrame(bCG);}
+function oE(){document.getElementById('emptyState').style.display='none';document.getElementById('standaloneRef').style.display='none';document.getElementById('editorArea').style.display='block';document.getElementById('saveBtn').style.display='inline-flex';document.getElementById('exportBtn').style.display='inline-flex';}
+function cE(){document.getElementById('emptyState').style.display='block';document.getElementById('standaloneRef').style.display='none';document.getElementById('editorArea').style.display='none';document.getElementById('saveBtn').style.display='none';document.getElementById('exportBtn').style.display='none';}
+function showTab(t){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelector(`[onclick="showTab('${t}')"]`).classList.add('active');document.getElementById('tab-'+t).classList.add('active');if(t==='sheet')rSheet();if(t==='domains')rDom();if(t==='levelup')rLvlUp();if(t==='notes')rNotes();if(t==='reference'){rRef('refContent');}if(t==='builder')requestAnimationFrame(bCG);}
 
 // ════════════════════════════════════════════════════════
 // FORM
@@ -2218,7 +2268,7 @@ function bCG(){
 
 function clsPreview(cls){
   window._clsPreviewCls=cls;
-  bCG(); // re-render grid so only previewed class is highlighted
+  if(!window._skipGridRefresh)bCG(); // re-render grid so only previewed class is highlighted
   const d=CLASSES[cls];
   const desc=CLASS_DESC[cls]||'';
   const domainRows=d.domains.map(dom=>{
@@ -3099,9 +3149,9 @@ function rSheet(){
         <div class="sl-pane" data-group="a" data-pane="inventory">
 
       <div class="st">Inventory</div>
-      <div style="position:relative;margin-bottom:.5rem">
+      <div style="position:relative;margin-bottom:.5rem;overflow:visible">
         <input id="invSearchInput" type="text" placeholder="Search armor, items, consumables… (weapons go to All Weapons)" style="width:100%" autocomplete="off">
-        <div id="invSearchResults" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--bg4);border:1px solid var(--border2);border-radius:var(--r);box-shadow:0 6px 24px #0008;max-height:320px;overflow-y:auto;margin-top:2px"></div>
+        <div id="invSearchResults" style="display:none;position:fixed;z-index:500;background:var(--bg4);border:1px solid var(--border2);border-radius:var(--r);box-shadow:0 6px 24px #0008;max-height:220px;overflow-y:auto"></div>
       </div>
       <div id="invList">
         ${(()=>{
@@ -3367,6 +3417,10 @@ function rSheet(){
       const hits=ALL_CATALOG.filter(e=>e.name.toLowerCase().includes(q)||e.tags.some(t=>t.toLowerCase().includes(q))).slice(0,15);
       if(!hits.length){
         invResults.innerHTML='<div style="font-size:13px;color:var(--text3);padding:.5rem .75rem">No results</div>';
+        const ir=invSearch.getBoundingClientRect();
+        invResults.style.top=(ir.bottom+2)+'px';
+        invResults.style.left=ir.left+'px';
+        invResults.style.width=ir.width+'px';
         invResults.style.display='block';return;
       }
       invResults.innerHTML=hits.map((h,i)=>{
@@ -3380,7 +3434,11 @@ function rSheet(){
           <span style="font-family:Cinzel,serif;font-size:11px;color:${h.kind==='weapon'?'var(--gold3)':'var(--teal2)'};white-space:nowrap;padding-top:2px">${destLabel}</span>
         </div>`;
       }).join('');
-      invResults.style.display='block';
+      const ir=invSearch.getBoundingClientRect();
+        invResults.style.top=(ir.bottom+2)+'px';
+        invResults.style.left=ir.left+'px';
+        invResults.style.width=ir.width+'px';
+        invResults.style.display='block';
       // Wire row clicks
       invResults.querySelectorAll('[data-inv-add]').forEach(row=>{
         row.addEventListener('mousedown',e=>{
@@ -4485,6 +4543,7 @@ function rNotes(){
 // ════════════════════════════════════════════════════════
 
 // Build the unified reference index once
+const TRAIT_BADGE={'Strength':'<span class="ref-trait-badge t-str">Strength</span>','Agility':'<span class="ref-trait-badge t-agi">Agility</span>','Finesse':'<span class="ref-trait-badge t-fin">Finesse</span>','Instinct':'<span class="ref-trait-badge t-ins">Instinct</span>','Presence':'<span class="ref-trait-badge t-pre">Presence</span>','Knowledge':'<span class="ref-trait-badge t-kno">Knowledge</span>'};
 const REF_INDEX = (function(){
   const entries = [];
 
@@ -4493,12 +4552,13 @@ const REF_INDEX = (function(){
     entries.push({
       cat:'Class', name, void:d.void,
       meta:`HP ${d.hp} · Evasion ${d.ev} · ${d.domains.join(', ')}`,
-      body:`<strong>Starting HP:</strong> ${d.hp} &nbsp;·&nbsp; <strong>Evasion:</strong> ${d.ev}<br><strong>Domains:</strong> ${d.domains.join(', ')}<br><strong>Subclasses:</strong> ${d.sub.join(', ')}`,
+      body:`<strong>Starting HP:</strong> ${d.hp} &nbsp;·&nbsp; <strong>Evasion:</strong> ${d.ev}<br><strong>Domains:</strong> ${d.domains.join(', ')}<br><strong>Subclasses:</strong> ${d.sub.join(', ')}<br><br>${d.desc||''}`,
       tags:['class',...d.domains.map(x=>x.toLowerCase()),...d.sub.map(x=>x.toLowerCase())]
     });
   });
 
-  // Subclasses
+  // Subclasses — grouped by class, alphabetical within each class
+  const subEntries=[];
   Object.entries(SUBCLASS_DATA).forEach(([name,d])=>{
     const cls=Object.entries(CLASSES).find(([,v])=>v.sub.includes(name));
     const clsName=cls?cls[0]:'';
@@ -4506,42 +4566,56 @@ const REF_INDEX = (function(){
     const fBody=d.foundation.map(f=>`<strong>${f.name}:</strong> ${f.text}${f.list?'<ul style="margin:.3rem 0 0 1rem;list-style:disc">'+f.list.map(i=>`<li>${i.label}</li>`).join('')+'</ul>':''}`).join('<br>');
     const sBody=d.spec.map(f=>`<strong>${f.name}:</strong> ${f.text}`).join('<br>');
     const mBody=d.mastery.map(f=>`<strong>${f.name}:</strong> ${f.text}`).join('<br>');
-    entries.push({
+    subEntries.push({
       cat:'Subclass', name, void:d.void,
-      meta:clsName?`${clsName} subclass${d.spellcast?' · Spellcast: '+d.spellcast:''}`:d.spellcast?`Spellcast: ${d.spellcast}`:'',
-      body:`${sc}<strong>Foundation</strong><br>${fBody}<br><br><strong>Specialization</strong><br>${sBody}<br><br><strong>Mastery</strong><br>${mBody}`,
+      clsName,
+      meta:clsName?`${clsName} · Subclass${d.spellcast?' · Spellcast: '+d.spellcast:''}`:d.spellcast?`Spellcast: ${d.spellcast}`:'',
+      body:`<span style="font-size:11px;color:var(--text3);font-family:Cinzel,serif;letter-spacing:.06em;text-transform:uppercase">${clsName}</span><br>${sc}<br><strong>Foundation</strong><br>${fBody}<br><br><strong>Specialization</strong><br>${sBody}<br><br><strong>Mastery</strong><br>${mBody}`,
       tags:['subclass',clsName.toLowerCase(),name.toLowerCase()]
     });
   });
+  subEntries.sort((a,b)=>a.clsName.localeCompare(b.clsName)||a.name.localeCompare(b.name));
+  subEntries.forEach(e=>entries.push(e));
 
-  // Domain Cards
-  DOMAIN_CARDS.forEach(card=>{
+  // Domain Cards — sorted by domain then name alphabetically
+  const dcSorted=[...DOMAIN_CARDS].sort((a,b)=>a.domain.localeCompare(b.domain)||a.name.localeCompare(b.name));
+  dcSorted.forEach(card=>{
     const stress=card.stress>0?` · Recall Cost: Mark ${card.stress} Stress`:'';
     entries.push({
       cat:'Domain Card', name:card.name, void:card.source==='Void',
       meta:`${card.domain} · Level ${card.level} · ${card.type}${stress}`,
-      body:card.text.replace(/\|/g,'<hr style="border:none;border-top:1px solid var(--border);margin:.35rem 0">'),
+      body:'<span style="font-size:11px;color:var(--text3);font-family:Cinzel,serif;letter-spacing:.06em;text-transform:uppercase">'+card.domain+'</span><br>'+card.text.replace(/\|/g,'<hr style="border:none;border-top:1px solid var(--border);margin:.35rem 0">'),
       tags:['domain','card',card.domain.toLowerCase(),card.type.toLowerCase(),card.source.toLowerCase()]
     });
   });
 
   // Armor
-  ARMOR_DB.forEach(a=>{
+  // Armor — sorted by tier then name
+  const armorSorted=[...ARMOR_DB].sort((a,b)=>a.t-b.t||a.n.localeCompare(b.n));
+  armorSorted.forEach(a=>{
     entries.push({
       cat:'Armor', name:a.n, void:false,
-      meta:`Tier ${a.t} · ${a.minor}/${a.severe} · Score ${a.score}`,
-      body:`<strong>Major Threshold:</strong> ${a.minor}<br><strong>Severe Threshold:</strong> ${a.severe}<br><strong>Armor Score:</strong> ${a.score}${a.feat?`<br><strong>Feature:</strong> ${a.feat}`:''}${a.evMod?`<br><strong>Evasion:</strong> ${a.evMod>0?'+':''}${a.evMod}`:''}`,
-      tags:['armor',`tier ${a.t}`]
+      meta:`T${a.t} · Score ${a.score} · ${a.minor}/${a.severe}`,
+      body:'',
+      arData:{n:a.n,t:a.t,score:a.score,minor:a.minor,severe:a.severe,evMod:a.evMod||0,feat:a.feat||''},
+      tags:['armor','tier '+a.t]
     });
   });
 
-  // Weapons
+  // Weapons — with trait color badges and phy/mag color coding
+  const NAMED_PREFIXES=/^(Improved |Advanced |Legendary )/;
   WEAPON_DB.forEach(w=>{
+    const isPhys=!w.dmg.includes(' mag');
+    const dmgVal=w.dmg.replace(/ (phy|mag)$/,'');
+    const dmgType=isPhys?'phy':'mag';
+    const isNamed=!NAMED_PREFIXES.test(w.n);
+    const rangeTag='range:'+w.range.toLowerCase().replace(/ /g,'-');
     entries.push({
-      cat:'Weapon', name:w.n, void:false,
-      meta:`${w.slot==='primary'?'Primary':'Secondary'} · Tier ${w.t} · ${w.trait} · ${w.range} · ${w.dmg} · ${w.burden}`,
-      body:`<strong>Slot:</strong> ${w.slot==='primary'?'Primary':'Secondary'} &nbsp;·&nbsp; <strong>Tier:</strong> ${w.t}<br><strong>Trait:</strong> ${w.trait} &nbsp;·&nbsp; <strong>Range:</strong> ${w.range} &nbsp;·&nbsp; <strong>Damage:</strong> ${w.dmg}<br><strong>Burden:</strong> ${w.burden}${w.feat?`<br><strong>Feature:</strong> ${w.feat}`:''}`,
-      tags:['weapon',w.slot,w.trait.toLowerCase(),w.range.toLowerCase(),`tier ${w.t}`]
+      cat:'Weapon', name:w.n, void:false, named:isNamed, slot:w.slot,
+      meta:(w.slot==='primary'?'Primary':'Secondary')+' · T'+w.t+' · '+w.trait+' · '+w.range+' · '+w.dmg+' · '+w.burden,
+      body:'',
+      wData:{n:w.n,slot:w.slot,t:w.t,trait:w.trait,range:w.range,dmgVal:dmgVal,dmgType:dmgType,burden:w.burden,feat:w.feat||'',isNamed:isNamed,isPhys:isPhys},
+      tags:['weapon',w.slot,w.trait.toLowerCase(),w.range.toLowerCase(),'tier '+w.t,isPhys?'physical':'magic',rangeTag]
     });
   });
 
@@ -4982,15 +5056,17 @@ const REF_INDEX = (function(){
     {n:'Zombie Legion',t:4,type:'Horde',desc:'A large pack of undead, still powerful despite their rotting flesh.'},
     {n:'Zombie Pack',t:1,type:'Horde',desc:'A group of shambling corpses instinctively moving together.'},
   ];
-  ADVERSARY_DATA.forEach(a=>{
+  // Adversaries — sorted by tier then name
+  const advSorted=[...ADVERSARY_DATA].sort((a,b)=>a.t-b.t||a.n.localeCompare(b.n));
+  advSorted.forEach(a=>{
     entries.push({
       cat:'Adversary', name:a.n, void:false,
-      meta:`Tier ${a.t} · ${a.type}`,
-      body:`<strong>Type:</strong> ${a.type} &nbsp;·&nbsp; <strong>Tier:</strong> ${a.t}<br><em>${a.desc}</em>`,
-      tags:['adversary',a.type.toLowerCase(),`tier ${a.t}`]
+      meta:'T'+a.t+' · '+a.type,
+      body:'',
+      aData:{n:a.n,t:a.t,type:a.type,desc:a.desc},
+      tags:['adversary',a.type.toLowerCase(),'tier '+a.t]
     });
   });
-
   return entries;
 })();
 
@@ -5003,44 +5079,240 @@ const CAT_COLORS = {
   'Adversary':'#c05050','Glossary':'#5090d8'
 };
 
-let refQuery='', refCat='All', refOpenId=null, refContainerId='refContent';
+let refQuery='', refCat='All', refOpenId=null, refContainerId='refContent', refSlot='All', refTrait='All', refDmgType='All', refTier='All', refRange='All', refAdvType='All', refArmorTier='All';
 
+function renderRefNav(navId){
+  const nav=document.getElementById(navId);
+  if(!nav)return;
+  // Count per category
+  const counts={};
+  REF_CATS.forEach(c=>{counts[c]=c==='All'?REF_INDEX.length:REF_INDEX.filter(e=>e.cat===c).length;});
+  let html='<div class="ref-nav-search"><input id="refNavSearch_'+navId+'" placeholder="Search…" value="'+refQuery.replace(/"/g,'&quot;')+'" /></div>';
+  REF_CATS.forEach(cat=>{
+    const active=refCat===cat?' active':'';
+    const cnt='<span class="ref-nav-count">'+counts[cat]+'</span>';
+    html+='<div class="ref-nav-cat'+active+'" data-cat="'+cat+'"><span>'+cat+'</span>'+cnt+'</div>';
+  });
+  nav.innerHTML=html;
+  const ni=document.getElementById('refNavSearch_'+navId);
+  if(ni){const _nid=navId;ni.addEventListener('input',()=>{refQuery=ni.value;renderRefResults();// update active counts without rebuilding
+    _nid&&document.querySelectorAll('[data-nav-cat]').forEach(el=>{if(el.closest('#'+_nid)){el.classList.toggle('active',el.dataset.navCat===refCat);}});});}
+  nav.onclick=function(ev){
+    const el=ev.target.closest('[data-cat]');
+    if(!el)return;
+    refCat=el.dataset.cat;
+    if(refCat!=='Weapon'){refSlot='All';refTrait='All';refDmgType='All';refTier='All';refRange='All';}if(refCat!=='Adversary')refAdvType='All';if(refCat!=='Armor')refArmorTier='All';
+    rRef(refContainerId);
+  };
+}
+
+function toggleClsCard(id){
+  var body=document.getElementById(id);
+  var arrow=document.getElementById('arr_'+id);
+  if(!body)return;
+  var collapsed=body.style.display==='none';
+  body.style.display=collapsed?'':'none';
+  if(arrow)arrow.innerHTML=collapsed?'&#9660;':'&#9656;';
+}
+function buildClsBody(cls){
+  const d=CLASSES[cls];
+  const desc=CLASS_DESC[cls]||'';
+  const domainRows=d.domains.map(function(dom){
+    const dd=DOMAIN_DESC[dom]||'';
+    return '<div class="cls-domain-row"><span class="cls-domain-name">'+dom+'</span><span class="cls-domain-desc">'+dd+'</span></div>';
+  }).join('');
+  const subRows=d.sub.map(function(sc){
+    const sd=SUBCLASS_DATA[sc];
+    const fdnCards=sd?(sd.foundation||[]):[];
+    const fdnList=fdnCards.map(function(f){return '<div class="cls-sub-feat"><strong>'+f.name+'</strong>: '+f.text+'</div>';}).join('');
+    return '<div class="cls-sub-block"><div class="cls-sub-name">'+sc+'</div>'+(fdnList?'<div class="cls-sub-feats">'+fdnList+'</div>':'')+'</div>';
+  }).join('');
+  const cf=CLASS_FEATURES[cls]||{};
+  let featuresHtml='';
+  if(cf.hope){featuresHtml+='<div class="cls-sub-block" style="border-left:2px solid var(--teal)"><div class="cls-sub-name" style="color:var(--teal2)">Hope Feature — '+cf.hope.name+'</div><div class="cls-sub-feat">'+cf.hope.text+'</div></div>';}
+  if(cf.features&&cf.features.length){featuresHtml+=cf.features.map(function(f){return '<div class="cls-sub-block"><div class="cls-sub-name">'+f.name+'</div><div class="cls-sub-feat">'+f.text+'</div></div>';}).join('');}
+  return '<div class="cls-info-desc">'+desc+'</div>'
+    +'<div class="cls-modal-stats">HP '+d.hp+' &nbsp;·&nbsp; Evasion '+d.ev+'</div>'
+    +(featuresHtml?'<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Class Features</div>'+featuresHtml+'</div>':'')
+    +'<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Domains</div>'+domainRows+'</div>'
+    +'<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Subclasses</div>'+subRows+'</div>';
+}
+function openClsRef(cls){
+  // Reuse builder modal but hide the confirm button and back button
+  const modal=document.getElementById('clsModal');
+  const footer=modal.querySelector('.cls-modal-footer');
+  if(footer)footer.style.display='none';
+  // Temporarily suppress bCG side-effect
+  const prev=window._clsPreviewCls;
+  window._skipGridRefresh=true;
+  // Build modal content (same as builder)
+  const d=CLASSES[cls];
+  const desc=CLASS_DESC[cls]||'';
+  const domainRows=d.domains.map(dom=>{
+    const dd=DOMAIN_DESC[dom]||'';
+    return '<div class="cls-domain-row"><span class="cls-domain-name">'+dom+'</span><span class="cls-domain-desc">'+dd+'</span></div>';
+  }).join('');
+  document.getElementById('clsModalTitle').textContent=cls;
+  const subRows=d.sub.map(sc=>{
+    const sd=SUBCLASS_DATA[sc];
+    const fdnCards=sd?(sd.foundation||[]):[];
+    const fdnList=fdnCards.map(f=>'<div class="cls-sub-feat"><strong>'+f.name+'</strong>: '+f.text+'</div>').join('');
+    return '<div class="cls-sub-block"><div class="cls-sub-name">'+sc+'</div>'+(fdnList?'<div class="cls-sub-feats">'+fdnList+'</div>':'')+'</div>';
+  }).join('');
+  const cf=CLASS_FEATURES[cls]||{};
+  let featuresHtml='';
+  if(cf.hope){featuresHtml+='<div class="cls-sub-block" style="border-left:2px solid var(--teal)"><div class="cls-sub-name" style="color:var(--teal2)">Hope Feature — '+cf.hope.name+'</div><div class="cls-sub-feat">'+cf.hope.text+'</div></div>';}
+  if(cf.features&&cf.features.length){featuresHtml+=cf.features.map(f=>'<div class="cls-sub-block"><div class="cls-sub-name">'+f.name+'</div><div class="cls-sub-feat">'+f.text+'</div></div>').join('');}
+  document.getElementById('clsModalBody').innerHTML=
+    '<div class="cls-info-desc">'+desc+'</div>'+
+    '<div class="cls-modal-stats">HP '+d.hp+' &nbsp;·&nbsp; Evasion '+d.ev+'</div>'+
+    (featuresHtml?'<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Class Features</div>'+featuresHtml+'</div>':'')+
+    '<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Domains</div>'+domainRows+'</div>'+
+    '<div class="cls-info-domains" style="margin-top:.65rem"><div class="cls-domains-label">Subclasses</div>'+subRows+'</div>';
+  modal.classList.add('active');
+  window._skipGridRefresh=false;
+  window._clsPreviewCls=prev;
+  // Restore footer visibility when closed
+  modal.onclick=function(ev){if(ev.target===modal){clsModalClose();if(footer)footer.style.display='';}};
+  document.querySelector('.cls-modal-close').onclick=function(){clsModalClose();if(footer)footer.style.display='';};
+}
+function setWF(type,val){
+  if(type==='slot')refSlot=val;
+  else if(type==='trait')refTrait=val;
+  else if(type==='dmg')refDmgType=val;
+  else if(type==='tier')refTier=val;
+  else if(type==='range')refRange=val;
+  else if(type==='advtype')refAdvType=val;
+  else if(type==='armortier')refArmorTier=val;
+  rRef(refContainerId);
+}
 function rRef(containerId){
   if(containerId)refContainerId=containerId;
   const cont=document.getElementById(refContainerId);
-  cont.innerHTML=`
-  <div class="ref-search-wrap">
-    <span class="ref-search-icon">⌕</span>
-    <input class="ref-search" id="refSearch" placeholder="Search classes, subclasses, spells, weapons, items, ancestries…" value="${refQuery.replace(/"/g,'&quot;')}" autocomplete="off">
-  </div>
-  <div class="ref-cats">
-    ${REF_CATS.map(cat=>`<button class="ref-cat${refCat===cat?' act':''}" data-ref-cat="${cat}">${cat}</button>`).join('')}
-  </div>
-  <div id="refResultsArea"></div>`;
-
-  const searchEl=cont.querySelector('#refSearch');
-  searchEl.focus();
-  searchEl.setSelectionRange(refQuery.length,refQuery.length);
-  searchEl.addEventListener('input',()=>{refQuery=searchEl.value;renderRefResults();});
-  cont.querySelectorAll('[data-ref-cat]').forEach(btn=>{
-    btn.addEventListener('click',()=>{refCat=btn.dataset.refCat;rRef(refContainerId);});
-  });
+  if(!cont)return;
+  cont.innerHTML='<div id="refStickyPanel"></div><div id="refResultsArea" style="overflow-y:auto;flex:1"></div>';
+  cont.style.display='flex';
+  cont.style.flexDirection='column';
+  cont.style.height='100%';
+  const navId=refContainerId==='refContent'?'refNav':'standaloneRefNav';
+  renderRefNav(navId);
   renderRefResults();
 }
-
 function renderRefResults(){
   const area=document.querySelector('#'+refContainerId+' #refResultsArea')||document.getElementById('refResultsArea');
+  const stickyPanel=document.querySelector('#'+refContainerId+' #refStickyPanel')||document.getElementById('refStickyPanel');
   if(!area)return;
-  const q=refQuery.trim().toLowerCase();
 
-  // Show nothing until user types or picks a category
+  // Weapon filter panel — rebuild before results
+  var fpRow=function(label,vals,cur,type){
+    const btns=vals.map(function(v){
+      const lbl=((type==='tier'||type==='armortier')&&v!=='All')?'T'+v:v;
+      return '<button class="ref-fp'+(cur===v?' ref-fp-act':'')+'" onclick="setWF(&quot;'+type+'&quot;,&quot;'+v+'&quot;)">'+lbl+'</button>';
+    }).join('');
+    return '<div style="display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-bottom:.3rem">'
+      +'<span style="font-family:Cinzel,serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);min-width:48px">'+label+'</span>'
+      +btns+'</div>';
+  };
+  let wfHtml='';
+  if(refCat==='Weapon'){
+    wfHtml='<div style="margin-bottom:.65rem;padding:.5rem .75rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)">'
+      +fpRow('Slot',  ['All','Primary','Secondary'],refSlot,'slot')
+      +fpRow('Trait', ['All','Strength','Agility','Finesse','Instinct','Presence','Knowledge'],refTrait,'trait')
+      +fpRow('Damage',['All','Physical','Magic'],refDmgType,'dmg')
+      +fpRow('Range', ['All','Melee','Very Close','Close','Far','Very Far'],refRange,'range')
+      +fpRow('Tier',  ['All','1','2','3','4'],refTier,'tier')
+      +'</div>';
+  }
+  const q=refQuery.trim().toLowerCase();
+  const isWeaponFilter=refCat==='Weapon'&&(refSlot!=='All'||refTrait!=='All'||refDmgType!=='All'||refTier!=='All'||refRange!=='All');
+
+  // If All selected with no query, show everything grouped by category in sidebar order
   if(!q && refCat==='All'){
-    area.innerHTML='<div class="ref-empty">Type to search, or choose a category above.</div>';
+    if(stickyPanel)stickyPanel.innerHTML='';
+    const allCats=REF_CATS.filter(c=>c!=='All');
+    let groupedHtml='';
+    allCats.forEach(function(cat){
+      const catEntries=REF_INDEX.filter(function(e){return e.cat===cat;});
+      if(!catEntries.length)return;
+      groupedHtml+='<div style="margin-bottom:1.5rem">'
+        +'<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);padding-bottom:.3rem;margin-bottom:.5rem">'+cat+'</div>';
+      catEntries.forEach(function(e){
+        const voidTag=e.void?'<span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#8060c022;color:#a080d8;border:1px solid #8060c044;font-family:Cinzel,serif;margin-left:4px">VOID</span>':'';
+        const blockCat=e.cat==='Class'||e.cat==='Rule'||e.cat==='Subclass';
+        const nameStyle='font-size:13px;font-weight:700;margin-right:.5rem'+(blockCat?';display:block;margin-bottom:.3rem':';display:block;margin-bottom:.2rem');
+        if(e.cat==='Class'){
+          const cid='rcls_'+e.name.replace(/ /g,'_');
+          groupedHtml+='<div class="ref-card ref-cls-card"><div class="ref-card-body open" style="cursor:pointer" onclick="toggleClsCard(\''+cid+'\')">'
+            +'<div style="display:flex;align-items:center;justify-content:space-between">'
+            +'<span class="ref-card-name" style="'+nameStyle+'">'+e.name+voidTag+'</span>'
+            +'<span id="arr_'+cid+'" style="color:var(--text3);font-size:11px">&#9656;</span>'
+            +'</div><span style="font-size:11px;color:var(--text3)">'+e.meta+'</span>'
+            +'</div><div id="'+cid+'" class="ref-cls-body" style="display:none;padding:.75rem .85rem;border-top:1px solid var(--border)">'+buildClsBody(e.name)+'</div></div>';
+        } else if(e.cat==='Weapon'&&e.wData){
+          const d=e.wData;
+          const nameColor=d.isNamed?'var(--gold2)':'var(--text)';
+          const slotBadge='<span style="font-size:10px;padding:1px 6px;border-radius:10px;border:1px solid '+(d.slot==='primary'?'var(--gold3)':'var(--teal2)')+';color:'+(d.slot==='primary'?'var(--gold3)':'var(--teal2)')+';margin-right:5px">'+(d.slot==='primary'?'Pri':'Sec')+'</span>';
+          const dmgColor=d.isPhys?'var(--gold2)':'var(--teal2)';
+          groupedHtml+='<div class="ref-card"><div class="ref-card-body open">'
+            +'<span style="font-size:13px;font-weight:700;color:'+nameColor+';display:block;margin-bottom:.2rem">'+slotBadge+d.n+'</span>'
+            +'<div style="display:flex;flex-wrap:wrap;gap:.35rem .6rem;align-items:center">'
+            +'<span style="font-size:11px;color:var(--text3)">T'+d.t+'</span>'
+            +(TRAIT_BADGE[d.trait]||d.trait)
+            +'<span style="font-size:11px;color:var(--text3)">'+d.range+'</span>'
+            +'<span style="font-family:monospace;font-size:13px;color:'+dmgColor+'">'+d.dmgVal+'</span><span style="font-size:10px;color:var(--text3);margin-left:2px">'+d.dmgType+'</span>'
+            +'<span style="font-size:11px;color:var(--text3)">'+d.burden+'</span>'
+            +'</div>'
+            +(d.feat?'<div style="margin-top:.3rem;font-size:13px;color:var(--text2)"><span style="color:var(--gold2);font-weight:600">'+d.feat.split(':')[0]+':</span> '+d.feat.split(':').slice(1).join(':').trim()+'</div>':'')
+            +'</div></div>';
+        } else if(e.cat==='Armor'&&e.arData){
+          const d=e.arData;
+          const featHtml=d.feat?('<span style="color:var(--gold2);font-weight:600">'+d.feat.split(':')[0]+':</span> '+d.feat.split(':').slice(1).join(':').trim()):'';
+          groupedHtml+='<div class="ref-card"><div class="ref-card-body open">'
+            +'<span style="font-size:13px;font-weight:700;display:block;margin-bottom:.2rem">'+e.name+'</span>'
+            +'<div style="display:flex;flex-wrap:wrap;gap:.35rem .6rem;align-items:center">'
+            +'<span style="font-size:11px;color:var(--text3)">T'+d.t+'</span>'
+            +'<span style="font-size:11px;color:var(--gold2);font-weight:600">Score '+d.score+'</span>'
+            +'<span style="font-size:11px;color:var(--text3)">'+d.minor+'/'+d.severe+'</span>'
+            +(d.evMod?'<span style="font-size:11px;color:var(--text3)">'+(d.evMod>0?'+':'')+d.evMod+' Ev</span>':'')
+            +'</div>'+(featHtml?'<div style="margin-top:.3rem;font-size:13px;color:var(--text2)">'+featHtml+'</div>':'')
+            +'</div></div>';
+        } else if(e.cat==='Adversary'&&e.aData){
+          const d=e.aData;
+          groupedHtml+='<div class="ref-card"><div class="ref-card-body open">'
+            +'<span style="font-size:13px;font-weight:700;display:block;margin-bottom:.2rem">'+e.name+voidTag+'</span>'
+            +'<span style="font-size:11px;color:var(--text3)">T'+d.t+' · '+d.type+'</span>'
+            +'<div style="font-size:13px;color:var(--text2);margin-top:.2rem">'+d.desc+'</div>'
+            +'</div></div>';
+        } else {
+          groupedHtml+='<div class="ref-card"><div class="ref-card-body open">'
+            +'<span class="ref-card-name" style="'+nameStyle+'">'+e.name+voidTag+'</span>'
+            +e.body+'</div></div>';
+        }
+      });
+      groupedHtml+='</div>';
+    });
+    area.innerHTML=groupedHtml;
     return;
   }
 
   let filtered=REF_INDEX;
   if(refCat!=='All')filtered=filtered.filter(e=>e.cat===refCat);
+  // Apply adversary tier filter via tags
+  if(refCat==='Adversary'&&refTier!=='All'){
+    filtered=filtered.filter(e=>e.tags.includes('tier '+refTier));
+  }
+  // Apply weapon sub-filters
+  if(isWeaponFilter){
+    filtered=filtered.filter(e=>{
+      if(e.cat!=='Weapon')return false;
+      if(refSlot!=='All'&&!e.meta.startsWith(refSlot))return false;
+      if(refTrait!=='All'&&!e.meta.includes(refTrait))return false;
+      if(refDmgType!=='All'&&!e.tags.includes(refDmgType.toLowerCase()))return false;
+      if(refTier!=='All'&&!e.tags.includes('tier '+refTier))return false;
+      if(refRange!=='All'&&!e.tags.includes('range:'+refRange.toLowerCase().replace(/ /g,'-')))return false;
+      return true;
+    });
+  }
   if(q.length>0){
     filtered=filtered.filter(e=>
       e.name.toLowerCase().includes(q)||
@@ -5060,37 +5332,111 @@ function renderRefResults(){
   }
 
   if(!filtered.length){
-    area.innerHTML=`<div class="ref-empty">No results for "${refQuery}"</div>`;
+    if(stickyPanel)stickyPanel.innerHTML=refCat==='Weapon'?wfHtml:'';
+    area.innerHTML='<div class="ref-empty">No results'+(refQuery?' for &ldquo;'+refQuery+'&rdquo;':'')+'</div>';
     return;
   }
 
-  area.innerHTML=`<div class="ref-count">${filtered.length} result${filtered.length===1?'':'s'}</div>`+
-  filtered.map((e,i)=>{
-    const col=CAT_COLORS[e.cat]||'var(--text3)';
-    const isOpen=refOpenId===`${e.cat}::${e.name}`;
-    const voidTag=e.void?`<span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#8060c022;color:#a080d8;border:1px solid #8060c044;font-family:'Cinzel',serif;margin-left:4px">VOID</span>`:'';
-    return `<div class="ref-card" data-ref-id="${e.cat}::${e.name}">
-      <div class="ref-card-hdr">
-        <span class="ref-card-name">${e.name}${voidTag}</span>
-        <span class="ref-meta" style="margin:0">${e.meta}</span>
-        <span class="ref-card-cat" style="color:${col};border-color:${col}33;background:${col}11">${e.cat}</span>
-        <span style="color:var(--text3);font-size:13px;flex-shrink:0">${isOpen?'▲':'▼'}</span>
-      </div>
-      <div class="ref-card-body${isOpen?' open':''}">${e.body}</div>
-    </div>`;
-  }).join('');
-
-  // Wire expand/collapse
-  area.querySelectorAll('.ref-card').forEach(card=>{
-    card.querySelector('.ref-card-hdr').addEventListener('click',()=>{
-      const id=card.dataset.refId;
-      refOpenId=refOpenId===id?null:id;
-      const body=card.querySelector('.ref-card-body');
-      const arrow=card.querySelector('.ref-card-hdr span:last-child');
-      if(refOpenId===id){body.classList.add('open');if(arrow)arrow.textContent='▲';}
-      else{body.classList.remove('open');if(arrow)arrow.textContent='▼';}
+  if(refCat==='Weapon'){
+    // ── Compact table view ────────────────────────────────────────────────────
+    const TBADGE2={'Strength':'<span class="ref-trait-badge t-str">Str</span>','Agility':'<span class="ref-trait-badge t-agi">Agi</span>','Finesse':'<span class="ref-trait-badge t-fin">Fin</span>','Instinct':'<span class="ref-trait-badge t-ins">Ins</span>','Presence':'<span class="ref-trait-badge t-pre">Pre</span>','Knowledge':'<span class="ref-trait-badge t-kno">Kno</span>'};
+    const cwp='';
+    const trows=filtered.map(function(e){
+      if(!e.wData)return '';
+      const d=e.wData;
+      const nameColor=d.isNamed?'var(--gold2)':'var(--text)';
+      const dmgColor=d.isPhys?'var(--gold2)':'var(--teal2)';
+      const feat=d.feat?('<span style="color:var(--gold2);font-weight:600">'+d.feat.split(':')[0]+':</span> '+d.feat.split(':').slice(1).join(':').trim()):'—';
+      const slotBadge='<span style="font-size:10px;padding:1px 6px;border-radius:10px;border:1px solid '+(d.slot==='primary'?'var(--gold3)':'var(--teal2)')+';color:'+(d.slot==='primary'?'var(--gold3)':'var(--teal2)')+';margin-right:5px">'+(d.slot==='primary'?'Pri':'Sec')+'</span>';
+      return '<tr class="wt-row">'
+        +'<td style="color:'+nameColor+';font-weight:600;white-space:nowrap">'+slotBadge+d.n+'</td>'
+        +'<td><span style="font-family:Cinzel,serif;font-size:10px;color:var(--text3);border:1px solid var(--border2);padding:1px 5px;border-radius:4px;display:inline-block;min-width:26px;text-align:center">T'+d.t+'</span></td>'
+        +'<td>'+(TRAIT_BADGE[d.trait]||d.trait)+'</td>'
+        +'<td style="font-size:12px;white-space:nowrap;color:var(--text2)">'+d.range+'</td>'
+        +'<td style="white-space:nowrap"><span style="font-family:monospace;font-size:13px;color:'+dmgColor+'">'+d.dmgVal+'</span><span style="font-size:10px;color:var(--text3);margin-left:3px">'+d.dmgType+'</span></td>'
+        +'<td style="font-size:12px;white-space:nowrap;color:var(--text2)">'+d.burden+'</td>'
+        +'<td style="font-size:12px;color:var(--text2);max-width:260px">'+feat+'</td>'
+        +'</tr>';
+    }).join('');
+    const thStyle='text-align:left;padding:.4rem .5rem .4rem 0;font-family:Cinzel,serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:500;border-bottom:2px solid var(--border)';
+    if(stickyPanel)stickyPanel.innerHTML=wfHtml;
+    area.innerHTML=''
+      +'<div style="font-size:12px;color:var(--text3);margin-bottom:.4rem">'+filtered.length+' weapon'+(filtered.length===1?'':'s')+'</div>'
+      +'<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse">'
+      +'<thead><tr>'
+      +'<th style="'+thStyle+';padding-left:10px">Name</th>'
+      +'<th style="'+thStyle+';min-width:32px">T</th>'
+      +'<th style="'+thStyle+'">Trait</th>'
+      +'<th style="'+thStyle+'">Range</th>'
+      +'<th style="'+thStyle+'">Damage</th>'
+      +'<th style="'+thStyle+'">Burden</th>'
+      +'<th style="'+thStyle+'">Feature</th>'
+      +'</tr></thead>'
+      +'<tbody>'+trows+'</tbody></table></div>';
+    area.querySelectorAll('.wt-row').forEach(function(tr){
+      tr.style.borderBottom='1px solid var(--border)';
+      tr.querySelectorAll('td').forEach(function(td){td.style.padding='.35rem .5rem';});
+      tr.addEventListener('mouseenter',function(){tr.style.background='var(--bg3)';});
+      tr.addEventListener('mouseleave',function(){tr.style.background='';});
     });
-  });
+  } else if(refCat==='Adversary'){
+    // ── Adversary table ───────────────────────────────────────────────────────
+    const ADV_TYPES=['All','Solo','Bruiser','Horde','Leader','Standard','Minion','Ranged','Skulk','Support','Social'];
+    const ADV_TYPE_CSS={Solo:'color:var(--ember);border-color:var(--ember)',Bruiser:'color:var(--ember);border-color:var(--ember)',Horde:'color:var(--gold2);border-color:var(--gold3)',Leader:'color:var(--gold2);border-color:var(--gold3)',Minion:'color:var(--text3);border-color:var(--border2)',Standard:'color:var(--text3);border-color:var(--border2)',Ranged:'color:var(--teal2);border-color:var(--teal2)',Skulk:'color:var(--teal2);border-color:var(--teal2)',Support:'color:var(--teal2);border-color:var(--teal)',Social:'color:var(--text2);border-color:var(--muted)'};
+    let advFiltered=refAdvType==='All'?filtered:filtered.filter(function(e){return e.aData&&e.aData.type===refAdvType;});
+    if(stickyPanel)stickyPanel.innerHTML='<div style="padding:.5rem .75rem .35rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:.5rem">'
+      +fpRow('Type',ADV_TYPES,refAdvType,'advtype')
+      +fpRow('Tier',['All','1','2','3','4'],refTier,'tier')
+      +'</div>';
+    const thA='text-align:left;padding:.4rem .5rem .4rem 0;font-family:Cinzel,serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:500;border-bottom:2px solid var(--border)';
+    const advRows=advFiltered.map(function(e){if(!e.aData)return '';const d=e.aData;const tc=ADV_TYPE_CSS[d.type]||'color:var(--text3);border-color:var(--border2)';return '<tr class="wt-row"><td style="font-weight:600;color:var(--text)">'+d.n+'</td><td><span style="font-family:Cinzel,serif;font-size:10px;color:var(--text3);border:1px solid var(--border2);padding:1px 5px;border-radius:4px;display:inline-block;min-width:26px;text-align:center">T'+d.t+'</span></td><td><span style="font-size:11px;padding:1px 7px;border-radius:10px;border:1px solid;'+tc+'">'+d.type+'</span></td><td style="font-size:12px;color:var(--text2);max-width:320px">'+d.desc+'</td></tr>';}).join('');
+    area.innerHTML='<div style="font-size:12px;color:var(--text3);margin-bottom:.4rem">'+advFiltered.length+' adversar'+(advFiltered.length===1?'y':'ies')+'</div>'
+      +'<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr>'
+      +'<th style="'+thA+'">Name</th><th style="'+thA+';min-width:36px">T</th><th style="'+thA+'">Type</th><th style="'+thA+'">Description</th>'
+      +'</tr></thead><tbody>'+advRows+'</tbody></table></div>';
+    area.querySelectorAll('.wt-row').forEach(function(tr){tr.style.borderBottom='1px solid var(--border)';tr.querySelectorAll('td').forEach(function(td){td.style.padding='.35rem .5rem';});tr.addEventListener('mouseenter',function(){tr.style.background='var(--bg3)';});tr.addEventListener('mouseleave',function(){tr.style.background='';});});
+  } else if(refCat==='Armor'){
+    // ── Armor table ───────────────────────────────────────────────────────────
+    let arFiltered=refArmorTier==='All'?filtered:filtered.filter(function(e){return e.arData&&e.arData.t===parseInt(refArmorTier);});
+    if(stickyPanel)stickyPanel.innerHTML='<div style="padding:.5rem .75rem .35rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:.5rem">'
+      +fpRow('Tier',['All','1','2','3','4'],refArmorTier,'armortier')
+      +'</div>';
+    const thAr='text-align:left;padding:.4rem .5rem .4rem 0;font-family:Cinzel,serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:500;border-bottom:2px solid var(--border)';
+    const arRows=arFiltered.map(function(e){if(!e.arData)return '';const d=e.arData;const featHtml=d.feat?('<span style="color:var(--gold2);font-weight:600">'+d.feat.split(':')[0]+':</span> '+d.feat.split(':').slice(1).join(':').trim()):'—';const evHtml=d.evMod?('<span style="color:var(--text3)">'+(d.evMod>0?'+':'')+d.evMod+' Ev</span>'):'';return '<tr class="wt-row"><td style="font-weight:600;color:var(--text)">'+d.n+'</td><td><span style="font-family:Cinzel,serif;font-size:10px;color:var(--text3);border:1px solid var(--border2);padding:1px 5px;border-radius:4px;display:inline-block;min-width:26px;text-align:center">T'+d.t+'</span></td><td style="font-family:monospace;font-size:13px;color:var(--gold2)">'+d.score+'</td><td style="font-size:12px;white-space:nowrap;color:var(--text2)">'+d.minor+' / '+d.severe+'</td><td style="font-size:12px;color:var(--text3)">'+evHtml+'</td><td style="font-size:12px;color:var(--text2);max-width:260px">'+featHtml+'</td></tr>';}).join('');
+    area.innerHTML='<div style="font-size:12px;color:var(--text3);margin-bottom:.4rem">'+arFiltered.length+' armor piece'+(arFiltered.length===1?'':'s')+'</div>'
+      +'<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr>'
+      +'<th style="'+thAr+'">Name</th><th style="'+thAr+';min-width:36px">T</th><th style="'+thAr+'">Score</th><th style="'+thAr+'">Minor/Severe</th><th style="'+thAr+'">Evasion</th><th style="'+thAr+'">Feature</th>'
+      +'</tr></thead><tbody>'+arRows+'</tbody></table></div>';
+    area.querySelectorAll('.wt-row').forEach(function(tr){tr.style.borderBottom='1px solid var(--border)';tr.querySelectorAll('td').forEach(function(td){td.style.padding='.35rem .5rem';});tr.addEventListener('mouseenter',function(){tr.style.background='var(--bg3)';});tr.addEventListener('mouseleave',function(){tr.style.background='';});});
+  } else {
+    // ── Card view for all other categories ────────────────────────────────────
+    if(stickyPanel)stickyPanel.innerHTML='';
+    area.innerHTML='<div class="ref-count">'+filtered.length+' result'+(filtered.length===1?'':'s')+'</div>'
+    +filtered.map(function(e){
+      const voidTag=e.void?'<span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#8060c022;color:#a080d8;border:1px solid #8060c044;font-family:Cinzel,serif;margin-left:4px">VOID</span>':'';
+      const blockCat=e.cat==='Class'||e.cat==='Rule'||e.cat==='Subclass';
+      const nameStyle='font-size:13px;font-weight:700;margin-right:.5rem'+(blockCat?';display:block;margin-bottom:.3rem':';display:block;margin-bottom:.2rem');
+      if(e.cat==='Class'){
+        const cid='rcls_'+e.name.replace(/ /g,'_');
+        return '<div class="ref-card ref-cls-card">'
+          +'<div class="ref-card-body open" style="cursor:pointer" onclick="toggleClsCard(\''+cid+'\')">'
+          +'<div style="display:flex;align-items:center;justify-content:space-between">'
+          +'<span class="ref-card-name" style="'+nameStyle+'">'+e.name+voidTag+'</span>'
+          +'<span id="arr_'+cid+'" style="color:var(--text3);font-size:11px">&#9656;</span>'
+          +'</div>'
+          +'<span style="font-size:11px;color:var(--text3)">'+e.meta+'</span>'
+          +'</div>'
+          +'<div id="'+cid+'" class="ref-cls-body" style="display:none;padding:.75rem .85rem;border-top:1px solid var(--border)">'
+          +buildClsBody(e.name)
+          +'</div>'
+          +'</div>';
+      }
+      return '<div class="ref-card"><div class="ref-card-body open">'
+        +'<span class="ref-card-name" style="'+nameStyle+'">'+e.name+voidTag+'</span>'
+        +e.body
+        +'</div></div>';
+    }).join('');
+  }
 }
 
 function exportAll(){
@@ -5191,6 +5537,7 @@ document.addEventListener('click',e=>{
 function showStandaloneRef(){
   document.getElementById('emptyState').style.display='none';
   document.getElementById('standaloneRef').style.display='block';
+  refContainerId='standaloneRefContent';
   rRef('standaloneRefContent');
 }
 
